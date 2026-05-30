@@ -18,6 +18,7 @@ add_library(terminal
     src/obj/block.cc
     src/obj/list.cc
     src/obj/text.cc
+    src/obj/input.cc
 )
 
 target_include_directories(terminal PUBLIC
