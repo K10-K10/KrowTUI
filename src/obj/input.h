@@ -15,37 +15,23 @@ class TextField : private Object {
   TextField& move_cursor(int x, int y);
 
   void draw() override;
-
   class RowProxy {
     std::string& row_;
 
    public:
     RowProxy(std::string& row) : row_(row) {}
-
-    char& operator[](size_t index) {
-      if (index >= row_.size()) {
-        row_.resize(index + 1, ' ');
-      }
-      return row_[index];
-    }
-
+    char& operator[](size_t index);
     operator std::string&() { return row_; }
     operator const std::string&() const { return row_; }
   };
-
-  RowProxy operator[](size_t index) {
-    if (index >= contents_.size()) {
-      contents_.resize(index + 1);
-    }
-    return RowProxy(contents_[index]);
-  }
+  RowProxy operator[](size_t index);
 
   const std::string& operator[](size_t index) const {
     return contents_.at(index);
   }
 
  private:
-  Rect rect;
+  Rect rect_;
   std::vector<std::string> contents_;
   int cursor_x = 0, cursor_y = 0;
 };
