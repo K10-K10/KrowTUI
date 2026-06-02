@@ -9,10 +9,16 @@
 namespace terminal {
 class TextField : private Object {
  public:
-  TextField& position(const Rect& r);
-  TextField& contents(const std::vector<std::string>& text);
-  std::vector<std::string> get_contents();
-  TextField& move_cursor(int x, int y);
+  TextField& position(const Rect& r) {
+    rect = r;
+    return *this;
+  }
+  TextField& contents(const std::vector<std::string>& text) {
+    contents_ = text;
+    return *this;
+  };
+  std::vector<std::string> get_contents() const { return contents_; }
+  // TextField& move_cursor(int x, int y);
 
   void draw() override;
   class RowProxy {
@@ -31,7 +37,7 @@ class TextField : private Object {
   }
 
  private:
-  Rect rect_;
+  Rect rect;
   std::vector<std::string> contents_;
   int cursor_x = 0, cursor_y = 0;
 };
