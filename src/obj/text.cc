@@ -18,16 +18,6 @@ Text& Text::contents(const std::string& text) {
 
 std::string Text::get_text() { return text_; }
 
-Text& Text::push(char c) {
-  text_.push_back(c);
-  return *this;
-}
-
-Text& Text::pop() {
-  if (!text_.empty()) text_.pop_back();
-  return *this;
-}
-
 void Text::draw() {
   // Implementation for drawing text
   int cnt_x = 0;

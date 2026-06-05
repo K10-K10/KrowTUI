@@ -7,6 +7,7 @@
 #include "app/app.h"
 #include "layout/rect.h"
 #include "obj/block.h"
+#include "obj/input.h"
 #include "obj/list.h"
 #include "obj/text.h"
 #include "style/color.h"
