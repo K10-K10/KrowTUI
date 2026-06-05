@@ -2,7 +2,7 @@
 
 namespace terminal::utils {
 // text
-enum TextColor {
+enum class TextColor {
   text_black = 30,
   text_red = 31,
   text_green = 32,
@@ -13,7 +13,7 @@ enum TextColor {
   text_gray = 37
 };
 // fill
-enum FillColor {
+enum class FillColor {
   fill_black = 40,
   fill_red = 41,
   fill_green = 42,
