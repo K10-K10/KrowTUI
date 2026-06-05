@@ -1,5 +1,7 @@
 #include "obj/input.h"
 
+#include <algorithm>
+#include <csignal>
 #include <string>
 #include <vector>
 
@@ -21,10 +23,36 @@ TextField::RowProxy TextField::operator[](size_t index) {
   return RowProxy(contents_[index]);
 }
 
-void TextField::draw() {
-  int cnt_x = 0;
-  int cnt_y = 0;
+TextField& TextField::contents(const std::vector<std::string>& text) {
+  std::vector<std::string> new_content;
+  std::string line;
+  max_length_ = 0;
+  for (std::string s : text) {
+    for (char c : s) {
+      line += c;
+      if (c == '\n') {
+        new_content.push_back(line);
+        max_length_ = std::max(max_length_, int(line.size()));
+      }
+    }
+    line = "";
+    new_content.push_back(s);
+    max_length_ = std::max(max_length_, int(s.size()));
+  }
+  return *this;
+}
 
+TextField& TextField::move_cursor(int x, int y) {
+  if (x < 0 || y < 0) return *this;
+  if (x > max_length_ || y > contents_.size())
+    return *this;
+  else {
+    cursor_x = x;
+    cursor_y = y;
+    return *this;
+  }
+}
+void TextField::draw() {
   int l = rect.x;
   int w = (rect.w == FULL) ? __terminal__::screen.width() : rect.w;
   int t = rect.y;
