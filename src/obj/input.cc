@@ -57,20 +57,36 @@ void TextField::draw() {
   int w = (rect.w == FULL) ? __terminal__::screen.width() : rect.w;
   int t = rect.y;
   int h = (rect.h == FULL) ? __terminal__::screen.height() : rect.h;
+  int offset_x = std::max(0, cursor_x - w + 1);
+  int offset_y = std::max(0, cursor_y - h + 1);
+  for (int screen_y = 0; screen_y < h; ++screen_y) {
+    int data_y = offset_y + screen_y;
+    if (data_y >= contents_.size()) break;
 
-  for (std::string s : contents_) {
-    for (char c : s) {
-      __terminal__::drawObj.put(t + cnt_y, l + cnt_x, {std::string{c}});
-      ++cnt_x;
-      if (cnt_x + l > w) {
-        break;
+    const std::string& s = contents_[data_y];
+
+    for (int screen_x = 0; screen_x < w; ++screen_x) {
+      int data_x = offset_x + screen_x;
+
+      if (data_x >= s.size()) break;
+
+      char c = s[data_x];
+
+      if (data_x == cursor_x && data_y == cursor_y) {
+        __terminal__::drawObj.put(t + screen_y, l + screen_x, {std::string{c}});
+      } else {
+        __terminal__::drawObj.put(t + screen_y, l + screen_x, {std::string{c}});
       }
     }
-    ++cnt_y;
-    if (cnt_y + t > h) return;
-    cnt_x = 0;
   }
-  return;
+  if (cursor_y >= offset_y && cursor_y < offset_y + h) {
+    if (cursor_y < contents_.size() && cursor_x == contents_[cursor_y].size()) {
+      int screen_x = cursor_x - offset_x;
+      int screen_y = cursor_y - offset_y;
+      if (screen_x >= 0 && screen_x < w) {
+        __terminal__::drawObj.put(t + screen_y, l + screen_x, {" "});
+      }
+    }
+  }
 }
-
 }  // namespace terminal
