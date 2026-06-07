@@ -7,6 +7,42 @@
 #include "core/screen.h"
 #include "utils/base.h"
 
+enum StyleFlag : unsigned int {
+  None = 0,
+  Bold = 1 << 0,
+  Dim = 1 << 1,
+  Italic = 1 << 2,
+  Underline = 1 << 3,
+  Blink = 1 << 4,
+  RapidBlink = 1 << 5,
+  Inverted = 1 << 6,
+  Hidden = 1 << 7,
+  Strikethrough = 1 << 8,
+  DoubleUnderline = 1 << 9,
+  Overline = 1 << 10
+};
+
+std::string makeline(const __terminal__::Cell& c) {
+  std::string line =
+      "\033[" + std::to_string(c.style.fg) + ";" + std::to_string(c.style.bg);
+
+  if (c.style.flag & StyleFlag::Bold) line += ";1";
+  if (c.style.flag & StyleFlag::Dim) line += ";2";
+  if (c.style.flag & StyleFlag::Italic) line += ";3";
+  if (c.style.flag & StyleFlag::Underline) line += ";4";
+  if (c.style.flag & StyleFlag::Blink) line += ";5";
+  if (c.style.flag & StyleFlag::RapidBlink) line += ";6";
+  if (c.style.flag & StyleFlag::Inverted) line += ";7";
+  if (c.style.flag & StyleFlag::Hidden) line += ";8";
+  if (c.style.flag & StyleFlag::Strikethrough) line += ";9";
+  if (c.style.flag & StyleFlag::DoubleUnderline) line += ";21";
+  if (c.style.flag & StyleFlag::Overline) line += ";53";
+
+  line += "m" + c.c + "\033[0m";
+
+  return line;
+}
+
 namespace __terminal__ {
 void Render::flush() {
   int W = __terminal__::screen.width();
@@ -25,7 +61,7 @@ void Render::flush() {
           line.clear();
         }
 
-        line += __terminal__::screen.next[i].c;
+        line += makeline(__terminal__::screen.next[i]);
         __terminal__::screen.current[i] = __terminal__::screen.next[i];
       } else if (start != -1) {
         terminal::utils::moveTo(y, start);

@@ -32,8 +32,7 @@ namespace __terminal__ {
 struct Style {
   int fg = static_cast<int>(terminal::utils::TextColor::Default);
   int bg = static_cast<int>(terminal::utils::FillColor::Default);
-  bool bold = false;
-  bool inverted = false;
-  bool underline = false;
+
+  unsigned int flag = 0;
 };
 }  // namespace __terminal__
