@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-#include "style/color.h"
-
 namespace terminal {
 class Object;
 }
@@ -29,7 +27,7 @@ class Screen {
 
  private:
   void clear();
-  void put(int x, int y, Cell c, __terminal__::Style style);
+  void put(int x, int y, Cell c);
   void resize(int x, int y);
 
   std::vector<Cell> current, next;
