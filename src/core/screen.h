@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "style/color.h"
 namespace terminal {
 class Object;
 }
@@ -10,7 +11,7 @@ class Object;
 namespace __terminal__ {
 struct Cell {
   std::string c = "";
-  int fg = -1, bg = -1;
+  Style style;
 };
 
 class App;
