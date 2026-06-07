@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "style/color.h"
+
 namespace __terminal__ {
 
 int Screen::width() const { return width_; }
@@ -16,7 +18,9 @@ void Screen::resize(int w, int h) {
 
 void Screen::clear() { std::fill(next.begin(), next.end(), Cell{" "}); }
 
-void Screen::put(int x, int y, Cell c) { next[y * width_ + x] = c; }
+void Screen::put(int x, int y, Cell c, __terminal__::Style style) {
+  next[y * width_ + x] = c;
+}
 
 __terminal__::Screen screen;
 
