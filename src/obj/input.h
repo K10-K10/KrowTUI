@@ -5,6 +5,7 @@
 
 #include "layout/rect.h"
 #include "obj/obj.h"
+#include "style/color.h"
 
 namespace terminal {
 class TextField : private Object {
@@ -19,7 +20,29 @@ class TextField : private Object {
   TextField& insert_char(char c);
   TextField& delete_char();
 
+  TextField& text_color(utils::TextColor color) {
+    style_.fg = static_cast<int>(color);
+    return *this;
+  }
+  TextField& text_color(int color) {
+    style_.fg = color;
+    return *this;
+  }
+  TextField& field_color(utils::FillColor color) {
+    style_.bg = static_cast<int>(color);
+    return *this;
+  }
+  TextField& field_color(int color) {
+    style_.bg = color;
+    return *this;
+  }
+  TextField& cursor_inverted(bool inverted) {
+    cursor_inverted_ = inverted;
+    return *this;
+  }
+
   void draw() override;
+
   class RowProxy {
     std::string& row_;
 
@@ -37,8 +60,11 @@ class TextField : private Object {
 
  private:
   Rect rect;
+  __terminal__::Style style_;
   std::vector<std::string> contents_;
   int max_length_;
   int cursor_x = 0, cursor_y = 0;
+
+  bool cursor_inverted_ = false;
 };
 }  // namespace terminal
