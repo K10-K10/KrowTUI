@@ -26,15 +26,14 @@ enum class FillColor {
   White = 47
 };
 
+}  // namespace terminal::utils
+
+namespace __terminal__ {
 struct Style {
-  TextColor fg = TextColor::Default;
-  FillColor bg = FillColor::Default;
+  int fg = static_cast<int>(terminal::utils::TextColor::Default);
+  int bg = static_cast<int>(terminal::utils::FillColor::Default);
   bool bold = false;
   bool inverted = false;
   bool underline = false;
 };
-
-int printColor(int txt_color, const char* str);
-int printColor(int txt_color, int color, const char* str);
-
-}  // namespace terminal::utils
+}  // namespace __terminal__
