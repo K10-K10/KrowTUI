@@ -8,5 +8,9 @@ Here are some important points to note when using the TUI library:
 
 3. **If process stopped by `Ctrl + C`**: This library has a signal handler for `SIGINT`, and when the process is stopped by `Ctrl + C`, auto call `app.stop()`, so the terminal will be restored to its original state.
 
-author: K10-K10
-update: 12/04/2026
+
+---
+
+version: *1.1.0*
+author: *K10-K10*
+update: 09/06/2026

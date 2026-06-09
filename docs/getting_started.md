@@ -38,7 +38,9 @@ terminal::Text text("Hello, World!");
 Finally, draw the terminal to see the changes:
 
 ```cpp
-app.loop{[&](){ app.draw(); }};
+app.loop{[&]() {
+    text.draw();
+}};
 ```
 
 When you're done, make sure to clean up resources:
@@ -49,5 +51,8 @@ app.stop();
 
 example code can be found in the [Examples](docs/examples.md) section of the documentation.
 
-author: K10-K10
-update: 12/04/2026
+---
+
+version: *1.1.0*
+author: *K10-K10*
+update: 09/06/2026
