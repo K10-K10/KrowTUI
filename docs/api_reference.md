@@ -20,6 +20,6 @@ All functions are include in the `terminal` namespace.
 
 ---
 
-version: *1.1.0*
-author: *K10-K10*
-update: 09/06/2026
+__version__: *1.1.0*  
+__author__: *K10-K10*  
+__update__: 09/06/2026
