@@ -17,5 +17,8 @@ All functions are include in the `terminal` namespace.
   - Cursor: add later
 - [Style](api_docs/style.md)
 
-author: K10-K10
-update: 12/04/2026
+---
+
+version: *1.1.0*
+author: *K10-K10*
+update: 09/06/2026

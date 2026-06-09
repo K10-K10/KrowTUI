@@ -68,6 +68,8 @@ target_link_libraries(app PRIVATE terminal)
 - `q`: Quit the application
 - Any other character will be appended to the text "Hello TUI!"
 
+---
 
-author: K10-K10
-update: 12/04/2026
+version: *1.1.0*
+author: *K10-K10*
+update: 09/06/2026

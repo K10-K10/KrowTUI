@@ -27,5 +27,8 @@ Starts the main loop of the application. The provided functions will be called i
 Stops the main loop and exits from alternate screen.
 You should call this function when you want to exit the application.
 
-author: K10-K10
-update: 12/04/2026
+---
+
+version: *1.1.0*
+author: *K10-K10*
+update: 09/06/2026
