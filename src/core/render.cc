@@ -55,7 +55,13 @@ void Render::flush() {
     for (int x = 0; x < W; ++x) {
       int i = y * W + x;
 
-      if (__terminal__::screen.current[i].c != __terminal__::screen.next[i].c) {
+      if (__terminal__::screen.current[i].c != __terminal__::screen.next[i].c ||
+          __terminal__::screen.current[i].style.fg !=
+              __terminal__::screen.next[i].style.fg ||
+          __terminal__::screen.current[i].style.bg !=
+              __terminal__::screen.next[i].style.bg ||
+          __terminal__::screen.current[i].style.flag !=
+              __terminal__::screen.next[i].style.flag) {
         if (start == -1) {
           start = x;
           line.clear();
