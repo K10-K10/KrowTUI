@@ -9,8 +9,8 @@ All functions are include in the `terminal` namespace.
 - [Objects](api_docs/objects.md)
   - [Text](api_docs/text.md)
   - [Block](api_docs/block.md)
-  - **List**: add later
-  - **TextField**: add later
+  - [List](api_docs/list.md)
+  - [TextField](api_docs/textfield.md)
 - **Layout**: add later
   - **Rect**: add later
 - **Input**: add later
