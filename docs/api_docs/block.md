@@ -60,6 +60,6 @@ The `EdgeType` enum defines the edges of the block where the border should be dr
 
 ---
 
-version: *1.1.0*
-author: *K10-K10*
-update: 09/06/2026
+__version__: *1.1.0*  
+__author__: *K10-K10*  
+__update__: 09/06/2026
