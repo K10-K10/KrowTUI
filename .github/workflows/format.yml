@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   clang-format:
@@ -23,3 +24,14 @@ jobs:
           if [ -n "$files" ]; then
             clang-format --dry-run --Werror $files
           fi
+
+          - name: Generate compile_commands.json
+        run: |
+          cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+      - name: Run Clang-Tidy with Reviewdog
+        uses: tnesanek/action-clang-tidy@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          target_files: 'src/*.cpp src/*.hpp'
