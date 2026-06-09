@@ -38,7 +38,9 @@ terminal::Text text("Hello, World!");
 Finally, draw the terminal to see the changes:
 
 ```cpp
-app.loop{[&](){ app.draw(); }};
+app.loop{[&]() {
+    text.draw();
+}};
 ```
 
 When you're done, make sure to clean up resources:
