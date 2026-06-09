@@ -1,0 +1,28 @@
+# ver 1.2.0
+
+- commithash: ``
+- data: 10/06/2026
+
+## [Feature]
+
+- Style function for `Text` object.
+- Style function for `TextField` object.
+- Style function for `Block` object.
+- Style function for `List` object.
+
+## [Docs]
+
+- Update documentation for `Text` object.
+- Update documentation for `TextField` object.
+- Update documentation for `Block` object.
+- Update documentation for `List` object.
+
+All documents depending on version 1.2.0.
+
+## [Changed]
+
+- Update CMake for modern, and update installation instructions.
+
+## [Removed]
+
+- `pose` function is removed from `App` object.
