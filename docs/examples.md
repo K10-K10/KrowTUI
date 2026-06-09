@@ -12,11 +12,7 @@ int main() {
   text.contents("Hello TUI!");
 
   List list;
-  list.add_item("item1")
-      .add_item("item2")
-      .add_item("item3")
-      .add_item("item4")
-      .add_item("item5");
+  list.items({"item1", "item2", "item3", "item4", "item5"});
   Block box;
   text.position({1, 1, 20, 1});
   list.position({1, 3, 20, 5});
