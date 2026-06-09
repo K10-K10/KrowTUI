@@ -12,7 +12,6 @@ class App {
   App(Render& r);
   void init(int fps = 60);
   void loop(std::function<void()> frame);
-  void pose();
   void stop();
 
  protected:
