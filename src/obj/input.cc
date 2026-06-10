@@ -1,13 +1,12 @@
-#include "obj/input.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/input.h>
+#include <K10-K10/style/color.h>
 
 #include <algorithm>
 #include <csignal>
 #include <string>
 #include <vector>
-
-#include "core/drawObj.h"
-#include "layout/rect.h"
-#include "style/color.h"
 
 namespace terminal {
 char& TextField::RowProxy::operator[](size_t index) {

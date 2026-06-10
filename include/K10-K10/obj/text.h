@@ -1,9 +1,9 @@
 #pragma once
 
-#include <string>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/obj.h>
 
-#include "layout/rect.h"
-#include "obj/obj.h"
+#include <string>
 
 namespace terminal {
 

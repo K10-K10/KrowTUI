@@ -1,9 +1,8 @@
-#include "obj/text.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/text.h>
 
 #include <string>
-
-#include "core/drawObj.h"
-#include "layout/rect.h"
 
 namespace terminal {
 Text& Text::position(const Rect& r) {

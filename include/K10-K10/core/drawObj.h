@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/screen.h"
+#include <K10-K10/core/screen.h>
 
 namespace __terminal__ {
 class DrawObj {

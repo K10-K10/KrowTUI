@@ -1,11 +1,9 @@
-#include "input/keyboard.h"
-
+#include <K10-K10/input/keyboard.h>
+#include <K10-K10/utils/base.h>
 #include <ncurses.h>
 
 #include <iostream>
 #include <string>
-
-#include "utils/base.h"
 
 namespace __terminal__::__input__ {
 Key::Key() {
