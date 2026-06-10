@@ -19,20 +19,25 @@ add_library(terminal
     src/obj/input.cc
 )
 
-target_include_directories(terminal PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CURSES_INCLUDE_DIRS}
+target_compile_features(terminal PUBLIC cxx_std_20)
+
+target_include_directories(terminal PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_compile_features(terminal PUBLIC cxx_std_20)
+target_include_directories(terminal PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+)
 
 target_link_libraries(terminal PUBLIC
     ${CURSES_LIBRARIES}
 )
 
+add_library(K10-K10::terminal ALIAS terminal)
+
 option(TERMINAL_BUILD_TESTS "Build dev tests" OFF)
 
 if (TERMINAL_BUILD_TESTS AND NOT TARGET terminal_test)
   add_executable(terminal_test test/main.cpp)
-  target_link_libraries(terminal_test PRIVATE terminal)
+  target_link_libraries(terminal_test PRIVATE K10-K10::terminal)
 endif()
