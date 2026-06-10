@@ -1,11 +1,10 @@
-#include "core/render.h"
+#include <K10-K10/core/render.h>
+#include <K10-K10/core/screen.h>
+#include <K10-K10/utils/base.h>
 
 #include <fstream>
 #include <iostream>
 #include <string>
-
-#include "core/screen.h"
-#include "utils/base.h"
 
 enum StyleFlag : unsigned int {
   None = 0,

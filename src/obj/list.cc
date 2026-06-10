@@ -1,10 +1,9 @@
-#include "obj/list.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/list.h>
 
 #include <string>
 #include <vector>
-
-#include "core/drawObj.h"
-#include "layout/rect.h"
 
 namespace terminal {
 List& List::position(const Rect& r) {

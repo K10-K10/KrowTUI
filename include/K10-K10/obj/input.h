@@ -1,11 +1,11 @@
 #pragma once
 
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/obj.h>
+#include <K10-K10/style/color.h>
+
 #include <string>
 #include <vector>
-
-#include "layout/rect.h"
-#include "obj/obj.h"
-#include "style/color.h"
 
 namespace terminal {
 class TextField : private Object {

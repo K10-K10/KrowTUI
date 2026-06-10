@@ -1,7 +1,6 @@
-#include "obj/block.h"
-
-#include "core/drawObj.h"
-#include "layout/rect.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/block.h>
 
 namespace terminal {
 Block& Block::position(const Rect& r) {

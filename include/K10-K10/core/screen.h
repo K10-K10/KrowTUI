@@ -1,9 +1,9 @@
 #pragma once
 
+#include <K10-K10/style/color.h>
+
 #include <string>
 #include <vector>
-
-#include "style/color.h"
 namespace terminal {
 class Object;
 }

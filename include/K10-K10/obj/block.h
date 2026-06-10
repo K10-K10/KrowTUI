@@ -1,9 +1,9 @@
 #pragma once
 
-#include "layout/border.h"
-#include "layout/rect.h"
-#include "obj/obj.h"
-#include "style/color.h"
+#include <K10-K10/layout/border.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/obj.h>
+#include <K10-K10/style/color.h>
 
 namespace terminal {
 class Block : public Object {

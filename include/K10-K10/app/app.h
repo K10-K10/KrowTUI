@@ -1,10 +1,10 @@
 #pragma once
 
+#include <K10-K10/core/render.h>
+#include <K10-K10/core/screen.h>
+
 #include <csignal>
 #include <functional>
-
-#include "core/render.h"
-#include "core/screen.h"
 
 namespace __terminal__ {
 class App {
