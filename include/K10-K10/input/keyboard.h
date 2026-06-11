@@ -8,7 +8,6 @@ enum class KeyCode {
   ENTER,
   BACKSPACE,
   TAB,
-  ESCAPE,
   UP,
   DOWN,
   LEFT,
@@ -22,9 +21,6 @@ class Key {
  public:
   Key();
   ~Key();
-  void init();
-  void show();
-  void hide();
 
   KeyCode getKeyCode();
   char getCurrentChar();

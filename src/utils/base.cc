@@ -125,7 +125,6 @@ void upScroll(int num) {
   if (num > 0) {
     std::cout << "\e[" << num << "S" << std::flush;
   } else {
-    int new_n = num * -1;
     std::cout << "\e[" << num << "T" << std::flush;
   }
 }
@@ -134,7 +133,6 @@ void downScroll(int num) {
   if (num > 0) {
     std::cout << "\e[" << num << "T" << std::flush;
   } else {
-    int new_n = num * -1;
     std::cout << "\e[" << num << "S" << std::flush;
   }
 }
