@@ -11,12 +11,13 @@ All functions are include in the `terminal` namespace.
   - [Block](api_docs/block.md)
   - [List](api_docs/list.md)
   - [TextField](api_docs/textfield.md)
-- **Layout**: add later
-  - **Rect**: add later
-- **Input**: add later
-  - **KeyEvent**: add later
-  - **Cursor**: add later
-- **Style**: add later
+- [Layout](api_docs/layout.md)
+  - [Rect](api_docs/rect.md)
+- [Events](api_docs/events.md)
+  - [KeyEvent](api_docs/keyevent.md)
+  - ~~Cursor~~
+- **Styles**
+  - [Colour](api_docs/colour.md) 
 
 ---
 
