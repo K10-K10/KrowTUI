@@ -23,6 +23,7 @@ class Screen {
   friend DrawObj;
 
  public:
+  Screen() = default;
   int width() const;
   int height() const;
 
@@ -31,8 +32,8 @@ class Screen {
   void put(int x, int y, Cell c);
   void resize(int x, int y);
 
-  std::vector<Cell> current, next;
-  int width_, height_;
+  std::vector<Cell> current{}, next{};
+  int width_ = 0, height_ = 0;
 };
 extern __terminal__::Screen screen;
 
