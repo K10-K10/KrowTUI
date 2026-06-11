@@ -3,7 +3,7 @@
 Here are some examples of how to use the TUI library in C++.
 
 ```cpp
-#include "terminal.h"
+#include <K10-K10/terminal.h>
 
 using namespace terminal;
 int main() {
@@ -49,10 +49,19 @@ And this is minimal `CMakeLists.txt` to build the example:
 cmake_minimum_required(VERSION 3.16)
 project(app LANGUAGES CXX)
 
-add_subdirectory(lib/Terminal-Library)
+include(FetchContent)
+
+FetchContent_Declare(
+  terminal_library
+  GIT_REPOSITORY https://github.com/K10-K10/Terminal-Library.git
+  GIT_TAG        main
+)
+
+FetchContent_MakeAvailable(terminal_library)
 
 add_executable(app src/main.cpp)
-target_link_libraries(app PRIVATE terminal)
+
+target_link_libraries(app PRIVATE K10-K10::terminal)
 ```
 
 
