@@ -29,6 +29,4 @@ You should call this function when you want to exit the application.
 
 ---
 
-__version__: *1.1.0*  
-__author__: *K10-K10*  
-__update__: 09/06/2026
+__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

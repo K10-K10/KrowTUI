@@ -11,6 +11,4 @@ Objects are the building blocks of your app's interface. They can render text, b
 
 ---
 
-__version__: *1.1.0*  
-__author__: *K10-K10*  
-__update__: 09/06/2026
+__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026
