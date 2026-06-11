@@ -64,10 +64,10 @@ add_executable(app src/main.cpp)
 target_link_libraries(app PRIVATE K10-K10::terminal)
 ```
 
-
 ![Example Output](example_output.png)
 
 ### KeyBindings
+
 - `UP`: Move up in the list
 - `DOWN`: Move down in the list
 - `q`: Quit the application

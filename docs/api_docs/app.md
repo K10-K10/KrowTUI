@@ -27,10 +27,10 @@ int main() {
 ## Methods Details
 
 ### 1. `app.init(fps)`
+
 ```cpp
 void init(int fps = 60);
 ```
-
 
 - __Arguments__: `fps: int` (the desired frames per second) - __Default__: 60
 - __Return__: None
@@ -52,6 +52,7 @@ Starts the main loop of the application. The provided function will be called in
 It's received only one function, but you can use lambda functions to call multiple functions in one loop iteration.
 
 ### 3. `app.stop()`
+
 - __Arguments__: None
 - __Return__: None
 

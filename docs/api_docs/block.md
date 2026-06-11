@@ -8,6 +8,7 @@
 - [`draw()`](#2-draw): Draws the block on the terminal at the specified position and with the specified border style.
 
 ### Style Methods
+
 - [`border_type(border)`](#3-borderborder): Sets the border style of the block.
 - [`borders(type)`](#4-bordersborder): Specifies the drawing direction of the block's border.
 - [`border_color(color)`](#5-bordercolorcolor): Sets the color of the block's border.
@@ -60,7 +61,6 @@ void draw();
 
 Draws the block on the terminal at the specified position and with the specified border style.
 
-
 ### 3. `border_type(border)`
 
 ```cpp
@@ -102,7 +102,7 @@ Block& field_color(terminal::Color color);
 Block& field_color(int color);
 ```
 
-- __Arguments__: `color: terminal::Color` / `int` (Specifies the color of the background) 
+- __Arguments__: `color: terminal::Color` / `int` (Specifies the color of the background)
 - __Return__: None
 
 Sets the background color of the block.
