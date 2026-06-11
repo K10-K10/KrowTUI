@@ -4,6 +4,7 @@
 #include <K10-K10/feat/feature.h>
 #include <K10-K10/input/cursor.h>
 #include <K10-K10/input/keyboard.h>
+#include <K10-K10/layout/border.h>
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/layout/border.h>
 #include <K10-K10/obj/block.h>
