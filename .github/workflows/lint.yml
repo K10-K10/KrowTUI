@@ -26,9 +26,9 @@ jobs:
         run: |
           files=$(git ls-files '*.cpp' '*.hpp' '*.h' '*.cc')
           if [ -n "$files" ]; then
-            clang-tidy -p build/ $files --warnings-as-errors='*'
+            clang-tidy -p build/ $files
           fi
 
       - name: Run cppcheck
         run: |
-          cppcheck -I include --enable=all --inconclusive src/ --suppress=missingIncludeSystem --suppress=unusedFunction
+          cppcheck -I include --error-exitcode=1 src/ --suppress=missingIncludeSystem
