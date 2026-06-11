@@ -46,7 +46,7 @@ void Cursor::select_object(int obj_id) { state.selected_obj_id = obj_id; }
 
 void Cursor::deselect_object() { state.selected_obj_id = -1; }
 
-int Cursor::get_selected_object() { return state.selected_obj_id; }
+int Cursor::get_selected_object() const { return state.selected_obj_id; }
 
 std::pair<int, int> Cursor::get_position() { return {state.row, state.col}; }
 

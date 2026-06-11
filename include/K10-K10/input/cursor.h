@@ -15,7 +15,7 @@ class Cursor {
   void move(MoveDirection direction);
   void select_object(int obj_id);
   void deselect_object();
-  int get_selected_object();
+  int get_selected_object() const;
   std::pair<int, int> get_position();
 
  private:
