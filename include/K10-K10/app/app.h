@@ -9,7 +9,7 @@
 namespace __terminal__ {
 class App {
  public:
-  App(Render& r);
+  explicit App(Render& r);
   void init(int fps = 60);
   void loop(std::function<void()> frame);
   void stop();
@@ -22,7 +22,7 @@ class App {
  private:
   Render& render;
   int width = 0, height = 0;
-  int fps;
+  int fps = 60;
   static void signal_handler(int sig);
 };
 }  // namespace __terminal__
