@@ -1,7 +1,6 @@
 #pragma once
 
 #include <K10-K10/app/app.h>
-#include <K10-K10/feat/feature.h>
 #include <K10-K10/input/cursor.h>
 #include <K10-K10/input/keyboard.h>
 #include <K10-K10/layout/border.h>

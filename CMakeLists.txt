@@ -4,7 +4,6 @@ project(terminal LANGUAGES CXX)
 find_package(Curses REQUIRED)
 
 add_library(terminal
-    src/feat/feature.cc
     src/input/cursor.cc
     src/input/keyboard.cc
     src/utils/base.cc
