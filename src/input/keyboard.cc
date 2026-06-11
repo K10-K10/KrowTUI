@@ -15,18 +15,6 @@ Key::Key() {
   is_visible = false;
 };
 
-void Key::init() {}
-
-void Key::show() {
-  is_visible = true;
-  // Implementation for showing the key (if applicable)
-}
-
-void Key::hide() {
-  is_visible = false;
-  // Implementation for hiding the key (if applicable)
-}
-
 KeyCode Key::getKeyCode() {
   KeyCode key_ = key_code;
   key_code = KeyCode::NONE;
