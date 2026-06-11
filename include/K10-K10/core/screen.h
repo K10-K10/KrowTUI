@@ -23,7 +23,7 @@ class Screen {
   friend DrawObj;
 
  public:
-  Screen() = default;
+  explicit Screen() = default;
   int width() const;
   int height() const;
 

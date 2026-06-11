@@ -7,6 +7,8 @@
 namespace __terminal__ {
 class Render {
  public:
+  explicit Render() = default;
+  ~Render() = default;
   static void flush();
 };
 

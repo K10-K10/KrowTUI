@@ -10,6 +10,8 @@
 namespace terminal {
 class TextField : private Object {
  public:
+  explicit TextField() = default;
+  ~TextField() = default;
   TextField& position(const Rect& r) {
     rect = r;
     return *this;

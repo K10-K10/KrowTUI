@@ -9,6 +9,8 @@ namespace terminal {
 class Block : public Object {
  private:
  public:
+  explicit Block() = default;
+  ~Block() = default;
   void draw() override;
   Block& position(const Rect& r);
   Block& border_type(const BorderType::Border& type);

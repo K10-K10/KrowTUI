@@ -11,6 +11,8 @@ namespace terminal {
 
 class List : public Object {
  public:
+  explicit List() = default;
+  ~List() = default;
   List& position(const Rect& r);
   List& items(std::vector<std::string> items);
   const std::vector<std::string>& items() const;

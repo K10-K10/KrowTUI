@@ -5,6 +5,8 @@
 namespace __terminal__ {
 class DrawObj {
  public:
+  explicit DrawObj() = default;
+  ~DrawObj() = default;
   static void put(int y, int x, const Cell& c);
 };
 

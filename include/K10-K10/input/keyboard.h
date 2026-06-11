@@ -19,7 +19,7 @@ enum class KeyCode {
 
 class Key {
  public:
-  Key();
+  explicit Key();
   ~Key();
 
   KeyCode getKeyCode();

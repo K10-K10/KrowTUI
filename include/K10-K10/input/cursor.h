@@ -5,7 +5,7 @@
 namespace __terminal__::__input__ {
 class Cursor {
  public:
-  Cursor() = default;
+  explicit Cursor() = default;
   ~Cursor() = default;
   enum class MoveDirection { UP, DOWN, LEFT, RIGHT };
   void show();

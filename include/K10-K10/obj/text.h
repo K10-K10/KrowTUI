@@ -10,6 +10,8 @@ namespace terminal {
 
 class Text : private Object {
  public:
+  explicit Text() = default;
+  ~Text() = default;
   Text& position(const Rect& r);
   Text& contents(const std::string& text);
   std::string get_text() const;
