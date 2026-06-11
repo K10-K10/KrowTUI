@@ -11,6 +11,7 @@
 #include <functional>
 #include <iostream>
 #include <thread>
+#include <tuple>
 
 namespace __terminal__ {
 termios orig;
@@ -31,23 +32,23 @@ App::App(Render& r) : render(r){};
 
 void App::signal_handler(int sig) { sig_num = sig; }
 
-void App::init(int arg_fps) {
+void App::init(int fps) {
   std::signal(SIGINT, App::signal_handler);
   std::signal(SIGWINCH, App::signal_handler);
 
   std::cout << "\x1b[?1049h" << std::flush;
   std::cout << "\x1b[?25l" << std::flush;
   enable_raw_mode();
-  auto [width, height] = terminal::utils::getTerminalSize();
+  std::tie(width, height) = terminal::utils::getTerminalSize();
   __terminal__::screen.resize(width, height);
-  fps = arg_fps;
+  this->fps = fps;
 }
 
 void App::loop(std::function<void()> frame) {
   runnning = true;
   while (runnning) {
     if (sig_num == SIGWINCH) {
-      auto [width, height] = terminal::utils::getTerminalSize();
+      std::tie(width, height) = terminal::utils::getTerminalSize();
       terminal::utils::clear();
       __terminal__::screen.resize(width, height);
       sig_num = 0;

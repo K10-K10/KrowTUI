@@ -46,10 +46,9 @@ namespace __terminal__ {
 void Render::flush() {
   int W = __terminal__::screen.width();
   int H = __terminal__::screen.height();
-  int start = -1;
   std::string line;
   for (int y = 0; y < H; ++y) {
-    start = -1;
+    int start = -1;
     line.clear();
     for (int x = 0; x < W; ++x) {
       int i = y * W + x;
@@ -78,7 +77,6 @@ void Render::flush() {
     if (start != -1) {
       terminal::utils::moveTo(y, start);
       std::cout << line << std::flush;
-      start = -1;
       line.clear();
     }
   }

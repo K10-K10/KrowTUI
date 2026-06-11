@@ -5,7 +5,9 @@
 namespace __terminal__ {
 class DrawObj {
  public:
-  void put(int y, int x, const Cell& c);
+  explicit DrawObj() = default;
+  ~DrawObj() = default;
+  static void put(int y, int x, const Cell& c);
 };
 
 extern DrawObj drawObj;

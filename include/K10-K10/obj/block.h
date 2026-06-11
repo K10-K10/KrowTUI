@@ -9,6 +9,8 @@ namespace terminal {
 class Block : public Object {
  private:
  public:
+  explicit Block() = default;
+  ~Block() = default;
   void draw() override;
   Block& position(const Rect& r);
   Block& border_type(const BorderType::Border& type);
@@ -34,7 +36,7 @@ class Block : public Object {
 
  private:
   __terminal__::Style style_;
-  Rect rect;
+  Rect rect = {0, 0, 0, 0};
   const BorderType::Border* border_type_ = &BorderType::SINGLE;
   Borders::EdgeType edges_ = Borders::ALL;
 };
