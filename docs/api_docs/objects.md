@@ -2,6 +2,17 @@
 
 Objects are the building blocks of your app's interface. They can render text, block list, etc.
 
+## Common Properties
+All objects share the following common properties:
+
+### `.position(rect)`
+
+A `Rect` object that defines the position and size of the object on the terminal.
+
+### `.draw()`
+
+Draws the object on the terminal at the specified for frame.
+
 ## Objects types
 
 - [Text](text.md): A text object that can render a static string label.
