@@ -17,8 +17,8 @@ All functions are include in the `terminal` namespace.
   - [KeyEvent](api_docs/keyevent.md)
   - ~~Cursor~~
 - **Styles**
-  - [Colour](api_docs/colour.md) 
+  - [Colour](api_docs/colour.md)
 
 ---
 
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026
+**version**: *0.2.0* | **author**: *K10-K10* | **update**: 11/06/2026

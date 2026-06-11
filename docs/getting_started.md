@@ -4,7 +4,7 @@ This document will guide you through the process of setting up and using the TUI
 
 ## Installation
 
-The TUI library is header-only, so you can simply download the source code and include the necessary header files in your project. 
+The TUI library is header-only, so you can simply download the source code and include the necessary header files in your project.
 
 ### Method 1: Via CMake FetchContent
 
@@ -36,7 +36,7 @@ git submodule add [https://github.com/your_github_username/Terminal-Library.git]
 git submodule update --init --recursive
 ```
 
-2. Add the following to your `CMakeLists.txt`:
+1. Add the following to your `CMakeLists.txt`:
 
 ```cmake
 # Add the submodule directory

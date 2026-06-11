@@ -6,8 +6,8 @@ This class is contained in the `terminal::input` namespace and can be accessed t
 
 ## Methods
 
-- [getKeyCode()](#getKeyCode): Returns the key code of the key event.
-- [getCurrentChar()](#getCurrentChar): Returns the character associated with the key event.
+- [getKeyCode()](#getkeycode): Returns the key code of the key event.
+- [getCurrentChar()](#getcurrentchar): Returns the character associated with the key event.
 - [read()](#read): Reads the next key event from the input stream.
 
 ## KeyCode

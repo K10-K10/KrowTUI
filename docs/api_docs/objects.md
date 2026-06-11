@@ -3,6 +3,7 @@
 Objects are the building blocks of your app's interface. They can render text, block list, etc.
 
 ## Common Properties
+
 All objects share the following common properties:
 
 ### `.position(rect)`

@@ -62,10 +62,13 @@ int main() {
 ```
 
 ## Methods Details
+
 ### 1. position(rect)
+
 ```c++
 List& position(const Rect& r);
 ```
+
 - __Arguments__: `r: const terminal::Rect&` (A Rect object defining the list's bounding box)
 
 - __Return__: `List&` (Reference to the current object for method chaining)
@@ -73,9 +76,11 @@ List& position(const Rect& r);
 Sets the position and size of the list.
 
 ### 2. items(items)
+
 ```c++
 List& items(std::vector<std::string> items);
 ```
+
 - __Arguments__: `items: std::vector<std::string>` (A vector of strings to populate the list)
 
 - __Return__: List& (Reference to the current object for method chaining)
@@ -83,9 +88,11 @@ List& items(std::vector<std::string> items);
 Replaces the current list items with the provided vector of strings.
 
 ### 3. items()
+
 ```c++
 const std::vector<std::string>& items() const;
 ```
+
 - __Arguments__: None
 
 - __Return__: `const std::vector<std::string>&` (A constant reference to the internal items vector)
@@ -93,9 +100,11 @@ const std::vector<std::string>& items() const;
 Returns the entire collection of items currently stored in the list.
 
 ### 4. add_item(string)
+
 ```c++
 List& add_item(const std::string& s);
 ```
+
 - __Arguments__: s: const std::string& (The text of the item to add)
 
 - __Return__: List& (Reference to the current object for method chaining)
@@ -103,9 +112,11 @@ List& add_item(const std::string& s);
 Appends a new string item to the end of the list.
 
 ### 5. selected_item()
+
 ```c++
 const std::string selected_item() const;
 ```
+
 - __Arguments__: None
 
 - __Return__: const std::string (The text content of the selected item)
@@ -113,24 +124,29 @@ const std::string selected_item() const;
 Returns the string content of the item that is currently highlighted/selected.
 
 ### 6. move_up()
+
 ```c++
 void move_up();
 ```
+
 - __Arguments__: None
 - __Return__: None
 
 Decrements the internal selection index to move the cursor up. This includes boundary checks to prevent underflow.
 
-###   7. move_down()
+### 7. move_down()
+
 ```c++
 void move_down();
 ```
+
 - __Arguments__: None
 - __Return__: None
 
 Increments the internal selection index to move the cursor down. This includes boundary checks based on the total number of items.
 
 ### 8. selected_index()
+
 ```c++
 int selected_index() const;
 ```
@@ -142,9 +158,11 @@ int selected_index() const;
 Returns the numeric index of the currently selected item.
 
 ### 9. draw()
+
 ```c++
 void draw() override;
 ```
+
 - __Arguments__: None
 - __Return__: None
 
@@ -153,9 +171,11 @@ Overrides the Object::draw() method. Renders the entire list component, includin
 ### Style Methods
 
 ### 10. selector(symbol)
+
 ```c++
 List& selector(const std::string& symbol);
 ```
+
 - __Arguments__: `symbol: const std::string&` (The string to use as the selection indicator)
 - __Return__: List& (Reference to the current object for method chaining)
 
@@ -179,6 +199,7 @@ Sets the background color of the list field.
 List& text_color(terminal::Color fg);
 List& text_color(int fg);
 ```
+
 - __Arguments__: `fg: terminal::Color` / `int` (The color to use for unselected item text)
 - __Return__: List& (Reference to the current object for method chaining)
 
@@ -190,6 +211,7 @@ Sets the text color for unselected items in the list.
 List& selector_color(terminal::Color fg);
 List& selector_color(int fg);
 ```
+
 - __Arguments__: `fg: terminal::Color` / `int` (The color to use for the selector symbol)
 - __Return__: List& (Reference to the current object for method chaining)
 
@@ -201,6 +223,7 @@ Sets the color of the selector symbol that indicates the currently selected item
 List& highlight_bg(terminal::Color bg);
 List& highlight_bg(int bg);
 ```
+
 - __Arguments__: `bg: terminal::Color` / `int` (The color to use
 for the background of the highlighted item)
 - __Return__: List& (Reference to the current object for method chaining)
@@ -213,6 +236,7 @@ Sets the background color for the currently selected item in the list.
 List& highlight_fg(terminal::Color fg);
 List& highlight_fg(int fg);
 ```
+
 - __Arguments__: `fg: terminal::Color` / `int` (The color to use
 for the text of the highlighted item)
 - __Return__: List& (Reference to the current object for method chaining)
