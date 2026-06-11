@@ -8,6 +8,10 @@
 TUI Library is a C++ library for creating terminal user interfaces (TUI) using the ncurses library.
 It provides a simple and intuitive API for creating various types of UI components such as text, blocks, lists, and more.
 
+## Preview
+
+![TUI Library Preview Image](docs/example_output.png)
+
 ## Documentations
 
 - [Getting Started](docs/getting_started.md)
@@ -17,10 +21,8 @@ It provides a simple and intuitive API for creating various types of UI componen
 
 ## License
 
-This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-__version__: 1.1.0
-__author__: *K10-K10*  
-__update__: 09/06/2026
+__version__: 1.1.0  | __author__: *K10-K10* |  __update__: 11/06/2026
