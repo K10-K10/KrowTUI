@@ -7,7 +7,7 @@
 namespace __terminal__ {
 class Render {
  public:
-  void flush();
+  static void flush();
 };
 
 }  // namespace __terminal__
