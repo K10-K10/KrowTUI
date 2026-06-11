@@ -47,7 +47,7 @@ class TextField : private Object {
     std::string& row_;
 
    public:
-    RowProxy(std::string& row) : row_(row) {}
+    explicit RowProxy(std::string& row) : row_(row) {}
     char& operator[](size_t index);
     operator std::string&() { return row_; }
     operator const std::string&() const { return row_; }
@@ -59,10 +59,10 @@ class TextField : private Object {
   }
 
  private:
-  Rect rect;
+  Rect rect = {0, 0, 0, 0};
   __terminal__::Style style_;
   std::vector<std::string> contents_;
-  int max_length_;
+  int max_length_ = 0;
   int cursor_x = 0, cursor_y = 0;
 
   bool cursor_inverted_ = false;

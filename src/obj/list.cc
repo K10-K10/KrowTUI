@@ -97,9 +97,9 @@ void List::draw() {
         selected ? highlight_style_ : style_;
 
     int current_sel_w = 0;
-    size_t sel_byte_idx = 0;
 
     if (selected) {
+      size_t sel_byte_idx = 0;
       while (sel_byte_idx < selector_symbol.size() &&
              current_sel_w < selector_width) {
         unsigned char ch = selector_symbol[sel_byte_idx];
@@ -138,10 +138,10 @@ void List::draw() {
 
     int max_text_width = w - selector_width;
     int current_text_w = 0;
-    size_t text_byte_idx = 0;
     const std::string& text = has_item ? items_[idx] : "";
 
     if (has_item) {
+      size_t text_byte_idx = 0;
       while (text_byte_idx < text.size() && current_text_w < max_text_width) {
         unsigned char ch = text[text_byte_idx];
         size_t len = 1;

@@ -67,8 +67,8 @@ class List : public Object {
   }
 
  private:
-  Rect rect;
-  std::vector<std::string> items_;
+  Rect rect = {0, 0, 0, 0};
+  std::vector<std::string> items_ = {};
   std::string selector_symbol = ">";
   int selected_ = 0;
   int draw_index_num_ = 0;
