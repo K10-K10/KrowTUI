@@ -1,3 +1,6 @@
+#ifndef INCLUDE_DEBUG_LOGGER_H_
+#define INCLUDE_DEBUG_LOGGER_H_
+
 #include <cstdint>
 #include <mutex>
 #include <string>
@@ -61,3 +64,5 @@ class logger {
 #endif
 
 }  // namespace __terminal__
+
+#endif

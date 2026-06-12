@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_UTILS_BASE_H_
+#define INCLUDE_UTILS_BASE_H_
 
 #include <utility>
 
@@ -48,3 +49,5 @@ void printHide(const char* str);
 void printCancel(const char* str);
 }  // namespace utils
 }  // namespace terminal
+
+#endif

@@ -1,5 +1,7 @@
-#pragma once
+#ifndef INCLUDE_INPUT_CURSOR_H_
+#define INCLUDE_INPUT_CURSOR_H_
 
+#include <cstdint>
 #include <utility>
 
 namespace __terminal__::__input__ {
@@ -7,7 +9,7 @@ class Cursor {
  public:
   explicit Cursor() = default;
   ~Cursor() = default;
-  enum class MoveDirection { UP, DOWN, LEFT, RIGHT };
+  enum class MoveDirection : std::uint8_t { UP, DOWN, LEFT, RIGHT };
   void show();
   void hide();
   void move(int new_row, int new_col);
@@ -32,3 +34,5 @@ class Cursor {
 namespace terminal::input {
 extern __terminal__::__input__::Cursor cursor;
 }
+
+#endif

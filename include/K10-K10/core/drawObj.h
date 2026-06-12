@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_CORE_DRAWOBJ_H_
+#define INCLUDE_CORE_DRAWOBJ_H_
 
 #include <K10-K10/core/screen.h>
 
@@ -12,3 +13,4 @@ class DrawObj {
 
 extern DrawObj drawObj;
 }  // namespace __terminal__
+#endif

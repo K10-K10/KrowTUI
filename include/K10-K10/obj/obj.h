@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_OBJ_OBJ_H_
+#define INCLUDE_OBJ_OBJ_H_
 
 namespace terminal {
 
@@ -12,3 +13,5 @@ class Object {
 };
 
 }  // namespace terminal
+
+#endif

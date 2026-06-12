@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_OBJ_BLOCK_H_
+#define INCLUDE_OBJ_BLOCK_H_
 
 #include <K10-K10/layout/border.h>
 #include <K10-K10/layout/rect.h>
@@ -42,3 +43,5 @@ class Block : public Object {
 };
 
 }  // namespace terminal
+
+#endif

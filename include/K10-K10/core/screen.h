@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_CORE_SCREEN_H_
+#define INCLUDE_CORE_SCREEN_H_
 
 #include <K10-K10/style/color.h>
 
@@ -10,7 +11,7 @@ class Object;
 
 namespace __terminal__ {
 struct Cell {
-  std::string c = "";
+  std::string c;
   Style style;
 };
 
@@ -32,9 +33,11 @@ class Screen {
   void put(int x, int y, const Cell& c);
   void resize(int w, int h);
 
-  std::vector<Cell> current{}, next{};
+  std::vector<Cell> current, next;
   int width_ = 0, height_ = 0;
 };
 extern __terminal__::Screen screen;
 
 }  // namespace __terminal__
+
+#endif

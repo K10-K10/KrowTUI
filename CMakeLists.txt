@@ -34,9 +34,15 @@ target_link_libraries(terminal PUBLIC
 
 add_library(K10-K10::terminal ALIAS terminal)
 
-option(TERMINAL_BUILD_TESTS "Build dev tests" OFF)
+option(TERMINAL_BUILD_TESTS "Build automated tests" OFF)
 
-if (TERMINAL_BUILD_TESTS AND NOT TARGET terminal_test)
-  add_executable(terminal_test test/main.cpp)
-  target_link_libraries(terminal_test PRIVATE K10-K10::terminal)
+option(TERMINAL_BUILD_SANDBOX "Build development sandbox" OFF)
+
+if (TERMINAL_BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(test)
+endif()
+
+if (TERMINAL_BUILD_SANDBOX)
+  add_subdirectory(sandbox)
 endif()
