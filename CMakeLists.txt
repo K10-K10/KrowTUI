@@ -4,18 +4,18 @@ project(terminal LANGUAGES CXX)
 find_package(Curses REQUIRED)
 
 add_library(terminal
-    src/input/cursor.cc
-    src/input/keyboard.cc
-    src/utils/base.cc
-    src/style/color.cc
-    src/app/app.cc
-    src/core/drawObj.cc
-    src/core/render.cc
-    src/core/screen.cc
-    src/obj/block.cc
-    src/obj/list.cc
-    src/obj/text.cc
-    src/obj/input.cc
+    src/K10-K10/input/cursor.cc
+    src/K10-K10/input/keyboard.cc
+    src/K10-K10/utils/base.cc
+    src/K10-K10/style/color.cc
+    src/K10-K10/app/app.cc
+    src/K10-K10/core/drawObj.cc
+    src/K10-K10/core/render.cc
+    src/K10-K10/core/screen.cc
+    src/K10-K10/obj/block.cc
+    src/K10-K10/obj/list.cc
+    src/K10-K10/obj/text.cc
+    src/K10-K10/obj/input.cc
 )
 
 target_compile_features(terminal PUBLIC cxx_std_20)
