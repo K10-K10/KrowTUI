@@ -1,8 +1,10 @@
 #ifndef INCLUDE_INPUT_KEYBOARD_H_
 #define INCLUDE_INPUT_KEYBOARD_H_
 
+#include <cstdint>
+
 namespace __terminal__::__input__ {
-enum class KeyCode {
+enum class KeyCode : std::uint8_t {
   NONE,
   UNKNOWN,
   ESC,
@@ -32,8 +34,11 @@ class Key {
   char current_char = 0;
   bool is_visible = false;
 
-  enum class KeyState { PRESSED, RELEASED } key_state = KeyState::RELEASED;
-  enum class Modifier {
+  enum class KeyState : std::uint8_t {
+    PRESSED,
+    RELEASED
+  } key_state = KeyState::RELEASED;
+  enum class Modifier : std::uint8_t {
     NONE = 0,
     SHIFT = 1,
     CTRL = 2,
