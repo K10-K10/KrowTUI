@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_OBJ_INPUT_H_
+#define INCLUDE_OBJ_INPUT_H_
 
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
@@ -70,3 +71,5 @@ class TextField : private Object {
   bool cursor_inverted_ = false;
 };
 }  // namespace terminal
+
+#endif

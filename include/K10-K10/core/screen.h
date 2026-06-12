@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_CORE_SCREEN_H_
+#define INCLUDE_CORE_SCREEN_H_
 
 #include <K10-K10/style/color.h>
 
@@ -38,3 +39,5 @@ class Screen {
 extern __terminal__::Screen screen;
 
 }  // namespace __terminal__
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_INPUT_CURSOR_H_
+#define INCLUDE_INPUT_CURSOR_H_
 
 #include <utility>
 
@@ -32,3 +33,5 @@ class Cursor {
 namespace terminal::input {
 extern __terminal__::__input__::Cursor cursor;
 }
+
+#endif

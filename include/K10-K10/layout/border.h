@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_LAYOUT_BORDER_H_
+#define INCLUDE_LAYOUT_BORDER_H_
 
 namespace BorderType {
 struct Border {
@@ -26,3 +27,5 @@ constexpr EdgeType LEFT = 1 << 2;
 constexpr EdgeType RIGHT = 1 << 3;
 constexpr EdgeType ALL = TOP | BOTTOM | LEFT | RIGHT;
 }  // namespace Borders
+
+#endif

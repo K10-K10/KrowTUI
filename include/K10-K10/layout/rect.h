@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_LAYOUT_RECT_H_
+#define INCLUDE_LAYOUT_RECT_H_
 
 #define FULL -1
 
@@ -14,3 +15,5 @@ struct Rect {
   }
 };
 }  // namespace terminal
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_OBJ_LIST_H_
+#define INCLUDE_OBJ_LIST_H_
 
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
@@ -78,3 +79,5 @@ class List : public Object {
 };
 
 }  // namespace terminal
+
+#endif

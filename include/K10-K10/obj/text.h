@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_OBJ_TEXT_H_
+#define INCLUDE_OBJ_TEXT_H_
 
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
@@ -33,3 +34,5 @@ class Text : private Object {
 };
 
 }  // namespace terminal
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_STYLE_COLOR_H_
+#define INCLUDE_STYLE_COLOR_H_
 
 namespace terminal::utils {
 // text
@@ -36,3 +37,5 @@ struct Style {
   unsigned int flag = 0;
 };
 }  // namespace __terminal__
+
+#endif

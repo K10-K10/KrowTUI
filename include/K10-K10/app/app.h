@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_APP_APP_H_
+#define INCLUDE_APP_APP_H_
 
 #include <K10-K10/core/render.h>
 #include <K10-K10/core/screen.h>
@@ -26,3 +27,4 @@ class App {
   static void signal_handler(int sig);
 };
 }  // namespace __terminal__
+#endif

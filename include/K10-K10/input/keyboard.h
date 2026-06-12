@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_INPUT_KEYBOARD_H_
+#define INCLUDE_INPUT_KEYBOARD_H_
 
 namespace __terminal__::__input__ {
 enum class KeyCode {
@@ -46,3 +47,5 @@ namespace terminal::input {
 extern __terminal__::__input__::Key key;
 using KeyCode = __terminal__::__input__::KeyCode;
 }  // namespace terminal::input
+
+#endif

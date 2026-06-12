@@ -1,4 +1,5 @@
-#pragma once
+#ifndef INCLUDE_TERMINAL_H_
+#define INCLUDE_TERMINAL_H_
 
 #include <K10-K10/app/app.h>
 #include <K10-K10/input/cursor.h>
@@ -15,3 +16,5 @@ namespace terminal {
 __terminal__::Render render;
 __terminal__::App app(render);
 }  // namespace terminal
+
+#endif
