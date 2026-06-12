@@ -1,6 +1,5 @@
-#include "core/drawObj.h"
-
-#include "core/screen.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/core/screen.h>
 
 namespace __terminal__ {
 void DrawObj::put(int y, int x, const Cell& c) {

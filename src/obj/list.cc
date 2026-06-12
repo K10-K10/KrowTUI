@@ -1,10 +1,9 @@
-#include "obj/list.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/list.h>
 
 #include <string>
 #include <vector>
-
-#include "core/drawObj.h"
-#include "layout/rect.h"
 
 namespace terminal {
 List& List::position(const Rect& r) {
@@ -59,34 +58,125 @@ int List::selected_index() const { return selected_; }
 void List::draw() {
   int l = rect.x;
   int w = (rect.w == FULL) ? __terminal__::screen.width() : rect.w;
-  int r = l + w - 1;
   int t = rect.y;
   int h = (rect.h == FULL) ? __terminal__::screen.height() : rect.h;
-  int b = t + h - 1;
   if (w < 2 || h < 2) return;
 
   int max_items = items_.size();
 
+  int selector_width = 0;
+  {
+    size_t b_idx = 0;
+    while (b_idx < selector_symbol.size()) {
+      unsigned char ch = selector_symbol[b_idx];
+      size_t len = 1;
+      if ((ch & 0x80) == 0x00)
+        len = 1;
+      else if ((ch & 0xE0) == 0xC0)
+        len = 2;
+      else if ((ch & 0xF0) == 0xE0)
+        len = 3;
+      else if ((ch & 0xF8) == 0xF0)
+        len = 4;
+
+      if (b_idx + len > selector_symbol.size()) break;
+
+      selector_width += (len > 1) ? 2 : 1;
+      b_idx += len;
+    }
+  }
+
   for (int i = 0; i < h; ++i) {
     int idx = draw_index_num_ + i;
-
     int cy = t + i;
 
-    for (int j = 0; j < w; ++j) {
-      __terminal__::drawObj.put(cy, l + j, {" "});
+    bool has_item = (idx < max_items);
+    bool selected = (has_item && idx == selected_);
+
+    __terminal__::Style current_text_style =
+        selected ? highlight_style_ : style_;
+
+    int current_sel_w = 0;
+
+    if (selected) {
+      size_t sel_byte_idx = 0;
+      while (sel_byte_idx < selector_symbol.size() &&
+             current_sel_w < selector_width) {
+        unsigned char ch = selector_symbol[sel_byte_idx];
+        size_t len = 1;
+        if ((ch & 0x80) == 0x00)
+          len = 1;
+        else if ((ch & 0xE0) == 0xC0)
+          len = 2;
+        else if ((ch & 0xF0) == 0xE0)
+          len = 3;
+        else if ((ch & 0xF8) == 0xF0)
+          len = 4;
+
+        if (sel_byte_idx + len > selector_symbol.size()) break;
+
+        int vis_w = (len > 1) ? 2 : 1;
+        if (current_sel_w + vis_w > selector_width) break;
+
+        __terminal__::Cell sel_cell;
+        sel_cell.c = selector_symbol.substr(sel_byte_idx, len);
+        sel_cell.style = selector_style_;
+        __terminal__::drawObj.put(cy, l + current_sel_w, sel_cell);
+
+        current_sel_w += vis_w;
+        sel_byte_idx += len;
+      }
     }
 
-    if (idx >= max_items) continue;
+    while (current_sel_w < selector_width) {
+      __terminal__::Cell blank_sel_cell;
+      blank_sel_cell.c = " ";
+      blank_sel_cell.style = style_;
+      __terminal__::drawObj.put(cy, l + current_sel_w, blank_sel_cell);
+      current_sel_w++;
+    }
 
-    const std::string& text = items_[idx];
-    bool selected = (idx == selected_);
+    int max_text_width = w - selector_width;
+    int current_text_w = 0;
+    const std::string& text = has_item ? items_[idx] : "";
 
-    __terminal__::drawObj.put(cy, l, {selected ? ">" : " "});
+    if (has_item) {
+      size_t text_byte_idx = 0;
+      while (text_byte_idx < text.size() && current_text_w < max_text_width) {
+        unsigned char ch = text[text_byte_idx];
+        size_t len = 1;
+        if ((ch & 0x80) == 0x00)
+          len = 1;
+        else if ((ch & 0xE0) == 0xC0)
+          len = 2;
+        else if ((ch & 0xF0) == 0xE0)
+          len = 3;
+        else if ((ch & 0xF8) == 0xF0)
+          len = 4;
 
-    int max_width = w - 1;
+        if (text_byte_idx + len > text.size()) break;
 
-    for (int j = 0; j < max_width && j < (int)text.size(); ++j) {
-      __terminal__::drawObj.put(cy, l + 1 + j, {std::string(1, text[j])});
+        int vis_w = (len > 1) ? 2 : 1;
+        if (current_text_w + vis_w > max_text_width) break;
+
+        __terminal__::Cell text_cell;
+        text_cell.c = text.substr(text_byte_idx, len);
+        text_cell.style = current_text_style;
+        __terminal__::drawObj.put(cy, l + selector_width + current_text_w,
+                                  text_cell);
+
+        current_text_w += vis_w;
+        text_byte_idx += len;
+      }
+    }
+
+    while (current_text_w < max_text_width) {
+      __terminal__::Cell bg_cell;
+      bg_cell.c = " ";
+      bg_cell.style = style_;
+      __terminal__::drawObj.put(cy, l + selector_width + current_text_w,
+                                bg_cell);
+      current_text_w++;
     }
   }
 }

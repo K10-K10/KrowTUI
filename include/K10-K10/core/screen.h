@@ -1,8 +1,9 @@
 #pragma once
 
+#include <K10-K10/style/color.h>
+
 #include <string>
 #include <vector>
-
 namespace terminal {
 class Object;
 }
@@ -10,7 +11,7 @@ class Object;
 namespace __terminal__ {
 struct Cell {
   std::string c = "";
-  int fg = -1, bg = -1;
+  Style style;
 };
 
 class App;
@@ -22,16 +23,17 @@ class Screen {
   friend DrawObj;
 
  public:
+  explicit Screen() = default;
   int width() const;
   int height() const;
 
  private:
   void clear();
-  void put(int x, int y, Cell c);
-  void resize(int x, int y);
+  void put(int x, int y, const Cell& c);
+  void resize(int w, int h);
 
-  std::vector<Cell> current, next;
-  int width_, height_;
+  std::vector<Cell> current{}, next{};
+  int width_ = 0, height_ = 0;
 };
 extern __terminal__::Screen screen;
 

@@ -3,22 +3,58 @@
 This document will guide you through the process of setting up and using the TUI library in your C++ projects. Follow the steps below to get started.
 
 ## Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/K10-K10/Terminal-Library.git
-    ```
 
-1. Link the library to your `CMakeLists.txt`:
-    ```cmake
-    add_subdirectory(path/to/Terminal-Library)
-    ```
+The TUI library is header-only, so you can simply download the source code and include the necessary header files in your project.
+
+### Method 1: Via CMake FetchContent
+
+You can use CMake's `FetchContent` module to include the TUI library in your project. Add the following lines to your `CMakeLists.txt`:
+
+```cmake
+include(FetchContent)
+
+FetchContent_Declare(
+    terminal_library
+    GIT_REPOSITORY https://github.com/K10-K10/Terminal-Library.git
+    GIT_TAG main # We suport only latest version, so use main branch
+)
+
+FetchContent_MakeAvailable(terminal_library)
+
+add_executable(your_app main.cpp)
+target_link_libraries(your_app PRIVATE K10-K10::terminal_library)
+```
+
+### Method 2: Via Git Submodule
+
+Alternatively, you can add the TUI library as a git submodule in your project:
+
+1. Add the submodule to your repository:
+
+```bash
+git submodule add [https://github.com/your_github_username/Terminal-Library.git](https://github.com/your_github_username/Terminal-Library.git) lib/Terminal-Library
+git submodule update --init --recursive
+```
+
+1. Add the following to your `CMakeLists.txt`:
+
+```cmake
+# Add the submodule directory
+add_subdirectory(lib/Terminal-Library)
+
+# Your executable
+add_executable(my_app src/main.cpp)
+
+# Link the library
+target_link_libraries(my_app PRIVATE K10-K10::terminal)
+```
 
 ## Usage
 
-This library is header-only, so you can directly include the header files in your project.
+This library is header-only, so you can directly include the header file`K10-K10/terminal.h` in your project.
 
 ```cpp
-#include <terminal.h>
+#include <K10-K10/terminal.h>
 ```
 
 ## How to Use
@@ -38,7 +74,9 @@ terminal::Text text("Hello, World!");
 Finally, draw the terminal to see the changes:
 
 ```cpp
-app.loop{[&](){ app.draw(); }};
+app.loop{[&]() {
+    text.draw();
+}};
 ```
 
 When you're done, make sure to clean up resources:
@@ -47,7 +85,8 @@ When you're done, make sure to clean up resources:
 app.stop();
 ```
 
-example code can be found in the [Examples](docs/examples.md) section of the documentation.
+example code can be found in the [Examples](examples.md) section of the documentation.
 
-author: K10-K10
-update: 12/04/2026
+---
+
+__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

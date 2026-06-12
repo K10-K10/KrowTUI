@@ -1,18 +1,17 @@
 #pragma once
 
+#include <K10-K10/core/render.h>
+#include <K10-K10/core/screen.h>
+
 #include <csignal>
 #include <functional>
-
-#include "core/render.h"
-#include "core/screen.h"
 
 namespace __terminal__ {
 class App {
  public:
-  App(Render& r);
+  explicit App(Render& r);
   void init(int fps = 60);
   void loop(std::function<void()> frame);
-  void pose();
   void stop();
 
  protected:
@@ -23,7 +22,7 @@ class App {
  private:
   Render& render;
   int width = 0, height = 0;
-  int fps;
+  int fps = 60;
   static void signal_handler(int sig);
 };
 }  // namespace __terminal__

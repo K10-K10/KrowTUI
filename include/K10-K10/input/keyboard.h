@@ -8,7 +8,6 @@ enum class KeyCode {
   ENTER,
   BACKSPACE,
   TAB,
-  ESCAPE,
   UP,
   DOWN,
   LEFT,
@@ -20,11 +19,8 @@ enum class KeyCode {
 
 class Key {
  public:
-  Key();
+  explicit Key();
   ~Key();
-  void init();
-  void show();
-  void hide();
 
   KeyCode getKeyCode();
   char getCurrentChar();
@@ -35,8 +31,13 @@ class Key {
   char current_char = 0;
   bool is_visible = false;
 
-  enum class KeyState { PRESSED, RELEASED } key_state;
-  enum class Modifier { NONE = 0, SHIFT = 1, CTRL = 2, ALT = 4 } modifier;
+  enum class KeyState { PRESSED, RELEASED } key_state = KeyState::RELEASED;
+  enum class Modifier {
+    NONE = 0,
+    SHIFT = 1,
+    CTRL = 2,
+    ALT = 4
+  } modifier = Modifier::NONE;
 };
 
 }  // namespace __terminal__::__input__

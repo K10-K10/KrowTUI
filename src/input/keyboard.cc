@@ -1,11 +1,9 @@
-#include "input/keyboard.h"
-
+#include <K10-K10/input/keyboard.h>
+#include <K10-K10/utils/base.h>
 #include <ncurses.h>
 
 #include <iostream>
 #include <string>
-
-#include "utils/base.h"
 
 namespace __terminal__::__input__ {
 Key::Key() {
@@ -16,18 +14,6 @@ Key::Key() {
   nodelay(stdscr, TRUE);
   is_visible = false;
 };
-
-void Key::init() {}
-
-void Key::show() {
-  is_visible = true;
-  // Implementation for showing the key (if applicable)
-}
-
-void Key::hide() {
-  is_visible = false;
-  // Implementation for hiding the key (if applicable)
-}
 
 KeyCode Key::getKeyCode() {
   KeyCode key_ = key_code;

@@ -1,4 +1,4 @@
-#include "core/screen.h"
+#include <K10-K10/core/screen.h>
 
 #include <vector>
 
@@ -16,7 +16,7 @@ void Screen::resize(int w, int h) {
 
 void Screen::clear() { std::fill(next.begin(), next.end(), Cell{" "}); }
 
-void Screen::put(int x, int y, Cell c) { next[y * width_ + x] = c; }
+void Screen::put(int x, int y, const Cell& c) { next[y * width_ + x] = c; }
 
 __terminal__::Screen screen;
 

@@ -7,15 +7,18 @@ All functions are include in the `terminal` namespace.
 
 - [App](api_docs/app.md)
 - [Objects](api_docs/objects.md)
-  - [Text](api_docs/text.md) 
+  - [Text](api_docs/text.md)
   - [Block](api_docs/block.md)
   - [List](api_docs/list.md)
+  - [TextField](api_docs/textfield.md)
 - [Layout](api_docs/layout.md)
-  - [Rect](api_docs/rect.md) 
-- [Input](api_docs/input.md)
-  - [Key](api_docs/key.md)
-  - Cursor: add later
-- [Style](api_docs/style.md)
+  - [Rect](api_docs/rect.md)
+- [Events](api_docs/events.md)
+  - [KeyEvent](api_docs/keyevent.md)
+  - ~~Cursor~~
+- **Styles**
+  - [Colour](api_docs/colour.md)
 
-author: K10-K10
-update: 12/04/2026
+---
+
+**version**: *0.2.0* | **author**: *K10-K10* | **update**: 11/06/2026

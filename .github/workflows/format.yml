@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   clang-format:
@@ -17,9 +18,14 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y clang-format
 
-      - name: Check formatting
+      - name: Check formatting and show diff
         run: |
           files=$(git ls-files '*.cpp' '*.hpp' '*.h' '*.cc')
           if [ -n "$files" ]; then
-            clang-format --dry-run --Werror $files
+            clang-format -i $files            
+            git diff --exit-code
           fi
+
+      - name: Generate compile_commands.json
+        run: |
+          cmake -S . -B build

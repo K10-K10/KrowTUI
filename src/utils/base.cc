@@ -1,5 +1,4 @@
-#include "utils/base.h"
-
+#include <K10-K10/utils/base.h>
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <unistd.h>
@@ -126,7 +125,6 @@ void upScroll(int num) {
   if (num > 0) {
     std::cout << "\e[" << num << "S" << std::flush;
   } else {
-    int new_n = num * -1;
     std::cout << "\e[" << num << "T" << std::flush;
   }
 }
@@ -135,7 +133,6 @@ void downScroll(int num) {
   if (num > 0) {
     std::cout << "\e[" << num << "T" << std::flush;
   } else {
-    int new_n = num * -1;
     std::cout << "\e[" << num << "S" << std::flush;
   }
 }

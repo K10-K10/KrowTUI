@@ -3,22 +3,20 @@
 Here are some examples of how to use the TUI library in C++.
 
 ```cpp
-#include "terminal.h"
+#include <K10-K10/terminal.h>
 
 using namespace terminal;
 int main() {
   app.init();
   Text text;
-  text.set_text("Hello TUI!");
+  text.contents("Hello TUI!");
 
   List list;
-  list.set_items({"item1", "item2", "item3", "item4", "item5", "item1", "item2",
-                  "item3", "item4", "item5"});
-
+  list.items({"item1", "item2", "item3", "item4", "item5"});
   Block box;
-  text.set_pos({1, 1, 20, 1});
-  list.set_pos({1, 3, 20, 5});
-  box.set_pos({0, 0, FULL, FULL});
+  text.position({1, 1, 20, 1});
+  list.position({1, 3, 20, 5});
+  box.position({0, 0, FULL, FULL});
   app.loop([&]() {
     box.draw();
     text.draw();
@@ -37,8 +35,6 @@ int main() {
       char c = input::key.getCurrentChar();
       if (c == 'q') {
         app.stop();
-      } else {
-        text.push(c);
       }
     }
   });
@@ -53,21 +49,29 @@ And this is minimal `CMakeLists.txt` to build the example:
 cmake_minimum_required(VERSION 3.16)
 project(app LANGUAGES CXX)
 
-add_subdirectory(lib/Terminal-Library)
+include(FetchContent)
+
+FetchContent_Declare(
+  terminal_library
+  GIT_REPOSITORY https://github.com/K10-K10/Terminal-Library.git
+  GIT_TAG        main
+)
+
+FetchContent_MakeAvailable(terminal_library)
 
 add_executable(app src/main.cpp)
-target_link_libraries(app PRIVATE terminal)
-```
 
+target_link_libraries(app PRIVATE K10-K10::terminal)
+```
 
 ![Example Output](example_output.png)
 
 ### KeyBindings
+
 - `UP`: Move up in the list
 - `DOWN`: Move down in the list
 - `q`: Quit the application
-- Any other character will be appended to the text "Hello TUI!"
 
+---
 
-author: K10-K10
-update: 12/04/2026
+__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

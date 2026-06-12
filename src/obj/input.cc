@@ -1,12 +1,12 @@
-#include "obj/input.h"
+#include <K10-K10/core/drawObj.h>
+#include <K10-K10/layout/rect.h>
+#include <K10-K10/obj/input.h>
+#include <K10-K10/style/color.h>
 
 #include <algorithm>
 #include <csignal>
 #include <string>
 #include <vector>
-
-#include "core/drawObj.h"
-#include "layout/rect.h"
 
 namespace terminal {
 char& TextField::RowProxy::operator[](size_t index) {
@@ -73,9 +73,13 @@ void TextField::draw() {
       char c = s[data_x];
 
       if (data_x == cursor_x && data_y == cursor_y) {
-        __terminal__::drawObj.put(t + screen_y, l + screen_x, {std::string{c}});
+        __terminal__::Style c_s = style_;
+        c_s.flag |= (1 << 6);
+        __terminal__::drawObj.put(t + screen_y, l + screen_x,
+                                  {std::string{c}, c_s});
       } else {
-        __terminal__::drawObj.put(t + screen_y, l + screen_x, {std::string{c}});
+        __terminal__::drawObj.put(t + screen_y, l + screen_x,
+                                  {std::string{c}, style_});
       }
     }
   }
@@ -84,7 +88,7 @@ void TextField::draw() {
       int screen_x = cursor_x - offset_x;
       int screen_y = cursor_y - offset_y;
       if (screen_x >= 0 && screen_x < w) {
-        __terminal__::drawObj.put(t + screen_y, l + screen_x, {" "});
+        __terminal__::drawObj.put(t + screen_y, l + screen_x, {" ", style_});
       }
     }
   }

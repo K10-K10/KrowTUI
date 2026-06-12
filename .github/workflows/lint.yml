@@ -1,0 +1,50 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-tidy cmake cppcheck
+
+
+      - name: Generate compile_commands.json
+        run: |
+          cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+      - name: Run clang-tidy
+        run: |
+          files=$(git ls-files '*.cpp' '*.hpp' '*.h' '*.cc')
+          if [ -n "$files" ]; then
+            clang-tidy -p build/ $files
+          fi
+
+      - name: Create cppcheck cache directory
+        run: mkdir -p .cppcheck-cache
+
+      - name: Cache cppcheck
+        uses: actions/cache@v4
+        with:
+          path: .cppcheck-cache
+          key: ${{ runner.os }}-cppcheck-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-cppcheck-
+
+      - name: Run cppcheck (Show warnings)
+        run: |
+          cppcheck --cppcheck-build-dir=.cppcheck-cache -I include --enable=all --inconclusive src/ --suppress=missingIncludeSystem --suppress=unusedFunction
+          
+      - name: Run cppcheck (Fail on errors)
+        run: |
+          cppcheck --cppcheck-build-dir=.cppcheck-cache -I include --error-exitcode=1 src/ --suppress=missingIncludeSystem
