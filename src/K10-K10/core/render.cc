@@ -22,9 +22,7 @@ enum StyleFlag : unsigned int {
 };
 
 std::string makeline(const __terminal__::Cell& c) {
-  std::string line =
-      "\033[" + std::to_string(c.style.fg) + ";" + std::to_string(c.style.bg);
-
+  std::string line = c.style.fg_sequence + c.style.bg_sequence;
   if (c.style.flag & StyleFlag::Bold) line += ";1";
   if (c.style.flag & StyleFlag::Dim) line += ";2";
   if (c.style.flag & StyleFlag::Italic) line += ";3";
@@ -54,10 +52,10 @@ void Render::flush() {
       int i = y * W + x;
 
       if (__terminal__::screen.current[i].c != __terminal__::screen.next[i].c ||
-          __terminal__::screen.current[i].style.fg !=
-              __terminal__::screen.next[i].style.fg ||
-          __terminal__::screen.current[i].style.bg !=
-              __terminal__::screen.next[i].style.bg ||
+          __terminal__::screen.current[i].style.fg_sequence !=
+              __terminal__::screen.next[i].style.fg_sequence ||
+          __terminal__::screen.current[i].style.bg_sequence !=
+              __terminal__::screen.next[i].style.bg_sequence ||
           __terminal__::screen.current[i].style.flag !=
               __terminal__::screen.next[i].style.flag) {
         if (start == -1) {
