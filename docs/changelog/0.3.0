@@ -1,0 +1,25 @@
+# ver 0.3.0
+
+- commithash: ``
+- date:
+
+## [Note]
+
+- Added new GitHub Actions workflow for lint check. #34 #35
+
+## [Features]
+
+- Add `logger` function. #38
+
+## [Changed]
+
+- Update Style function more efficiently. #40
+- Refactor suggestion from cppcheck. #33
+- Add include guard to header files. #39
+
+## [Docs]
+
+- Add badge and sample picture to README.md. #32 #36
+- New sample code #37
+
+## [Removed]
