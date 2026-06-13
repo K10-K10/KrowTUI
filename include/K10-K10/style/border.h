@@ -1,7 +1,7 @@
-#ifndef INCLUDE_LAYOUT_BORDER_H_
-#define INCLUDE_LAYOUT_BORDER_H_
+#ifndef INCLUDE_STYLE_BORDER_H_
+#define INCLUDE_STYLE_BORDER_H_
 
-namespace BorderType {
+namespace terminal::style {
 struct Border {
   const char* tl;  // top-left
   const char* tr;
@@ -15,9 +15,7 @@ inline const Border SINGLE{"┌", "┐", "└", "┘", "─", "│"};
 inline const Border ROUNDED{"╭", "╮", "╰", "╯", "─", "│"};
 inline const Border BOLD{"┏", "┓", "┗", "┛", "━", "┃"};
 inline const Border DOUBLE{"╔", "╗", "╚", "╝", "═", "║"};
-}  // namespace BorderType
 
-namespace Borders {
 using EdgeType = int;
 
 constexpr EdgeType NONE = 0;
@@ -26,6 +24,6 @@ constexpr EdgeType BOTTOM = 1 << 1;
 constexpr EdgeType LEFT = 1 << 2;
 constexpr EdgeType RIGHT = 1 << 3;
 constexpr EdgeType ALL = TOP | BOTTOM | LEFT | RIGHT;
-}  // namespace Borders
+}  // namespace terminal::style
 
 #endif

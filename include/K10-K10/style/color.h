@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace terminal::utils {
+namespace terminal::style {
 
 enum class BasicColor {
   Default,
@@ -32,7 +32,7 @@ struct Color {
   Color(int r, int g, int b) : type(Type::RGB), r(r), g(g), b(b) {}
 };
 
-}  // namespace terminal::utils
+}  // namespace terminal::style
 
 namespace __terminal__ {
 
