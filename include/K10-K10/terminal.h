@@ -11,10 +11,11 @@
 #include <K10-K10/obj/text.h>
 #include <K10-K10/style/border.h>
 #include <K10-K10/style/color.h>
+#include <K10-K10/style/style.h>
 
 namespace terminal {
-__terminal__::Render render;
-__terminal__::App app(render);
+inline __terminal__::Render render;
+inline __terminal__::App app(render);
 }  // namespace terminal
 
 #endif
