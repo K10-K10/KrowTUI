@@ -7,6 +7,7 @@ add_library(terminal
     src/K10-K10/input/cursor.cc
     src/K10-K10/input/keyboard.cc
     src/K10-K10/utils/base.cc
+    src/K10-K10/utils/string_helper.cc
     src/K10-K10/style/color.cc
     src/K10-K10/style/style.cc
     src/K10-K10/app/app.cc

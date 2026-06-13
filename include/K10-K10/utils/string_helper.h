@@ -1,0 +1,20 @@
+#ifndef INCLUDE_UTILS_STRING_HELPER_H_
+#define INCLUDE_UTILS_STRING_HELPER_H_
+
+#include <string>
+#include <vector>
+
+namespace __terminal__ {
+
+struct VisualChar {
+  std::string c;
+  int width;
+};
+
+int get_visual_width(const std::string& str);
+
+std::vector<VisualChar> split_by_visual_character(const std::string& str);
+
+}  // namespace __terminal__
+
+#endif
