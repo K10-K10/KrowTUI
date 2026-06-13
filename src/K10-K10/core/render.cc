@@ -21,26 +21,25 @@ enum StyleFlag : unsigned int {
   Overline = 1 << 10
 };
 
-std::string makeline(const __terminal__::Cell& c) {
-  std::string line = c.style.fg_sequence + c.style.bg_sequence;
-  if (c.style.flag & StyleFlag::Bold) line += ";1";
-  if (c.style.flag & StyleFlag::Dim) line += ";2";
-  if (c.style.flag & StyleFlag::Italic) line += ";3";
-  if (c.style.flag & StyleFlag::Underline) line += ";4";
-  if (c.style.flag & StyleFlag::Blink) line += ";5";
-  if (c.style.flag & StyleFlag::RapidBlink) line += ";6";
-  if (c.style.flag & StyleFlag::Inverted) line += ";7";
-  if (c.style.flag & StyleFlag::Hidden) line += ";8";
-  if (c.style.flag & StyleFlag::Strikethrough) line += ";9";
-  if (c.style.flag & StyleFlag::DoubleUnderline) line += ";21";
-  if (c.style.flag & StyleFlag::Overline) line += ";53";
+namespace __terminal__ {
+std::string Render::makeline(const __terminal__::Cell& c) {
+  std::string line = c.style.to_ansi();
+  if (c.style.flag_ & StyleFlag::Bold) line += ";1";
+  if (c.style.flag_ & StyleFlag::Dim) line += ";2";
+  if (c.style.flag_ & StyleFlag::Italic) line += ";3";
+  if (c.style.flag_ & StyleFlag::Underline) line += ";4";
+  if (c.style.flag_ & StyleFlag::Blink) line += ";5";
+  if (c.style.flag_ & StyleFlag::RapidBlink) line += ";6";
+  if (c.style.flag_ & StyleFlag::Inverted) line += ";7";
+  if (c.style.flag_ & StyleFlag::Hidden) line += ";8";
+  if (c.style.flag_ & StyleFlag::Strikethrough) line += ";9";
+  if (c.style.flag_ & StyleFlag::DoubleUnderline) line += ";21";
+  if (c.style.flag_ & StyleFlag::Overline) line += ";53";
 
   line += "m" + c.c + "\033[0m";
 
   return line;
 }
-
-namespace __terminal__ {
 void Render::flush() {
   int W = __terminal__::screen.width();
   int H = __terminal__::screen.height();
@@ -56,14 +55,15 @@ void Render::flush() {
               __terminal__::screen.next[i].style.fg_sequence ||
           __terminal__::screen.current[i].style.bg_sequence !=
               __terminal__::screen.next[i].style.bg_sequence ||
-          __terminal__::screen.current[i].style.flag !=
-              __terminal__::screen.next[i].style.flag) {
+          __terminal__::screen.current[i].style.flag_ !=
+              __terminal__::screen.next[i].style.flag_) {
         if (start == -1) {
           start = x;
           line.clear();
         }
 
-        line += makeline(__terminal__::screen.next[i]);
+        line += __terminal__::screen.next[i].style.to_ansi() +
+                __terminal__::screen.next[i].c + "\033[0m";
         __terminal__::screen.current[i] = __terminal__::screen.next[i];
       } else if (start != -1) {
         terminal::utils::moveTo(y, start);
