@@ -9,6 +9,7 @@ namespace __terminal__ {
 struct VisualChar {
   std::string c;
   int width;
+  bool operator==(const VisualChar&) const = default;
 };
 
 int get_visual_width(const std::string& str);
