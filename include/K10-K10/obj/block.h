@@ -4,7 +4,7 @@
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
 #include <K10-K10/style/border.h>
-#include <K10-K10/style/color.h>
+#include <K10-K10/style/style.h>
 
 namespace terminal {
 class Block : public Object {
@@ -14,32 +14,25 @@ class Block : public Object {
   ~Block() = default;
   void draw() override;
   Block& position(const Rect& r);
-  Block& border_type(const terminal::style::Border& type);
-  Block& borders(const terminal::style::EdgeType type_);
-  Block& border_color(int bc) {
-    style_.fg = bc;
+  Block& border_type(const terminal::style::Border& type) {
+    border_type_ = &type;
     return *this;
   }
-  Block& border_color(terminal::style::TextColor bc) {
-    style_.fg = static_cast<int>(bc);
+  Block& borders(const terminal::style::Borders type_) {
+    edges_ = type_;
     return *this;
   }
-
-  Block& field_color(int bg) {
-    style_.bg = bg;
-    return *this;
-  }
-
-  Block& field_color(terminal::style::FillColor bg) {
-    style_.bg = static_cast<int>(bg);
+  Block& border_style(const style::Style& style) {
+    border_style_ = style;
     return *this;
   }
 
  private:
-  __terminal__::Style style_;
+  style::Style border_style_;
+  std::string title_, bottom_title_;
   Rect rect = {0, 0, 0, 0};
   const terminal::style::Border* border_type_ = &terminal::style::SINGLE;
-  terminal::style::EdgeType edges_ = terminal::style::ALL;
+  terminal::style::Borders edges_ = terminal::style::Borders::ALL;
 };
 
 }  // namespace terminal
