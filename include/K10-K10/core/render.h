@@ -3,7 +3,10 @@
 
 #include <K10-K10/core/screen.h>
 
+#include <string>
 namespace __terminal__ {
+std::string makeline(const __terminal__::Cell& c);
+
 class Render {
  public:
   explicit Render() = default;

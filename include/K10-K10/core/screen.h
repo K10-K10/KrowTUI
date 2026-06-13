@@ -1,7 +1,7 @@
 #ifndef INCLUDE_CORE_SCREEN_H_
 #define INCLUDE_CORE_SCREEN_H_
 
-#include <K10-K10/style/color.h>
+#include <K10-K10/style/style.h>
 
 #include <string>
 #include <vector>
@@ -12,7 +12,7 @@ class Object;
 namespace __terminal__ {
 struct Cell {
   std::string c;
-  Style style;
+  terminal::style::Style style;
 };
 
 class App;

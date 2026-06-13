@@ -1,41 +1,36 @@
 #ifndef INCLUDE_STYLE_COLOR_H_
 #define INCLUDE_STYLE_COLOR_H_
 
-namespace terminal::utils {
-// text
-enum class TextColor {
-  Default = 39,
-  Black = 30,
-  Red = 31,
-  Green = 32,
-  Yellow = 33,
-  Blue = 34,
-  Magenta = 35,
-  Cyan = 36,
-  White = 37
-};
-// fill
-enum class FillColor {
-  Default = 49,
-  Black = 40,
-  Red = 41,
-  Green = 42,
-  Yellow = 43,
-  Blue = 44,
-  Magenta = 45,
-  Cyan = 46,
-  White = 47
+#include <string>
+namespace terminal::style {
+
+enum class BasicColor {
+  Default,
+  Black,
+  Red,
+  Green,
+  Yellow,
+  Blue,
+  Magenta,
+  Cyan,
+  White
 };
 
-}  // namespace terminal::utils
+struct Color {
+  enum class Type { Basic, Extended256, RGB };
 
-namespace __terminal__ {
-struct Style {
-  int fg = static_cast<int>(terminal::utils::TextColor::Default);
-  int bg = static_cast<int>(terminal::utils::FillColor::Default);
+  Type type = Type::Basic;
+  BasicColor basic = BasicColor::Default;
+  int code256 = 0;
+  int r = 0, g = 0, b = 0;
+  Color() : type(Type::Basic), basic(BasicColor::Default) {}
+  Color(BasicColor bc) : type(Type::Basic), basic(bc) {}
 
-  unsigned int flag = 0;
+  Color(int code) : type(Type::Extended256), code256(code) {}
+
+  Color(int r, int g, int b) : type(Type::RGB), r(r), g(g), b(b) {}
 };
-}  // namespace __terminal__
+
+};  // namespace terminal::style
 
 #endif
