@@ -10,6 +10,7 @@
 ## [Features]
 
 - Add `logger` function. #38
+- Add `clear` function on `list` object. #43
 
 ## [Changed]
 
@@ -21,5 +22,6 @@
 
 - Add badge and sample picture to README.md. #32 #36
 - New sample code #37
+- fix missing library name in README and getting_started.md. #42
 
 ## [Removed]
