@@ -22,7 +22,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(terminal_library)
 
 add_executable(your_app main.cpp)
-target_link_libraries(your_app PRIVATE K10-K10::terminal_library)
+target_link_libraries(your_app PRIVATE K10-K10::terminal)
 ```
 
 ### Method 2: Via Git Submodule
