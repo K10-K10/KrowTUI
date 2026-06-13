@@ -3,7 +3,7 @@
 
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
-#include <K10-K10/style/color.h>
+#include <K10-K10/style/style.h>
 
 #include <string>
 
@@ -15,20 +15,16 @@ class Text : private Object {
   ~Text() = default;
   Text& position(const Rect& r);
   Text& contents(const std::string& text);
-  std::string get_text() const;
+  std::string contents() const;
   void draw() override;
 
-  Text& bg_color(int bg) {
-    style_.bg = bg;
-    return *this;
-  }
-  Text& fg_color(int fg) {
-    style_.fg = fg;
+  Text& text_style(const style::Style& s) {
+    text_style_ = s;
     return *this;
   }
 
  private:
-  __terminal__::Style style_;
+  terminal::style::Style text_style_;
   Rect rect = {0, 0, 0, 0};
   std::string text_ = "";
 };

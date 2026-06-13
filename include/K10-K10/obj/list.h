@@ -3,7 +3,7 @@
 
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
-#include <K10-K10/style/color.h>
+#include <K10-K10/style/style.h>
 
 #include <string>
 #include <vector>
@@ -24,58 +24,31 @@ class List : public Object {
   int selected_index() const;
   void draw() override;
 
-  List& selector(const std::string& symbol) {
-    selector_symbol = symbol;
+  List& selector_symbol(const std::string& symbol) {
+    selector_symbol_ = symbol;
     return *this;
   }
-  List& field_color(int bg) {
-    style_.bg = bg;
+
+  List& contents_style(const style::Style& s) {
+    contents_style_ = s;
     return *this;
-  }
-  List& field_color(utils::FillColor bg) {
-    style_.bg = static_cast<int>(bg);
+  };
+  List& selector_style(const style::Style& s) {
+    selector_style_ = s;
     return *this;
-  }
-  List& text_color(int fg) {
-    style_.fg = fg;
+  };
+  List& highlight_style(const style::Style& s) {
+    highlight_style_ = s;
     return *this;
-  }
-  List& text_color(utils::TextColor fg) {
-    style_.fg = static_cast<int>(fg);
-    return *this;
-  }
-  List& selector_color(int fg) {
-    selector_style_.fg = fg;
-    return *this;
-  }
-  List& selector_color(utils::TextColor fg) {
-    selector_style_.fg = static_cast<int>(fg);
-    return *this;
-  }
-  List& highlight_bg(int bg) {
-    highlight_style_.bg = bg;
-    return *this;
-  }
-  List& highlight_bg(utils::FillColor bg) {
-    highlight_style_.bg = static_cast<int>(bg);
-    return *this;
-  }
-  List& highlight_fg(int fg) {
-    highlight_style_.fg = fg;
-    return *this;
-  }
-  List& highlight_fg(utils::TextColor fg) {
-    highlight_style_.fg = static_cast<int>(fg);
-    return *this;
-  }
+  };
 
  private:
   Rect rect = {0, 0, 0, 0};
   std::vector<std::string> items_ = {};
-  std::string selector_symbol = ">";
+  std::string selector_symbol_ = ">";
   int selected_ = 0;
   int draw_index_num_ = 0;
-  __terminal__::Style style_, highlight_style_, selector_style_;
+  terminal::style::Style contents_style_, selector_style_, highlight_style_;
 };
 
 }  // namespace terminal

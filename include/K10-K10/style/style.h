@@ -11,6 +11,10 @@ class Render;
 
 namespace terminal::style {
 struct Style {
+ private:
+  std::string convert_to_ansi(const terminal::style::Color& color, bool is_fg);
+
+ public:
   Style& fg(const terminal::style::Color& color) {
     fg_sequence = convert_to_ansi(color, true);
     return *this;
@@ -34,8 +38,6 @@ struct Style {
   std::string fg_sequence = "\033[39m";
   std::string bg_sequence = "\033[49m";
   unsigned int flag_ = 0;
-
-  std::string convert_to_ansi(const terminal::style::Color& color, bool is_fg);
 };
 
 inline Style Default() { return Style{}; }

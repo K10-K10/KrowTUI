@@ -3,7 +3,7 @@
 
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/obj/obj.h>
-#include <K10-K10/style/color.h>
+#include <K10-K10/style/style.h>
 
 #include <string>
 #include <vector>
@@ -23,24 +23,13 @@ class TextField : private Object {
   TextField& insert_char(char c);
   TextField& delete_char();
 
-  TextField& text_color(utils::TextColor color) {
-    style_.fg = static_cast<int>(color);
+  TextField& text_style(const style::Style& s) {
+    text_style_ = s;
     return *this;
   }
-  TextField& text_color(int color) {
-    style_.fg = color;
-    return *this;
-  }
-  TextField& field_color(utils::FillColor color) {
-    style_.bg = static_cast<int>(color);
-    return *this;
-  }
-  TextField& field_color(int color) {
-    style_.bg = color;
-    return *this;
-  }
-  TextField& cursor_inverted(bool inverted) {
-    cursor_inverted_ = inverted;
+
+  TextField& cursor_style(const style::Style& s) {
+    cursor_style_ = s;
     return *this;
   }
 
@@ -63,7 +52,7 @@ class TextField : private Object {
 
  private:
   Rect rect = {0, 0, 0, 0};
-  __terminal__::Style style_;
+  terminal::style::Style text_style_, cursor_style_;
   std::vector<std::string> contents_;
   int max_length_ = 0;
   int cursor_x = 0, cursor_y = 0;

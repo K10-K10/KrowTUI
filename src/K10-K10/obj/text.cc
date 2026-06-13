@@ -15,7 +15,7 @@ Text& Text::contents(const std::string& text) {
   return *this;
 }
 
-std::string Text::get_text() const { return text_; }
+std::string Text::contents() const { return text_; }
 
 void Text::draw() {
   int l = rect.x;
@@ -32,7 +32,7 @@ void Text::draw() {
       while (cnt_x < w) {
         __terminal__::Cell blank_cell;
         blank_cell.c = " ";
-        blank_cell.style = style_;
+        blank_cell.style = text_style_;
         __terminal__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
         cnt_x++;
       }
@@ -63,7 +63,7 @@ void Text::draw() {
       while (cnt_x < w) {
         __terminal__::Cell blank_cell;
         blank_cell.c = " ";
-        blank_cell.style = style_;
+        blank_cell.style = text_style_;
         __terminal__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
         cnt_x++;
       }
@@ -74,7 +74,7 @@ void Text::draw() {
 
     __terminal__::Cell text_cell;
     text_cell.c = one_char;
-    text_cell.style = style_;
+    text_cell.style = text_style_;
     __terminal__::drawObj.put(t + cnt_y, l + cnt_x, text_cell);
 
     cnt_x += visual_width;
@@ -85,7 +85,7 @@ void Text::draw() {
     while (cnt_x < w) {
       __terminal__::Cell blank_cell;
       blank_cell.c = " ";
-      blank_cell.style = style_;
+      blank_cell.style = text_style_;
       __terminal__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
       cnt_x++;
     }
