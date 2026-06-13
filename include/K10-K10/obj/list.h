@@ -18,6 +18,10 @@ class List : public Object {
   List& items(std::vector<std::string> items);
   const std::vector<std::string>& items() const;
   List& add_item(const std::string& s);
+  List& clear() {
+    items_.clear();
+    return *this;
+  }
   const std::string selected_item() const;
   void move_up();
   void move_down();
