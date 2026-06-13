@@ -5,14 +5,13 @@
 
 #include <string>
 namespace __terminal__ {
+std::string makeline(const __terminal__::Cell& c);
+
 class Render {
  public:
   explicit Render() = default;
   ~Render() = default;
   static void flush();
-
- private:
-  std::string makeline(const __terminal__::Cell& c);
 };
 
 }  // namespace __terminal__
