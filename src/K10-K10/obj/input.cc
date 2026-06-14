@@ -39,6 +39,7 @@ TextField& TextField::contents(const std::vector<std::string>& text) {
     new_content.push_back(s);
     max_length_ = std::max(max_length_, int(s.size()));
   }
+  contents_ = new_content;
   return *this;
 }
 
