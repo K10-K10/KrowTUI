@@ -1,6 +1,7 @@
 set(TEST_SOURCES
   style.cpp
   modules.cpp
+  logger.cpp
 )
 
 find_package(GTest REQUIRED)

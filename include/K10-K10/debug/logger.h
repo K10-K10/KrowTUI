@@ -14,8 +14,11 @@ class logger {
   enum class log_type : std::uint8_t { success, failed, error };
   struct log_value {
     unsigned int id;
-    log_type type_;
+    log_type type;
     std::string message;
+    bool operator==(const log_value& arg) const {
+      return (this->type == arg.type) && (this->message == arg.message);
+    }
   };
 
   logger() = delete;
@@ -48,8 +51,9 @@ class logger {
   enum class log_type : std::uint8_t { success, failed, error };
   struct log_value {
     unsigned int id;
-    log_type type_;
+    log_type type;
     std::string message;
+    bool operator==(const log_value& v) const { return true; }
   };
 
   logger() = delete;
