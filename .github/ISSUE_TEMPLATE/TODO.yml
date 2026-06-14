@@ -21,11 +21,6 @@ body:
     attributes:
       label: Task Checklist
       description: Break down the work into markdown checkboxes (`- [ ] task`).
-      value: |
-        - [ ] Task 1
-        - [ ] Task 2
-        - [ ] Documentation updates
-        - [ ] Add unit tests
     validations:
       required: true
 
