@@ -2,8 +2,8 @@
 #define INCLUDE_STYLE_STYLE_H_
 
 #include <K10-K10/style/color.h>
-#include <K10-K10/style/text_style.h>
 
+#include <cstdint>
 #include <string>
 
 namespace krow::style {
@@ -12,9 +12,23 @@ struct Style;
 
 namespace __krow__ {
 class Render;
-std::string to_ansi(const krow::style::Style& style);
-unsigned int get_flag(const krow::style::Style& style);
-}  // namespace __krow__
+std::string to_ansi(const terminal::style::Style& style);
+unsigned int get_flag(const terminal::style::Style& style);
+enum StyleFlag : std::uint16_t {
+  None = 0,
+  Bold = 1 << 0,
+  Dim = 1 << 1,
+  Italic = 1 << 2,
+  Underline = 1 << 3,
+  Blink = 1 << 4,
+  RapidBlink = 1 << 5,
+  Inverted = 1 << 6,
+  Hidden = 1 << 7,
+  Strikethrough = 1 << 8,
+  DoubleUnderline = 1 << 9,
+  Overline = 1 << 10
+};
+}  // namespace __terminal__
 
 namespace krow::style {
 struct Style {
