@@ -9,6 +9,10 @@
 
 namespace terminal {
 
+class TextField;
+class Block;
+class List;
+
 struct Text;
 
 struct Line;
@@ -23,9 +27,13 @@ struct Span {
 
  private:
   friend struct Line;
+  friend class TextField;
+  friend class Block;
+  friend class List;
+  std::string text_;
+
   friend Line operator+(const Span& lhs, const Span& rhs);
 
-  std::string text_;
   style::Style style_val = style::Default();
 };
 
@@ -54,25 +62,29 @@ struct Line {
   };
 
   inline Line& alignment_left() {
-    al_ = style::alignment::left;
+    al_ = style::alignment::LEFT;
     return *this;
   }
 
   inline Line& alignment_center() {
-    al_ = style::alignment::center;
+    al_ = style::alignment::CENTER;
     return *this;
   }
 
   inline Line& alignment_right() {
-    al_ = style::alignment::right;
+    al_ = style::alignment::RIGHT;
     return *this;
   }
 
  protected:
+  friend class TextField;
+  friend class Block;
+  friend class List;
   friend Text;
+
   std::vector<Span> contents_;
   bool break_ = false;
-  style::alignment al_ = style::alignment::left;
+  style::alignment al_ = style::alignment::LEFT;
 
  private:
   friend Line operator+(const Span& lhs, const Span& rhs);

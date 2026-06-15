@@ -14,7 +14,7 @@ class Block : public Object {
   explicit Block() = default;
   ~Block() = default;
   void draw() override;
-  inline Block& Block::position(const Rect& r) {
+  inline Block& position(const Rect& r) {
     rect = r;
     return *this;
   };

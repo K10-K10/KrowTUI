@@ -8,6 +8,9 @@
 #include <vector>
 
 namespace terminal {
+class TextField;
+class Block;
+class List;
 struct Text {
  private:
   struct line {
@@ -17,12 +20,23 @@ struct Text {
   };
 
  public:
+  Text() : contents_(1), current_(0) {}
   Text(const Line& new_);
   void operator=(const Line& new_);
-  inline bool empty() { return contents_.empty(); };
-  std::vector<line> contents_;
+  inline bool empty() {
+    if (contents_.empty()) return true;
+    if (contents_[0].left.empty() && contents_[0].center.empty() &&
+        contents_[0].right.empty()) {
+      return true;
+    }
+    return false;
+  }
 
  private:
+  friend class TextField;
+  friend class Block;
+  friend class List;
+  std::vector<line> contents_;
   int current_ = 0;
 };
 }  // namespace terminal

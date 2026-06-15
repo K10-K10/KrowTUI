@@ -10,7 +10,6 @@
 #include <K10-K10/obj/block.h>
 #include <K10-K10/obj/input.h>
 #include <K10-K10/obj/list.h>
-#include <K10-K10/obj/text.h>
 #include <K10-K10/style/alignment.h>
 #include <K10-K10/style/border.h>
 #include <K10-K10/style/color.h>
