@@ -1,4 +1,10 @@
-set(TEST_SOURCES)
+set(TEST_SOURCES
+  style.cpp
+  modules.cpp
+  logger.cpp
+)
+
+find_package(GTest REQUIRED)
 
 add_executable(terminal_test ${TEST_SOURCES})
 

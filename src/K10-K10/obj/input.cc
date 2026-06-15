@@ -39,6 +39,7 @@ TextField& TextField::contents(const std::vector<std::string>& text) {
     new_content.push_back(s);
     max_length_ = std::max(max_length_, int(s.size()));
   }
+  contents_ = new_content;
   return *this;
 }
 
@@ -52,6 +53,25 @@ TextField& TextField::move_cursor(int x, int y) {
     return *this;
   }
 }
+
+TextField& TextField::delete_char() {
+  if (cursor_y < contents_.size() && cursor_x < contents_[cursor_y].length()) {
+    contents_[cursor_y][cursor_x] = ' ';
+  }
+  return *this;
+}
+
+TextField& TextField::insert_char(char c) {
+  if (cursor_y < contents_.size()) {
+    if (cursor_x >= contents_[cursor_y].length()) {
+      contents_[cursor_y].resize(cursor_x + 1, ' ');
+    }
+
+    contents_[cursor_y][cursor_x] = c;
+  }
+  return *this;
+}
+
 void TextField::draw() {
   int l = rect.x;
   int w = (rect.w == FULL) ? __terminal__::screen.width() : rect.w;
