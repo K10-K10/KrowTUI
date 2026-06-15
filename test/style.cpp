@@ -1,3 +1,4 @@
+#include <K10-K10/style/alignment.h>
 #include <K10-K10/style/style.h>
 #include <gtest/gtest.h>
 
@@ -34,4 +35,34 @@ TEST(ANSI_STYLE_TEST, RGB) {
 
   Style s2 = krow::style::Default().bg(Color(0, 255, 128));
   EXPECT_EQ(__krow__::to_ansi(s2), "\033[39;48;2;0;255;128");
+}
+
+TEST(ALIGNMENT_TEST, LEFT) {
+  EXPECT_EQ(
+      __terminal__::calc_alignment(terminal::style::alignment::LEFT, {0, 6}, 4),
+      0);
+  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::LEFT,
+                                         {10, 6}, 4),
+            10);
+}
+
+TEST(ALIGNMENT_TEST, CENTER) {
+  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::CENTER,
+                                         {0, 6}, 4),
+            1);
+  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::CENTER,
+                                         {10, 11}, 5),
+            13);
+  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::CENTER,
+                                         {10, 10}, 5),
+            12);
+}
+
+TEST(ALIGNMENT_TEST, RIGHT) {
+  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::RIGHT,
+                                         {0, 6}, 4),
+            2);
+  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::RIGHT,
+                                         {10, 6}, 4),
+            12);
 }
