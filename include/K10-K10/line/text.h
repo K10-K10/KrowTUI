@@ -19,6 +19,7 @@ struct Text {
  public:
   Text(const Line& new_);
   void operator=(const Line& new_);
+  inline bool empty() { return contents_.empty(); };
   std::vector<line> contents_;
 
  private:
