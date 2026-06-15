@@ -1,0 +1,44 @@
+name: 💬 Discussion / Proposal
+description: Propose a new idea, ask a question, or open a topic for discussion.
+labels: ["discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a big idea or a question? Use this form to start a conversation with the maintainers and community.
+
+  - type: input
+    id: topic-summary
+    attributes:
+      label: Topic Summary
+      description: In one sentence, what is the core of this discussion?
+      placeholder: e.g., Proposing a shift to a monorepo structure
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: Background & Context
+      description: Why are you bringing this up? What problem or opportunity does this address?
+      placeholder: Provide the context behind your thoughts...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal / Ideas
+      description: Describe your thoughts, potential solutions, or questions you want answered.
+      placeholder: Your ideas go here...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: feedback-wanted
+    attributes:
+      label: What kind of feedback are you looking for?
+      options:
+        - label: General feedback / Brainstorming
+        - label: Architecture review
+        - label: Decision / Approval from maintainers

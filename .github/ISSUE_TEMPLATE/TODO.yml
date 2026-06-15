@@ -1,0 +1,35 @@
+name: 📋 TODO / Task Checklist
+description: Track a specific piece of work, refactoring, or maintenance chore.
+labels: ["todo", "chore"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to break down a larger goal into actionable tasks or to track development chores.
+
+  - type: input
+    id: task-title
+    attributes:
+      label: Goal
+      description: What is the main objective of this TODO?
+      placeholder: e.g., Refactor authentication middleware
+    validations:
+      required: true
+
+  - type: textarea
+    id: checklist
+    attributes:
+      label: Task Checklist
+      description: Break down the work into markdown checkboxes (`- [ ] task`).
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Definition of Done
+      description: What counts as successfully completing this issue?
+      placeholder: e.g., Code coverage remains above 90% and all tests pass.
+    validations:
+      required: false
+
