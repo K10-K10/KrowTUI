@@ -5,19 +5,22 @@
 namespace __terminal__ {
 int calc_alignment(terminal::style::alignment ali, std::pair<int, int> place,
                    int length) {
+  int start_pos = place.first;
+  int end_pos = place.second;
+  int total_width = end_pos - start_pos + 1;
+
   switch (ali) {
-    case terminal::style::alignment::left:
-      return place.first;
-      break;
-    case terminal::style::alignment::center:
-      return (length / 2) - (place.second / 2) + place.first - 1;
-      break;
-    case terminal::style::alignment::right:
-      return place.second - length + place.first;
-      break;
+    case terminal::style::alignment::LEFT:
+      return start_pos;
+
+    case terminal::style::alignment::CENTER:
+      return start_pos + (total_width - length) / 2;
+
+    case terminal::style::alignment::RIGHT:
+      return end_pos - length + 1;
+
     default:
-      return -1;
-      break;
+      return start_pos;
   }
 }
 

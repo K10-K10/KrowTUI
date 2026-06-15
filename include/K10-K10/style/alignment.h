@@ -5,7 +5,7 @@
 #include <utility>
 
 namespace terminal::style {
-enum alignment : uint8_t { left, center, right };
+enum alignment : uint8_t { LEFT, CENTER, RIGHT };
 }
 
 namespace __terminal__ {
