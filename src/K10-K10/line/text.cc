@@ -1,22 +1,23 @@
 #include <K10-K10/line/text.h>
 
-terminal::Text::Text(const Line& new_) : contents_(1) {
-  switch (new_.al_) {
-    case terminal::style::alignment::LEFT:
-      this->contents_[current_].left.push(new_);
-      break;
-    case terminal::style::alignment::CENTER:
-      this->contents_[current_].center.push(new_);
-      break;
-    case terminal::style::alignment::RIGHT:
-      this->contents_[current_].right.push(new_);
-      break;
-    default:
-      break;
-  }
-  if (new_.break_) {
-    ++current_;
-    contents_.push_back({});
+terminal::Text::Text(const Line& new_) {
+  contents_.resize(1);
+  current_ = 0;
+
+  for (const auto& item : new_.contents_) {
+    const auto& span = item.first;
+    const auto& align = item.second;
+
+    Line single_element_line;
+    single_element_line.contents_.push_back(item);
+
+    if (align == style::alignment::LEFT) {
+      contents_[current_].left.push(single_element_line);
+    } else if (align == style::alignment::CENTER) {
+      contents_[current_].center.push(single_element_line);
+    } else if (align == style::alignment::RIGHT) {
+      contents_[current_].right.push(single_element_line);
+    }
   }
 }
 
@@ -24,20 +25,26 @@ void terminal::Text::operator=(const Line& new_) {
   contents_.clear();
   contents_.resize(1);
   current_ = 0;
-  switch (new_.al_) {
-    case terminal::style::alignment::LEFT:
-      this->contents_[current_].left.push(new_);
-      break;
-    case terminal::style::alignment::CENTER:
-      this->contents_[current_].center.push(new_);
-      break;
-    case terminal::style::alignment::RIGHT:
-      this->contents_[current_].right.push(new_);
-      break;
-    default:
-      break;
+  Line left, center, right;
+  for (int i = 0; i < new_.contents_.size(); ++i) {
+    switch (new_.contents_[i].second) {
+      case terminal::style::alignment::LEFT:
+        left = left + new_.contents_[i].first;
+        break;
+      case terminal::style::alignment::CENTER:
+        center = center + new_.contents_[i].first;
+        break;
+      case terminal::style::alignment::RIGHT:
+        right = right + new_.contents_[i].first;
+        break;
+      default:
+        break;
+    }
+    if (new_.break_) {
+      ++current_;
+    }
   }
-  if (new_.break_) {
-    ++current_;
-  }
+  this->contents_[current_].left.push(left);
+  this->contents_[current_].center.push(center);
+  this->contents_[current_].right.push(right);
 };
