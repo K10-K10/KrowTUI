@@ -18,6 +18,7 @@
 - Update Style function more efficiently. #40
 - Refactor suggestion from cppcheck. #33
 - Add include guard to header files. #39
+- Add time interval to keyboard input. #51
 
 ## [Docs]
 
