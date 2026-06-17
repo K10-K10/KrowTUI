@@ -5,6 +5,7 @@
 #include <K10-K10/style/style.h>
 
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace terminal {
@@ -41,18 +42,19 @@ struct Line {
  public:
   Line() = default;
 
-  Line(const Span& span) { contents_.push_back(span); }
+  Line(const Span& span) { contents_.push_back({span, al_}); }
 
   Line operator+(const Span& as) const {
     Line result = *this;
-    result.contents_.push_back(as);
+    result.contents_.push_back({as, al_});
     return result;
   }
 
   Line operator+(const Line& rhs) const {
     Line result = *this;
-    result.contents_.insert(result.contents_.end(), rhs.contents_.begin(),
-                            rhs.contents_.end());
+    for (size_t i = 0; i < rhs.contents_.size(); ++i) {
+      result.contents_.push_back(rhs.contents_[i]);
+    }
     return result;
   }
 
@@ -63,16 +65,25 @@ struct Line {
 
   inline Line& alignment_left() {
     al_ = style::alignment::LEFT;
+    for (auto& item : contents_) {
+      item.second = style::alignment::LEFT;
+    }
     return *this;
   }
 
   inline Line& alignment_center() {
     al_ = style::alignment::CENTER;
+    for (auto& item : contents_) {
+      item.second = style::alignment::CENTER;
+    }
     return *this;
   }
 
   inline Line& alignment_right() {
     al_ = style::alignment::RIGHT;
+    for (auto& item : contents_) {
+      item.second = style::alignment::RIGHT;
+    }
     return *this;
   }
 
@@ -82,7 +93,7 @@ struct Line {
   friend class List;
   friend Text;
 
-  std::vector<Span> contents_;
+  std::vector<std::pair<Span, style::alignment>> contents_;
   bool break_ = false;
   style::alignment al_ = style::alignment::LEFT;
 
@@ -92,8 +103,8 @@ struct Line {
 
 inline Line operator+(const Span& lhs, const Span& rhs) {
   Line line;
-  line.contents_.push_back(lhs);
-  line.contents_.push_back(rhs);
+  line.contents_.push_back({lhs, style::alignment::LEFT});
+  line.contents_.push_back({rhs, style::alignment::LEFT});
   return line;
 }
 
