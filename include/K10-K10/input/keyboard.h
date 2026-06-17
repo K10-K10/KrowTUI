@@ -1,6 +1,7 @@
 #ifndef INCLUDE_INPUT_KEYBOARD_H_
 #define INCLUDE_INPUT_KEYBOARD_H_
 
+#include <chrono>
 #include <cstdint>
 
 namespace __terminal__::__input__ {
@@ -30,6 +31,7 @@ class Key {
   bool read();
 
  private:
+  std::chrono::steady_clock::time_point last_input_time;
   KeyCode key_code = KeyCode::NONE;
   char current_char = 0;
   bool is_visible = false;

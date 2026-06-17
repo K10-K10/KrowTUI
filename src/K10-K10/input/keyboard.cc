@@ -2,6 +2,7 @@
 #include <K10-K10/utils/base.h>
 #include <ncurses.h>
 
+#include <chrono>
 #include <iostream>
 #include <string>
 
@@ -28,10 +29,21 @@ char Key::getCurrentChar() {
 
 bool Key::read() {
   int ch = getch();
-  if (ch == ERR) return false;
 
-  key_code = KeyCode::UNKNOWN;
-  current_char = 0;
+  auto now = std::chrono::steady_clock::now();
+  if (ch == ERR) {
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
+                       now - last_input_time)
+                       .count();
+
+    if (elapsed > 120) {
+      key_code = KeyCode::NONE;
+      current_char = '\0';
+    }
+    return false;
+  }
+  last_input_time = std::chrono::steady_clock::now();
+  flushinp();
 
   switch (ch) {
     case KEY_UP:
