@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-namespace __terminal__ {
+namespace __krow__ {
 enum StyleFlag : std::uint16_t {
   None = 0,
   Bold = 1 << 0,
@@ -18,6 +18,6 @@ enum StyleFlag : std::uint16_t {
   DoubleUnderline = 1 << 9,
   Overline = 1 << 10
 };
-}  // namespace __terminal__
+}  // namespace __krow__
 
 #endif

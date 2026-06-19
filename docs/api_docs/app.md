@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # App
 
 `app` is the main class of the library. It is responsible for managing the application state, rendering the UI, and handling user input.
@@ -11,12 +16,12 @@
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.hpp>
+#include <K10-K10/krow.hpp>
 
 int main() {
-  terminal::app.init(60);
+  krow::app.init(60);
 
-  terminal::app.loop([]() {
+  krow::app.loop([]() {
     // Your code here
   });
 
@@ -58,7 +63,3 @@ It's received only one function, but you can use lambda functions to call multip
 
 Stops the main loop and exits from alternate screen.
 You should call this function when you want to exit the application.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 
-namespace terminal {
+namespace krow {
 namespace utils {
 void clear() {
 #ifdef _WIN32
@@ -89,7 +89,7 @@ void moveTo(int y, int x) {
   std::cout << "\e[" << (y + 1) << ";" << (x + 1) << "H" << std::flush;
 }
 
-std::pair<int, int> getTerminalSize() {
+std::pair<int, int> getkrowSize() {
   struct winsize w;
   if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) != -1) {
     return {w.ws_col, w.ws_row};  // width, height
@@ -173,4 +173,4 @@ void printCancel(const char* str) {
   std::cout << "\e[9m" << str << "\e[0m" << std::flush;
 }
 }  // namespace utils
-}  // namespace terminal
+}  // namespace krow

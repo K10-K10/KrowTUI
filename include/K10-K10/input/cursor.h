@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace __terminal__::__input__ {
+namespace __krow__::__input__ {
 class Cursor {
  public:
   explicit Cursor() = default;
@@ -29,10 +29,10 @@ class Cursor {
   };
   CursorState state;
 };
-}  // namespace __terminal__::__input__
+}  // namespace __krow__::__input__
 
-namespace terminal::input {
-extern __terminal__::__input__::Cursor cursor;
+namespace krow::input {
+extern __krow__::__input__::Cursor cursor;
 }
 
 #endif

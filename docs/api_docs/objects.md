@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Objects
 
 Objects are the building blocks of your app's interface. They can render text, block list, etc.
@@ -20,7 +25,3 @@ Draws the object on the terminal at the specified for frame.
 - [Block](block.md): A block object that can render a rectangular area with a border
 - [List](list.md): A list object that can render a list of items with various styles.
 - [TextField](textfield.md): A text field object that can render dynamic content.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

@@ -3,7 +3,7 @@
 
 #include <K10-K10/core/screen.h>
 
-namespace __terminal__ {
+namespace __krow__ {
 class DrawObj {
  public:
   explicit DrawObj() = default;
@@ -12,5 +12,5 @@ class DrawObj {
 };
 
 extern DrawObj drawObj;
-}  // namespace __terminal__
+}  // namespace __krow__
 #endif

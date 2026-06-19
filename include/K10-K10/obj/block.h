@@ -6,7 +6,7 @@
 #include <K10-K10/style/border.h>
 #include <K10-K10/style/style.h>
 
-namespace terminal {
+namespace krow {
 class Block : public Object {
  private:
  public:
@@ -14,11 +14,11 @@ class Block : public Object {
   ~Block() = default;
   void draw() override;
   Block& position(const Rect& r);
-  Block& border_type(const terminal::style::Border& type) {
+  Block& border_type(const krow::style::Border& type) {
     border_type_ = &type;
     return *this;
   }
-  Block& borders(const terminal::style::Borders type_) {
+  Block& borders(const krow::style::Borders type_) {
     edges_ = type_;
     return *this;
   }
@@ -31,10 +31,10 @@ class Block : public Object {
   style::Style border_style_;
   std::string title_, bottom_title_;
   Rect rect = {0, 0, 0, 0};
-  const terminal::style::Border* border_type_ = &terminal::style::SINGLE;
-  terminal::style::Borders edges_ = terminal::style::Borders::ALL;
+  const krow::style::Border* border_type_ = &krow::style::SINGLE;
+  krow::style::Borders edges_ = krow::style::Borders::ALL;
 };
 
-}  // namespace terminal
+}  // namespace krow
 
 #endif

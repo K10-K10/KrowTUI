@@ -7,7 +7,7 @@
 #include <csignal>
 #include <functional>
 
-namespace __terminal__ {
+namespace __krow__ {
 class App {
  public:
   explicit App(Render& r);
@@ -31,5 +31,5 @@ class App {
   int fps = 60;
   static void signal_handler(int sig);
 };
-}  // namespace __terminal__
+}  // namespace __krow__
 #endif

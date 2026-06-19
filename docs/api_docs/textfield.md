@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # TextField
 
 `TextField` is an object that can render dynamic content, such as user input or variable data. It can be used to create interactive text fields in your terminal application.
@@ -6,7 +11,7 @@
 
 ### 1. `position(rect)`
 
-- __Arguments__: `rect: terminal::Rect` (a `Rect` object that   defines the position and size of the text field)
+- __Arguments__: `rect: krow::Rect` (a `Rect` object that   defines the position and size of the text field)
 - __Return__: None
 
 Sets the position and size of the text field.
@@ -60,7 +65,3 @@ You can access like this: `textField[0][1]` (the second character of the first l
 - __Return__: None
 
 Draws the text field on the terminal at the specified position and with the specified styles.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

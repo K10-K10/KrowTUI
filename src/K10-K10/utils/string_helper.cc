@@ -1,6 +1,6 @@
 #include <K10-K10/utils/string_helper.h>
 
-namespace __terminal__ {
+namespace __krow__ {
 
 int get_visual_width(const std::string& str) {
   int width = 0;
@@ -40,4 +40,4 @@ std::vector<VisualChar> split_by_visual_character(const std::string& str) {
   return result;
 }
 
-}  // namespace __terminal__
+}  // namespace __krow__

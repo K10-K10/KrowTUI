@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace __terminal__ {
+namespace __krow__ {
 
 #ifdef ENABLE_LOGGER
 class logger {
@@ -67,6 +67,6 @@ class logger {
 
 #endif
 
-}  // namespace __terminal__
+}  // namespace __krow__
 
 #endif

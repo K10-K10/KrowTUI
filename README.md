@@ -1,20 +1,20 @@
-# TUI Library
+---
+version: 1.1.0 
+update: 19/06/2026
+---
 
-[![build](https://github.com/K10-K10/terminal-library/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/terminal-library/actions/workflows/build.yml)
-[![Lint](https://github.com/K10-K10/terminal-library/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/terminal-library/actions/workflows/lint.yml)
-![GitHub Release Date](https://img.shields.io/github/release-date/K10-K10/Terminal-Library)
-[![GitHub Releases](https://img.shields.io/github/release/K10-K10/Terminal-Library.svg)](https://github.com/K10-K10/Terminal-Library/releases)
-[![GitHub License](https://img.shields.io/github/license/K10-K10/Terminal-Library)](https://github.com/K10-K10/Terminal-Library/blob/main/LICENSE)
+# Krow TUI
 
+![Logo](docs/logo.png)
 
-TUI Library is a C++ library for creating terminal user interfaces (TUI) using the ncurses library.
-It provides a simple and intuitive API for creating various types of UI components such as text, blocks, lists, and more.
-
-## Preview
-
-![TUI Library Preview Image](docs/example_output.png)
+[![build](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml)
+[![Lint](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml)
+[![GitHub Release Date](https://img.shields.io/github/release-date/K10-K10/krowTUI)](<https://github.com/K10-K10/krowTUI/releases>)
+[![GitHub Releases](https://img.shields.io/github/release/K10-K10/krowTUI.svg)](https://github.com/K10-K10/krowTUI/releases)
+[![GitHub License](https://img.shields.io/github/license/K10-K10/krowTUI)](<https://github.com/K10-K10/krowTUI/blob/main/LICENSE>)
 
 ## Quick start
+
 ### Installation
 
 This library is header-only, so you can simply download the source code and include the necessary header files in your project.
@@ -24,19 +24,19 @@ This library is header-only, so you can simply download the source code and incl
 You can use Cmake's `FetchContent` module to include the TUI library in your procejt.
 Add the following lines to your `CMakeLists.txt`
 
-```
+```txt
 include(FetchContent)
 
 FetchContent_Declare(
-    terminal_library
-    GIT_REPOSITORY https://github.com/K10-K10/Terminal-Library.git
+    krowTUI
+    GIT_REPOSITORY https://github.com/K10-K10/krowTUI.git
     GIT_TAG main # We suport only latest version, so use main branch
 )
 
-FetchContent_MakeAvailable(terminal_library)
+FetchContent_MakeAvailable(krowTUI)
 
 add_executable(<your_app> main.cpp)
-target_link_libraries(<your_app> PRIVATE K10-K10::terminal)
+target_link_libraries(<your_app> PRIVATE K10-K10::krow)
 ```
 
 Other methods is [here](Getting Started)
@@ -44,15 +44,17 @@ Other methods is [here](Getting Started)
 ## Usage
 
 You can directluy include header file:
-```
-#include <K10-K10/terminal.h>
+
+```cpp
+#include <K10-K10/krow.h>
 ```
 
 ## Example
-```
-#include <K10-K10/terminal.h>
 
-using namespace terminal;
+```cpp
+#include <K10-K10/krow.h>
+
+using namespace krow;
 int main() {
   app.init();
   Text text;
@@ -96,11 +98,8 @@ int main() {
 - [API Reference](docs/api_reference.md)
 - [Examples](docs/examples.md)
 - [Points to Note](docs/points.md)
+- [Samples](docs/samples.md)
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-__version__: 1.1.0  | __author__: *K10-K10* |  __update__: 11/06/2026

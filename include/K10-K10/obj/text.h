@@ -7,7 +7,7 @@
 
 #include <string>
 
-namespace terminal {
+namespace krow {
 
 class Text : private Object {
  public:
@@ -24,11 +24,11 @@ class Text : private Object {
   }
 
  private:
-  terminal::style::Style text_style_;
+  krow::style::Style text_style_;
   Rect rect = {0, 0, 0, 0};
   std::string text_ = "";
 };
 
-}  // namespace terminal
+}  // namespace krow
 
 #endif

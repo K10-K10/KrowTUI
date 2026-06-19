@@ -1,7 +1,7 @@
 #ifndef INCLUDE_OBJ_OBJ_H_
 #define INCLUDE_OBJ_OBJ_H_
 
-namespace terminal {
+namespace krow {
 
 class Screen;
 
@@ -12,6 +12,6 @@ class Object {
   virtual ~Object() = default;
 };
 
-}  // namespace terminal
+}  // namespace krow
 
 #endif

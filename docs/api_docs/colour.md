@@ -1,8 +1,13 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Color
 
 You can use various colors in your project. The library provides two enum class for foreground and background colors, as well as a `Colour` class for handling color attributes.
 
-Those enum class is included in the `terminal::style` namespace.
+Those enum class is included in the `krow::style` namespace.
 
 ## TextColor
 
@@ -31,7 +36,3 @@ Those enum class is included in the `terminal::style` namespace.
 | Magenta    | `BackgroundColor::Magenta`    |
 | Cyan       | `BackgroundColor::Cyan`       |
 | White      | `BackgroundColor::White`      |
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

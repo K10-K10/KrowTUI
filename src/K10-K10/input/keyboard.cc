@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-namespace __terminal__::__input__ {
+namespace __krow__::__input__ {
 Key::Key() {
   initscr();
   cbreak();
@@ -86,13 +86,13 @@ bool Key::read() {
       break;
   }
 
-  if (is_visible) terminal::utils::backSpace();
+  if (is_visible) krow::utils::backSpace();
   return true;
 }
 
 Key::~Key() { endwin(); };
-}  // namespace __terminal__::__input__
+}  // namespace __krow__::__input__
 
-namespace terminal::input {
-__terminal__::__input__::Key key;
-}  // namespace terminal::input
+namespace krow::input {
+__krow__::__input__::Key key;
+}  // namespace krow::input

@@ -7,8 +7,8 @@
 #include <iostream>
 #include <string>
 
-namespace __terminal__ {
-std::string makeline(const __terminal__::Cell& c) {
+namespace __krow__ {
+std::string makeline(const __krow__::Cell& c) {
   if (to_ansi(c.style) == "\033[39;49" && get_flag(c.style) == 0) {
     return c.c.empty() ? " " : c.c;
   }
@@ -30,8 +30,8 @@ std::string makeline(const __terminal__::Cell& c) {
 }
 
 void Render::flush() {
-  int W = __terminal__::screen.width();
-  int H = __terminal__::screen.height();
+  int W = __krow__::screen.width();
+  int H = __krow__::screen.height();
   std::string line;
   for (int y = 0; y < H; ++y) {
     int start = -1;
@@ -39,38 +39,38 @@ void Render::flush() {
     for (int x = 0; x < W; ++x) {
       int i = y * W + x;
 
-      if (__terminal__::screen.current[i].c != __terminal__::screen.next[i].c ||
-          __terminal__::screen.current[i].style.fg_val !=
-              __terminal__::screen.next[i].style.fg_val ||
-          __terminal__::screen.current[i].style.bg_val !=
-              __terminal__::screen.next[i].style.bg_val ||
-          __terminal__::screen.current[i].style.flag_ !=
-              __terminal__::screen.next[i].style.flag_) {
+      if (__krow__::screen.current[i].c != __krow__::screen.next[i].c ||
+          __krow__::screen.current[i].style.fg_val !=
+              __krow__::screen.next[i].style.fg_val ||
+          __krow__::screen.current[i].style.bg_val !=
+              __krow__::screen.next[i].style.bg_val ||
+          __krow__::screen.current[i].style.flag_ !=
+              __krow__::screen.next[i].style.flag_) {
         if (start == -1) {
           start = x;
           line.clear();
         }
 
-        line += makeline(__terminal__::screen.next[i]);
-        __terminal__::screen.current[i] = __terminal__::screen.next[i];
+        line += makeline(__krow__::screen.next[i]);
+        __krow__::screen.current[i] = __krow__::screen.next[i];
       } else if (start != -1) {
-        terminal::utils::moveTo(y, start);
+        krow::utils::moveTo(y, start);
         std::cout << line;
         start = -1;
         line.clear();
       }
     }
     if (start != -1) {
-      terminal::utils::moveTo(y, start);
+      krow::utils::moveTo(y, start);
       std::cout << line << std::flush;
       line.clear();
     }
   }
-  __terminal__::screen.current = __terminal__::screen.next;
-  __terminal__::screen.next.clear();
+  __krow__::screen.current = __krow__::screen.next;
+  __krow__::screen.next.clear();
   std::cout << std::flush;
 }
 
 Render render;
 
-}  // namespace __terminal__
+}  // namespace __krow__

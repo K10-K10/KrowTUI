@@ -5,14 +5,14 @@
 
 #include <string>
 #include <vector>
-namespace terminal {
+namespace krow {
 class Object;
 }
 
-namespace __terminal__ {
+namespace __krow__ {
 struct Cell {
   std::string c;
-  terminal::style::Style style;
+  krow::style::Style style;
 };
 
 class App;
@@ -36,8 +36,8 @@ class Screen {
   std::vector<Cell> current, next;
   int width_ = 0, height_ = 0;
 };
-extern __terminal__::Screen screen;
+extern __krow__::Screen screen;
 
-}  // namespace __terminal__
+}  // namespace __krow__
 
 #endif

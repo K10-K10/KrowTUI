@@ -13,7 +13,7 @@
 #include <thread>
 #include <tuple>
 
-namespace __terminal__ {
+namespace __krow__ {
 termios orig;
 
 void enable_raw_mode() {
@@ -26,7 +26,7 @@ void enable_raw_mode() {
 }
 
 void disable_raw_mode() { tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig); }
-int __terminal__::App::sig_num = 0;
+int __krow__::App::sig_num = 0;
 
 App::App(Render& r) : render(r){};
 
@@ -39,8 +39,8 @@ void App::init(int fps) {
   std::cout << "\x1b[?1049h" << std::flush;
   std::cout << "\x1b[?25l" << std::flush;
   enable_raw_mode();
-  std::tie(width, height) = terminal::utils::getTerminalSize();
-  __terminal__::screen.resize(width, height);
+  std::tie(width, height) = krow::utils::getkrowSize();
+  __krow__::screen.resize(width, height);
   this->fps = fps;
 }
 
@@ -48,9 +48,9 @@ void App::loop(std::function<void()> frame) {
   runnning = true;
   while (runnning) {
     if (sig_num == SIGWINCH) {
-      std::tie(width, height) = terminal::utils::getTerminalSize();
-      terminal::utils::clear();
-      __terminal__::screen.resize(width, height);
+      std::tie(width, height) = krow::utils::getkrowSize();
+      krow::utils::clear();
+      __krow__::screen.resize(width, height);
       sig_num = 0;
     }
     if (sig_num == SIGINT) {
@@ -71,4 +71,4 @@ void App::stop() {
   return;
 }
 
-}  // namespace __terminal__
+}  // namespace __krow__
