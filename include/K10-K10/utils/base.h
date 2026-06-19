@@ -3,7 +3,7 @@
 
 #include <utility>
 
-namespace terminal {
+namespace krow {
 namespace utils {
 
 // Clear screen
@@ -27,8 +27,8 @@ void lTo(int);
 
 void moveTo(int y, int x);
 
-// Terminal size
-std::pair<int, int> getTerminalSize();
+// krow size
+std::pair<int, int> getkrowSize();
 
 // Get current cursor position (row, col)
 std::pair<int, int> getCursorPosition();
@@ -48,6 +48,6 @@ void printReverse(const char* str);
 void printHide(const char* str);
 void printCancel(const char* str);
 }  // namespace utils
-}  // namespace terminal
+}  // namespace krow
 
 #endif

@@ -4,8 +4,8 @@
 #include <K10-K10/core/screen.h>
 
 #include <string>
-namespace __terminal__ {
-std::string makeline(const __terminal__::Cell& c);
+namespace __krow__ {
+std::string makeline(const __krow__::Cell& c);
 
 class Render {
  public:
@@ -14,5 +14,5 @@ class Render {
   static void flush();
 };
 
-}  // namespace __terminal__
+}  // namespace __krow__
 #endif

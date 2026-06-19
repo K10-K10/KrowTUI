@@ -2,7 +2,7 @@
 
 The `Key` class represents a key on the keyboard. It contains information about the key code, modifiers, and the type of event (press or release). The `KeyEvent` class is used to handle key events in the TUI library.
 
-This class is contained in the `terminal::input` namespace and can be accessed through the `input::key` object.
+This class is contained in the `krow::input` namespace and can be accessed through the `input::key` object.
 
 ## Methods
 
@@ -30,12 +30,12 @@ The `KeyCode` enum defines the key codes for various keys on the keyboard. Some 
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 
 int main() {
-  terminal::app.init();
+  krow::app.init();
 
-  terminal::Text text();
+  krow::Text text();
   text.setText("Press ESC or q to exit.").setPosition(1, 1);
   app.loop([&]{
     input::key.read();

@@ -3,9 +3,9 @@
 Here are some examples of how to use the TUI library in C++.
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 
-using namespace terminal;
+using namespace krow;
 int main() {
   app.init();
   Text text;
@@ -52,16 +52,16 @@ project(app LANGUAGES CXX)
 include(FetchContent)
 
 FetchContent_Declare(
-  terminal_library
-  GIT_REPOSITORY https://github.com/K10-K10/Terminal-Library.git
+  KrowTUI
+  GIT_REPOSITORY https://github.com/K10-K10/KrowTUI
   GIT_TAG        main
 )
 
-FetchContent_MakeAvailable(terminal_library)
+FetchContent_MakeAvailable(KrowTUI)
 
 add_executable(app src/main.cpp)
 
-target_link_libraries(app PRIVATE K10-K10::terminal)
+target_link_libraries(app PRIVATE K10-K10::krow)
 ```
 
 ![Example Output](example_output.png)

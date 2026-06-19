@@ -4,7 +4,7 @@
 #include <chrono>
 #include <cstdint>
 
-namespace __terminal__::__input__ {
+namespace __krow__::__input__ {
 enum class KeyCode : std::uint8_t {
   NONE,
   UNKNOWN,
@@ -48,11 +48,11 @@ class Key {
   } modifier = Modifier::NONE;
 };
 
-}  // namespace __terminal__::__input__
+}  // namespace __krow__::__input__
 
-namespace terminal::input {
-extern __terminal__::__input__::Key key;
-using KeyCode = __terminal__::__input__::KeyCode;
-}  // namespace terminal::input
+namespace krow::input {
+extern __krow__::__input__::Key key;
+using KeyCode = __krow__::__input__::KeyCode;
+}  // namespace krow::input
 
 #endif

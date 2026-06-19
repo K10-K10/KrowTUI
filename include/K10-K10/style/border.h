@@ -2,7 +2,7 @@
 #define INCLUDE_STYLE_BORDER_H_
 
 #include <cstdint>
-namespace terminal::style {
+namespace krow::style {
 struct Border {
   const char* tl;  // top-left
   const char* tr;
@@ -35,6 +35,6 @@ inline Borders operator|(Borders a, Borders b) {
                               static_cast<std::uint8_t>(b));
 }
 
-}  // namespace terminal::style
+}  // namespace krow::style
 
 #endif

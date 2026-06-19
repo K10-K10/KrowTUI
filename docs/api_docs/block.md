@@ -17,22 +17,22 @@
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 
 int main() {
-    terminal::app.init();
-    terminal::Block block;
+    krow::app.init();
+    krow::Block block;
     block.position({1, 1, 20, 10})
          .border_type(BorderType::SINGLE)
          .borders(Borders::ALL)
-         .border_color(terminal::utils::TextColor::Red)
-         .field_color(terminal::utils::FillColor::Blue);
+         .border_color(krow::utils::TextColor::Red)
+         .field_color(krow::utils::FillColor::Blue);
 
-    terminal::app.loop([&]() {
+    krow::app.loop([&]() {
         block.draw();
     });
 
-    terminal::app.stop();
+    krow::app.stop();
     return 0;
 }
 ```
@@ -45,7 +45,7 @@ int main() {
 Block& position(const Rect& r);
 ```
 
-- __Arguments__: `rect: terminal::Rect` (a `Rect` object that defines the position and size of the block)
+- __Arguments__: `rect: krow::Rect` (a `Rect` object that defines the position and size of the block)
 - __Return__: None
 
 Sets the position and size of the block.
@@ -64,10 +64,10 @@ Draws the block on the terminal at the specified position and with the specified
 ### 3. `border_type(border)`
 
 ```cpp
-Block& border_type(terminal::BorderType border);
+Block& border_type(krow::BorderType border);
 ```
 
-- __Arguments__: `border: terminal::BorderType` (Specifies the border style)
+- __Arguments__: `border: krow::BorderType` (Specifies the border style)
 - __Return__: None
 
 Sets the border style of the block. The [`BorderType`](#bordertype) can be one of the following:
@@ -75,10 +75,10 @@ Sets the border style of the block. The [`BorderType`](#bordertype) can be one o
 ### 4. `borders(type)`
 
 ```cpp
-Block& borders(terminal::EdgeType type);
+Block& borders(krow::EdgeType type);
 ```
 
-- __Arguments__: `type: terminal::EdgeType` (Specifies the drawing direction)
+- __Arguments__: `type: krow::EdgeType` (Specifies the drawing direction)
 - __Return__: None
 
 Specifies the drawing direction of the block's border. The [`EdgeType`](#edgetype) can be one of the following:
@@ -86,11 +86,11 @@ Specifies the drawing direction of the block's border. The [`EdgeType`](#edgetyp
 ### 5. `border_color(color)`
 
 ```cpp
-Block& border_color(terminal::Color color);
+Block& border_color(krow::Color color);
 Block& border_color(int color);
 ```
 
-- __Arguments__: `color: terminal::Color` / `int` (Specifies the color of the border)
+- __Arguments__: `color: krow::Color` / `int` (Specifies the color of the border)
 - __Return__: None
 
 Sets the color of the block's border.
@@ -98,11 +98,11 @@ Sets the color of the block's border.
 ### 6. `field_color(color)`
 
 ```cpp
-Block& field_color(terminal::Color color);
+Block& field_color(krow::Color color);
 Block& field_color(int color);
 ```
 
-- __Arguments__: `color: terminal::Color` / `int` (Specifies the color of the background)
+- __Arguments__: `color: krow::Color` / `int` (Specifies the color of the background)
 - __Return__: None
 
 Sets the background color of the block.

@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace terminal {
+namespace krow {
 class TextField : private Object {
  public:
   explicit TextField() = default;
@@ -52,13 +52,13 @@ class TextField : private Object {
 
  private:
   Rect rect = {0, 0, 0, 0};
-  terminal::style::Style text_style_, cursor_style_;
+  krow::style::Style text_style_, cursor_style_;
   std::vector<std::string> contents_;
   int max_length_ = 0;
   int cursor_x = 0, cursor_y = 0;
 
   bool cursor_inverted_ = false;
 };
-}  // namespace terminal
+}  // namespace krow
 
 #endif

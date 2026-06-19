@@ -11,12 +11,12 @@
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.hpp>
+#include <K10-K10/krow.hpp>
 
 int main() {
-  terminal::app.init(60);
+  krow::app.init(60);
 
-  terminal::app.loop([]() {
+  krow::app.loop([]() {
     // Your code here
   });
 

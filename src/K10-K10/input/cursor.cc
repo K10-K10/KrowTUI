@@ -3,7 +3,7 @@
 #include <iostream>
 #include <utility>
 
-namespace __terminal__::__input__ {
+namespace __krow__::__input__ {
 void Cursor::show() {
   state.visible = true;
   std::cout << "\x1b[?25h" << std::flush;
@@ -50,8 +50,8 @@ int Cursor::get_selected_object() const { return state.selected_obj_id; }
 
 std::pair<int, int> Cursor::get_position() { return {state.row, state.col}; }
 
-}  // namespace __terminal__::__input__
+}  // namespace __krow__::__input__
 
-namespace terminal::input {
-__terminal__::__input__::Cursor cursor;
+namespace krow::input {
+__krow__::__input__::Cursor cursor;
 }

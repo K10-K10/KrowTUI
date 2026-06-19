@@ -1,5 +1,5 @@
-#ifndef INCLUDE_TERMINAL_H_
-#define INCLUDE_TERMINAL_H_
+#ifndef INCLUDE_KROW_H_
+#define INCLUDE_KROW_H_
 
 #include <K10-K10/app/app.h>
 #include <K10-K10/input/cursor.h>
@@ -13,9 +13,9 @@
 #include <K10-K10/style/color.h>
 #include <K10-K10/style/style.h>
 
-namespace terminal {
-inline __terminal__::Render render;
-inline __terminal__::App app(render);
-}  // namespace terminal
+namespace krow {
+inline __krow__::Render render;
+inline __krow__::App app(render);
+}  // namespace krow
 
 #endif

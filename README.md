@@ -7,14 +7,10 @@ update: 19/06/2026
 
 ![Logo](docs/logo.png)
 
-[![build](https://github.com/K10-K10/terminal-library/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/terminal-library/actions/workflows/build.yml)
-[![Lint](https://github.com/K10-K10/terminal-library/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/terminal-library/actions/workflows/lint.yml)
-![GitHub Release Date](https://img.shields.io/github/release-date/K10-K10/Terminal-Library)
-[![GitHub Releases](https://img.shields.io/github/release/K10-K10/Terminal-Library.svg)](https://github.com/K10-K10/Terminal-Library/releases)
-[![GitHub License](https://img.shields.io/github/license/K10-K10/Terminal-Library)](https://github.com/K10-K10/Terminal-Library/blob/main/LICENSE)
-
-Krow TUI is a C++ library for creating terminal user interfaces (TUI) using the ncurses library.
-It provides a simple and intuitive API for creating various types of UI components such as text, blocks, lists, and more.
+[![build](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml)
+[![Lint](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml)
+![GitHub Release Date](httpkrowTUIio/github/release-date/K10-K10/krowTUIkrowTUIases](<https://img.shields.io/github/release/K10-K10/krowTUI.svg>)](<https://github.com/K10-K10/krowTUIHub> License](<https://img.shields.io/github/license/K10-K10/krowTUI>)](<https://github.com/K10-K10/krowTUI/bkrowTUIUI> is a C++ library for creating  user interfaces (TUI) using the ncurses library.
+It provides a simple and intuitive API for creating varkrowTUI components such as text, blocks, lists, and more.
 
 ## Quick start
 
@@ -31,15 +27,15 @@ Add the following lines to your `CMakeLists.txt`
 include(FetchContent)
 
 FetchContent_Declare(
-    terminal_library
-    GIT_REPOSITORY https://github.com/K10-K10/Terminal-Library.git
+    krowTUI
+    GIT_REPOSITORY https://github.com/K10-K10/krowTUI.git
     GIT_TAG main # We suport only latest version, so use main branch
 )
 
-FetchContent_MakeAvailable(terminal_library)
+FetchContent_MakeAvailable(krowTUI)
 
 add_executable(<your_app> main.cpp)
-target_link_libraries(<your_app> PRIVATE K10-K10::terminal)
+target_link_libraries(<your_app> PRIVATE K10-K10::krow)
 ```
 
 Other methods is [here](Getting Started)
@@ -49,15 +45,15 @@ Other methods is [here](Getting Started)
 You can directluy include header file:
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 ```
 
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 
-using namespace terminal;
+using namespace krow;
 int main() {
   app.init();
   Text text;

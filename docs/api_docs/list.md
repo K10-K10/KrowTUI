@@ -30,23 +30,23 @@ The `List` object provides chainable methods to customize its visual appearance:
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 
 int main() {
-  terminal::app.init();
+  krow::app.init();
   
-  terminal::List list;
-  terminal::Rect rect{2, 2, 20, 5}; // x, y, width, height
+  krow::List list;
+  krow::Rect rect{2, 2, 20, 5}; // x, y, width, height
   
   // Method chaining setup
   list.position(rect)
       .items({"Option 1", "Option 2", "Option 3"})
       .add_item("Option 4")
       .selector("->")
-      .text_color(terminal::utils::TextColor::White)
-      .highlight_bg(terminal::utils::FillColor::Blue);
+      .text_color(krow::utils::TextColor::White)
+      .highlight_bg(krow::utils::FillColor::Blue);
 
-  terminal::app.loop([&]() {
+  krow::app.loop([&]() {
     list.draw();
     input::key.read();
     auto key = input::key.getKeyCode();
@@ -69,7 +69,7 @@ int main() {
 List& position(const Rect& r);
 ```
 
-- __Arguments__: `r: const terminal::Rect&` (A Rect object defining the list's bounding box)
+- __Arguments__: `r: const krow::Rect&` (A Rect object defining the list's bounding box)
 
 - __Return__: `List&` (Reference to the current object for method chaining)
 
@@ -184,11 +184,11 @@ Sets the selection indicator prefix that appears before the currently selected i
 ### 11. field_color(bg)
 
 ```c++
-List& field_color(terminal::Color bg);
+List& field_color(krow::Color bg);
 List& field_color(int bg);
 ```
 
-- __Arguments__: `bg: terminal::Color` / `int` (The color to use for the list's background field)
+- __Arguments__: `bg: krow::Color` / `int` (The color to use for the list's background field)
 - __Return__: List& (Reference to the current object for method chaining)
 
 Sets the background color of the list field.
@@ -196,11 +196,11 @@ Sets the background color of the list field.
 ### 12. text_color(fg)
 
 ```c++
-List& text_color(terminal::Color fg);
+List& text_color(krow::Color fg);
 List& text_color(int fg);
 ```
 
-- __Arguments__: `fg: terminal::Color` / `int` (The color to use for unselected item text)
+- __Arguments__: `fg: krow::Color` / `int` (The color to use for unselected item text)
 - __Return__: List& (Reference to the current object for method chaining)
 
 Sets the text color for unselected items in the list.
@@ -208,11 +208,11 @@ Sets the text color for unselected items in the list.
 ### 13. selector_color(fg)
 
 ```c++
-List& selector_color(terminal::Color fg);
+List& selector_color(krow::Color fg);
 List& selector_color(int fg);
 ```
 
-- __Arguments__: `fg: terminal::Color` / `int` (The color to use for the selector symbol)
+- __Arguments__: `fg: krow::Color` / `int` (The color to use for the selector symbol)
 - __Return__: List& (Reference to the current object for method chaining)
 
 Sets the color of the selector symbol that indicates the currently selected item.
@@ -220,11 +220,11 @@ Sets the color of the selector symbol that indicates the currently selected item
 ### 14. highlight_bg(bg)
 
 ```c++
-List& highlight_bg(terminal::Color bg);
+List& highlight_bg(krow::Color bg);
 List& highlight_bg(int bg);
 ```
 
-- __Arguments__: `bg: terminal::Color` / `int` (The color to use
+- __Arguments__: `bg: krow::Color` / `int` (The color to use
 for the background of the highlighted item)
 - __Return__: List& (Reference to the current object for method chaining)
 
@@ -233,11 +233,11 @@ Sets the background color for the currently selected item in the list.
 ### 15. highlight_fg(fg)
 
 ```c++
-List& highlight_fg(terminal::Color fg);
+List& highlight_fg(krow::Color fg);
 List& highlight_fg(int fg);
 ```
 
-- __Arguments__: `fg: terminal::Color` / `int` (The color to use
+- __Arguments__: `fg: krow::Color` / `int` (The color to use
 for the text of the highlighted item)
 - __Return__: List& (Reference to the current object for method chaining)
 

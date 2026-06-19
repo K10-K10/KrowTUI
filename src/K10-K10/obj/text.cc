@@ -4,7 +4,7 @@
 
 #include <string>
 
-namespace terminal {
+namespace krow {
 Text& Text::position(const Rect& r) {
   rect = r;
   return *this;
@@ -19,9 +19,9 @@ std::string Text::contents() const { return text_; }
 
 void Text::draw() {
   int l = rect.x;
-  int w = (rect.w == FULL) ? __terminal__::screen.width() : rect.w;
+  int w = (rect.w == FULL) ? __krow__::screen.width() : rect.w;
   int t = rect.y;
-  int h = (rect.h == FULL) ? __terminal__::screen.height() : rect.h;
+  int h = (rect.h == FULL) ? __krow__::screen.height() : rect.h;
 
   int cnt_x = 0;
   int cnt_y = 0;
@@ -30,10 +30,10 @@ void Text::draw() {
   while (byte_idx < text_.size() && cnt_y < h) {
     if (text_[byte_idx] == '\n') {
       while (cnt_x < w) {
-        __terminal__::Cell blank_cell;
+        __krow__::Cell blank_cell;
         blank_cell.c = " ";
         blank_cell.style = text_style_;
-        __terminal__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
+        __krow__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
         cnt_x++;
       }
       cnt_x = 0;
@@ -61,10 +61,10 @@ void Text::draw() {
 
     if (cnt_x + visual_width > w) {
       while (cnt_x < w) {
-        __terminal__::Cell blank_cell;
+        __krow__::Cell blank_cell;
         blank_cell.c = " ";
         blank_cell.style = text_style_;
-        __terminal__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
+        __krow__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
         cnt_x++;
       }
       cnt_x = 0;
@@ -72,10 +72,10 @@ void Text::draw() {
       if (cnt_y >= h) break;
     }
 
-    __terminal__::Cell text_cell;
+    __krow__::Cell text_cell;
     text_cell.c = one_char;
     text_cell.style = text_style_;
-    __terminal__::drawObj.put(t + cnt_y, l + cnt_x, text_cell);
+    __krow__::drawObj.put(t + cnt_y, l + cnt_x, text_cell);
 
     cnt_x += visual_width;
     byte_idx += char_len;
@@ -83,10 +83,10 @@ void Text::draw() {
 
   while (cnt_y < h) {
     while (cnt_x < w) {
-      __terminal__::Cell blank_cell;
+      __krow__::Cell blank_cell;
       blank_cell.c = " ";
       blank_cell.style = text_style_;
-      __terminal__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
+      __krow__::drawObj.put(t + cnt_y, l + cnt_x, blank_cell);
       cnt_x++;
     }
     cnt_x = 0;
@@ -94,4 +94,4 @@ void Text::draw() {
   }
 }
 
-}  // namespace terminal
+}  // namespace krow

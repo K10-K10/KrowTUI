@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace terminal {
+namespace krow {
 
 class List : public Object {
  public:
@@ -52,9 +52,9 @@ class List : public Object {
   std::string selector_symbol_ = ">";
   int selected_ = 0;
   int draw_index_num_ = 0;
-  terminal::style::Style contents_style_, selector_style_, highlight_style_;
+  krow::style::Style contents_style_, selector_style_, highlight_style_;
 };
 
-}  // namespace terminal
+}  // namespace krow
 
 #endif

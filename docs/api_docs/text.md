@@ -16,14 +16,14 @@ add later
 ## Example
 
 ```cpp
-#include <K10-K10/terminal.h>
+#include <K10-K10/krow.h>
 
 int main() {
-  terminal::app.init();
-  terminal::Text text;
-  terminal::Rect rect{1, 1, 30, 2}; // x, y, width, height
+  krow::app.init();
+  krow::Text text;
+  krow::Rect rect{1, 1, 30, 2}; // x, y, width, height
   text.position(rect).content("Welcome to TUI Library!\nThis is a simple text object.");
-  terminal::app.loop{[&]() {
+  krow::app.loop{[&]() {
     text.draw();
   }};
 }
@@ -37,7 +37,7 @@ int main() {
 Text& position(const Rect& r);
 ```
 
-- __Arguments__: `rect: terminal::Rect` (a `Rect` object that defines the position and size of the text)
+- __Arguments__: `rect: krow::Rect` (a `Rect` object that defines the position and size of the text)
 - __Return__: None
 
 Sets the position and size of the text.

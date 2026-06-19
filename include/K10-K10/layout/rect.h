@@ -3,7 +3,7 @@
 
 #define FULL -1
 
-namespace terminal {
+namespace krow {
 struct Rect {
   int x, y, w, h;
 
@@ -14,6 +14,6 @@ struct Rect {
     return px >= x && px < x + w && py >= y && py < y + h;
   }
 };
-}  // namespace terminal
+}  // namespace krow
 
 #endif

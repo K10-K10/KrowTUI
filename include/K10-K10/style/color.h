@@ -2,7 +2,7 @@
 #define INCLUDE_STYLE_COLOR_H_
 
 #include <string>
-namespace terminal::style {
+namespace krow::style {
 
 enum class BasicColor {
   Default,
@@ -31,6 +31,6 @@ struct Color {
   Color(int r, int g, int b) : type(Type::RGB), r(r), g(g), b(b) {}
 };
 
-};  // namespace terminal::style
+};  // namespace krow::style
 
 #endif

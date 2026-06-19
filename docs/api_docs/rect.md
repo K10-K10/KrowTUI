@@ -5,7 +5,7 @@ Rect is a class that represents a rectangular area in the terminal. It is define
 ## Constructor
 
 ```cpp
-terminal::Rect(int x, int y, int width, int height);
+krow::Rect(int x, int y, int width, int height);
 ```
 
 ## Use window size
@@ -14,7 +14,7 @@ If you want to use the window size, you can use the `FULL` constant for width an
 It will automatically adjust to the current window size.
 
 ```cpp
-terminal::Rect rect(0, 0, FULL, FULL);
+krow::Rect rect(0, 0, FULL, FULL);
 ```
 
 ---

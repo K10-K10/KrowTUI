@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace terminal {
+namespace krow {
 char& TextField::RowProxy::operator[](size_t index) {
   if (index >= row_.size()) {
     row_.resize(index + 1, ' ');
@@ -74,9 +74,9 @@ TextField& TextField::insert_char(char c) {
 
 void TextField::draw() {
   int l = rect.x;
-  int w = (rect.w == FULL) ? __terminal__::screen.width() : rect.w;
+  int w = (rect.w == FULL) ? __krow__::screen.width() : rect.w;
   int t = rect.y;
-  int h = (rect.h == FULL) ? __terminal__::screen.height() : rect.h;
+  int h = (rect.h == FULL) ? __krow__::screen.height() : rect.h;
   int offset_x = std::max(0, cursor_x - w + 1);
   int offset_y = std::max(0, cursor_y - h + 1);
   for (int screen_y = 0; screen_y < h; ++screen_y) {
@@ -93,13 +93,13 @@ void TextField::draw() {
       char c = s[data_x];
 
       if (data_x == cursor_x && data_y == cursor_y) {
-        terminal::style::Style c_s = cursor_style_;
+        krow::style::Style c_s = cursor_style_;
         // c_s.flag |= (1 << 6);
-        __terminal__::drawObj.put(t + screen_y, l + screen_x,
-                                  {std::string{c}, c_s});
+        __krow__::drawObj.put(t + screen_y, l + screen_x,
+                              {std::string{c}, c_s});
       } else {
-        __terminal__::drawObj.put(t + screen_y, l + screen_x,
-                                  {std::string{c}, text_style_});
+        __krow__::drawObj.put(t + screen_y, l + screen_x,
+                              {std::string{c}, text_style_});
       }
     }
   }
@@ -108,10 +108,9 @@ void TextField::draw() {
       int screen_x = cursor_x - offset_x;
       int screen_y = cursor_y - offset_y;
       if (screen_x >= 0 && screen_x < w) {
-        __terminal__::drawObj.put(t + screen_y, l + screen_x,
-                                  {" ", text_style_});
+        __krow__::drawObj.put(t + screen_y, l + screen_x, {" ", text_style_});
       }
     }
   }
 }
-}  // namespace terminal
+}  // namespace krow

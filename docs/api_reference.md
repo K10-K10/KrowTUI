@@ -1,7 +1,7 @@
 # API Reference
 
 This is the API reference for TUI library.
-All functions are include in the `terminal` namespace.
+All functions are include in the `krow` namespace.
 
 ## Table of Contents
 

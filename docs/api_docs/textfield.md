@@ -6,7 +6,7 @@
 
 ### 1. `position(rect)`
 
-- __Arguments__: `rect: terminal::Rect` (a `Rect` object that   defines the position and size of the text field)
+- __Arguments__: `rect: krow::Rect` (a `Rect` object that   defines the position and size of the text field)
 - __Return__: None
 
 Sets the position and size of the text field.
