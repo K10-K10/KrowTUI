@@ -16,8 +16,9 @@ add_library(krow
     src/K10-K10/core/screen.cc
     src/K10-K10/obj/block.cc
     src/K10-K10/obj/list.cc
-    src/K10-K10/obj/text.cc
     src/K10-K10/obj/input.cc
+    src/K10-K10/line/text.cc
+    src/K10-K10/style/alignment.cc
 )
 
 target_compile_features(krow PUBLIC cxx_std_20)

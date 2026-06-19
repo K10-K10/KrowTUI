@@ -1,6 +1,6 @@
 #include <K10-K10/core/render.h>
 #include <K10-K10/core/screen.h>
-#include <K10-K10/style/text_style.h>
+#include <K10-K10/style/style.h>
 #include <K10-K10/utils/base.h>
 
 #include <fstream>
