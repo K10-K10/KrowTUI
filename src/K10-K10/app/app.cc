@@ -28,7 +28,7 @@ void enable_raw_mode() {
 void disable_raw_mode() { tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig); }
 int __krow__::App::sig_num = 0;
 
-App::App(Render& r) : render(r){};
+App::App(Render& r) noexcept : render(r){};
 
 void App::signal_handler(int sig) { sig_num = sig; }
 

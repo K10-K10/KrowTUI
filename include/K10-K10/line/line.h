@@ -4,7 +4,7 @@
 #include <K10-K10/style/alignment.h>
 #include <K10-K10/style/style.h>
 
-#include <cstdint>
+#include <cstddef>
 #include <string>
 #include <utility>
 #include <vector>
@@ -95,11 +95,16 @@ struct Line {
   friend class List;
   friend Text;
 
-  std::vector<std::pair<Span, style::alignment>> contents_;
-  bool break_ = false;
-  style::alignment al_ = style::alignment::LEFT;
+  bool get_break() const { return break_; }
+  std::vector<std::pair<Span, style::alignment>> get_contents() {
+    return contents_;
+  }
+  style::alignment get_al() const { return al_; }
 
  private:
+  style::alignment al_ = style::alignment::LEFT;
+  bool break_ = false;
+  std::vector<std::pair<Span, style::alignment>> contents_;
   friend Line operator+(const Span& lhs, const Span& rhs);
 };
 
