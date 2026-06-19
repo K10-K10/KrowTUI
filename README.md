@@ -1,4 +1,11 @@
-# TUI Library
+---
+version: 1.1.0 
+update: 19/06/2026
+---
+
+# Krow TUI
+
+![Logo](docs/logo.png)
 
 [![build](https://github.com/K10-K10/terminal-library/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/terminal-library/actions/workflows/build.yml)
 [![Lint](https://github.com/K10-K10/terminal-library/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/terminal-library/actions/workflows/lint.yml)
@@ -6,15 +13,11 @@
 [![GitHub Releases](https://img.shields.io/github/release/K10-K10/Terminal-Library.svg)](https://github.com/K10-K10/Terminal-Library/releases)
 [![GitHub License](https://img.shields.io/github/license/K10-K10/Terminal-Library)](https://github.com/K10-K10/Terminal-Library/blob/main/LICENSE)
 
-
-TUI Library is a C++ library for creating terminal user interfaces (TUI) using the ncurses library.
+Krow TUI is a C++ library for creating terminal user interfaces (TUI) using the ncurses library.
 It provides a simple and intuitive API for creating various types of UI components such as text, blocks, lists, and more.
 
-## Preview
-
-![TUI Library Preview Image](docs/example_output.png)
-
 ## Quick start
+
 ### Installation
 
 This library is header-only, so you can simply download the source code and include the necessary header files in your project.
@@ -24,7 +27,7 @@ This library is header-only, so you can simply download the source code and incl
 You can use Cmake's `FetchContent` module to include the TUI library in your procejt.
 Add the following lines to your `CMakeLists.txt`
 
-```
+```txt
 include(FetchContent)
 
 FetchContent_Declare(
@@ -44,12 +47,14 @@ Other methods is [here](Getting Started)
 ## Usage
 
 You can directluy include header file:
-```
+
+```cpp
 #include <K10-K10/terminal.h>
 ```
 
 ## Example
-```
+
+```cpp
 #include <K10-K10/terminal.h>
 
 using namespace terminal;
@@ -100,7 +105,3 @@ int main() {
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-__version__: 1.1.0  | __author__: *K10-K10* |  __update__: 11/06/2026
