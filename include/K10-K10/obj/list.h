@@ -49,7 +49,7 @@ class List : public Object {
 
  private:
   Rect rect = {0, 0, 0, 0};
-  std::vector<Text> items_ = {};
+  std::vector<Text> items_;
   std::string selector_symbol_ = ">";
   int selected_ = 0;
   int draw_index_num_ = 0;

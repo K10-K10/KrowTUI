@@ -6,6 +6,7 @@
 #include <K10-K10/obj/obj.h>
 #include <K10-K10/style/style.h>
 
+#include <cstddef>
 #include <string>
 #include <vector>
 

@@ -2,7 +2,6 @@
 #define INCLUDE_LINE_TEXT_H_
 
 #include <K10-K10/line/line.h>
-#include <K10-K10/style/alignment.h>
 
 #include <queue>
 #include <vector>
@@ -22,9 +21,11 @@ struct Text {
  public:
   Text() : contents_(1), current_(0) {}
   Text(const Line& new_);
-  void operator=(const Line& new_);
-  inline bool empty() {
-    if (contents_.empty()) return true;
+  Text& operator=(const Line& new_);
+  bool empty() {
+    if (contents_.empty()) {
+      return true;
+    }
     if (contents_[0].left.empty() && contents_[0].center.empty() &&
         contents_[0].right.empty()) {
       return true;
