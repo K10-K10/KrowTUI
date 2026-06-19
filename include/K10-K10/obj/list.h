@@ -23,7 +23,7 @@ class List : public Object {
     items_.clear();
     return *this;
   }
-  const Text selected_item() const;
+  Text selected_item() const;
   void move_up();
   void move_down();
   int selected_index() const;

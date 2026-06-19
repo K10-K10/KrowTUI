@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <utility>
 
 namespace krow {
 namespace utils {
@@ -24,13 +25,17 @@ void backSpace() {
 }
 
 void backSpace(int count) {
-  if (count <= 0) return;
+  if (count <= 0) {
+    return;
+  }
 
   // Move cursor left
   std::cout << "\e[" << count << "D";
 
   // Clear characters
-  for (int i = 0; i < count; i++) std::cout << ' ';
+  for (int i = 0; i < count; i++) {
+    std::cout << ' ';
+  }
 
   // Move back again
   std::cout << "\e[" << count << "D";

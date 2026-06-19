@@ -1,11 +1,17 @@
 #include <K10-K10/core/drawObj.h>
+#include <K10-K10/core/screen.h>
 #include <K10-K10/layout/rect.h>
+#include <K10-K10/line/line.h>
 #include <K10-K10/line/text.h>
 #include <K10-K10/obj/list.h>
+#include <K10-K10/style/alignment.h>
 #include <K10-K10/style/style.h>
 #include <K10-K10/utils/string_helper.h>
 
+#include <cstddef>
+#include <queue>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace krow {
@@ -27,11 +33,11 @@ List& List::add_item(const Text& s) {
   return *this;
 }
 
-const Text List::selected_item() const {
-  if (items_.empty())
+Text List::selected_item() const {
+  if (items_.empty()) {
     return {""_s};
-  else
-    return items_[selected_];
+  }
+  return items_[selected_];
 }
 
 void List::move_up() {
@@ -45,12 +51,12 @@ void List::move_up() {
 }
 
 void List::move_down() {
-  int max_items = static_cast<int>(items_.size());
+  const int max_items = static_cast<int>(items_.size());
   if (selected_ + 1 < max_items) {
     ++selected_;
   }
 
-  int view_height = rect.h;
+  const int view_height = rect.h;
 
   if (selected_ >= draw_index_num_ + view_height) {
     draw_index_num_ = selected_ - view_height + 1;
@@ -61,62 +67,76 @@ int List::selected_index() const { return selected_; }
 
 void List::draw() {
   int l = rect.x;
-  int w = (rect.w == FULL) ? __krow__::screen.width() : rect.w;
-  int t = rect.y;
+  const int w = (rect.w == FULL) ? __krow__::screen.width() : rect.w;
+  const int t = rect.y;
   int h = (rect.h == FULL) ? __krow__::screen.height() : rect.h;
 
-  if (w < 2 || h < 2) return;
-  if (l >= __krow__::screen.width() || t >= __krow__::screen.height()) return;
+  if (w < 2 || h < 2) {
+    return;
+  }
+  if (l >= __krow__::screen.width() || t >= __krow__::screen.height()) {
+    return;
+  }
 
   if (t + h > __krow__::screen.height()) {
     h = __krow__::screen.height() - t;
   }
 
-  int max_items = items_.size();
+  const int max_items = items_.size();
   int selector_width = __krow__::get_visual_width(selector_symbol_);
   int max_text_width = w - selector_width;
 
   for (int i = 0; i < h; ++i) {
-    int idx = draw_index_num_ + i;
+    const int idx = draw_index_num_ + i;
     int cy = t + i;
-    if (cy >= __krow__::screen.height()) break;
+    if (cy >= __krow__::screen.height()) {
+      break;
+    }
 
-    bool has_item = (idx < max_items && idx >= 0);
-    bool selected = (has_item && idx == selected_);
+    const bool has_item = (idx < max_items && idx >= 0);
+    const bool selected = (has_item && idx == selected_);
     int current_sel_w = 0;
     if (selected) {
       auto sel_chars = __krow__::split_by_visual_character(selector_symbol_);
       for (const auto& vc : sel_chars) {
-        if (current_sel_w + vc.get_width() > selector_width) break;
+        if (current_sel_w + vc.get_width() > selector_width) {
+          break;
+        }
 
-        if (l + current_sel_w >= __krow__::screen.width()) break;
+        if (l + current_sel_w >= __krow__::screen.width()) {
+          break;
+        }
 
         __krow__::Cell sel_cell;
         sel_cell.c = vc.get_c();
         sel_cell.style = selector_style_;
-        __krow__::drawObj.put(cy, l + current_sel_w, sel_cell);
+        __krow__::DrawObj::put(cy, l + current_sel_w, sel_cell);
 
         current_sel_w += vc.get_width();
       }
     }
 
     while (current_sel_w < selector_width) {
-      if (l + current_sel_w >= __krow__::screen.width()) break;
+      if (l + current_sel_w >= __krow__::screen.width()) {
+        break;
+      }
       __krow__::Cell blank_sel_cell;
       blank_sel_cell.c = " ";
       blank_sel_cell.style = contents_style_;
-      __krow__::drawObj.put(cy, l + current_sel_w, blank_sel_cell);
+      __krow__::DrawObj::put(cy, l + current_sel_w, blank_sel_cell);
       current_sel_w++;
     }
 
-    krow::style::Style current_bg_style =
+    const krow::style::Style current_bg_style =
         selected ? highlight_style_ : contents_style_;
     for (int tx = 0; tx < max_text_width; ++tx) {
-      if (l + selector_width + tx >= __krow__::screen.width()) break;
+      if (l + selector_width + tx >= __krow__::screen.width()) {
+        break;
+      }
       __krow__::Cell bg_cell;
       bg_cell.c = " ";
       bg_cell.style = current_bg_style;
-      __krow__::drawObj.put(cy, l + selector_width + tx, bg_cell);
+      __krow__::DrawObj::put(cy, l + selector_width + tx, bg_cell);
     }
     if (has_item) {
       Text& item_text = items_[idx];
@@ -127,11 +147,13 @@ void List::draw() {
 
         auto draw_list_alignment = [&](std::queue<Line> q,
                                        style::alignment align) {
-          if (q.empty()) return;
+          if (q.empty()) {
+            return;
+          }
 
           Line merged_line;
           while (!q.empty()) {
-            Line front_line = q.front();
+            const Line front_line = q.front();
             q.pop();
             for (const auto& item : front_line.contents_) {
               merged_line.contents_.push_back(item);
@@ -143,7 +165,7 @@ void List::draw() {
             text_len += __krow__::get_visual_width(c.first.text_);
           }
 
-          int text_left_bound = l + selector_width;
+          const int text_left_bound = l + selector_width;
           int text_right_bound = text_left_bound + max_text_width - 1;
 
           if (text_right_bound >= __krow__::screen.width()) {
@@ -159,8 +181,9 @@ void List::draw() {
 
             for (const auto& vc : v_chars) {
               if (start_ > text_right_bound ||
-                  start_ >= __krow__::screen.width())
+                  start_ >= __krow__::screen.width()) {
                 break;
+              }
               if (start_ < 0) {
                 start_ += vc.get_width();
                 continue;
@@ -170,7 +193,7 @@ void List::draw() {
               text_cell.c = vc.get_c();
               text_cell.style = l_element.first.style_val;
 
-              __krow__::drawObj.put(cy, start_, text_cell);
+              __krow__::DrawObj::put(cy, start_, text_cell);
               start_ += vc.get_width();
             }
           }

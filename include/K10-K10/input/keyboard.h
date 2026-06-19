@@ -23,7 +23,7 @@ enum class KeyCode : std::uint8_t {
 
 class Key {
  public:
-  explicit Key();
+  explicit Key() noexcept;
   ~Key();
 
   KeyCode getKeyCode();

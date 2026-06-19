@@ -36,7 +36,8 @@ struct Style {
   friend unsigned int __krow__::get_flag(const krow::style::Style& style);
 
  private:
-  std::string convert_to_ansi(const krow::style::Color& color, bool is_fg);
+  static std::string convert_to_ansi(const krow::style::Color& color,
+                                     bool is_fg);
 
  public:
   Style& fg(const krow::style::Color& color) {

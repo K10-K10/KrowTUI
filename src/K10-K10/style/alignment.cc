@@ -5,8 +5,8 @@
 namespace __krow__ {
 int calc_alignment(krow::style::alignment ali, std::pair<int, int> place,
                    int length) {
-  int start_pos = place.first;
-  int width = place.second;
+  const int start_pos = place.first;
+  const int width = place.second;
 
   switch (ali) {
     case krow::style::alignment::LEFT:

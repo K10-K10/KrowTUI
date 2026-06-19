@@ -1,5 +1,3 @@
-#include <K10-K10/style/color.h>
-
 #include <iostream>
 
 namespace krow::utils {
@@ -7,9 +5,8 @@ int printColor(int txt_color, const char* str) {
   if (37 >= txt_color && txt_color >= 30) {
     std::cout << "\e[" << txt_color << "m" << str << "\e[0m " << std::flush;
     return 0;
-  } else {
-    return -1;
   }
+  return -1;
 }
 
 int printColor(int txt_color, int fill_color, const char* str) {
@@ -18,9 +15,8 @@ int printColor(int txt_color, int fill_color, const char* str) {
     std::cout << "\e[" << txt_color << "m" << "\e[" << fill_color << "m" << str
               << "\e[0m " << std::flush;
     return 0;
-  } else {
-    return -1;
   }
+  return -1;
 }
 
 }  // namespace krow::utils

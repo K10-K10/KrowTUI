@@ -1,15 +1,17 @@
+#include <K10-K10/style/color.h>
 #include <K10-K10/style/style.h>
 
 #include <array>
+#include <string>
 
 namespace krow::style {
 
 std::string Style::convert_to_ansi(const krow::style::Color& color,
-                                   bool is_fg) {
+                                   const bool is_fg) {
   int base = is_fg ? 30 : 40;
-  int ext = is_fg ? 38 : 48;
+  const int ext = is_fg ? 38 : 48;
 
-  krow::style::Color::Type t = color.get_type();
+  const krow::style::Color::Type t = color.get_type();
   switch (t) {
     case (krow::style::Color::Type::Basic):
       if (color.get_basic() == krow::style::BasicColor::Default) {

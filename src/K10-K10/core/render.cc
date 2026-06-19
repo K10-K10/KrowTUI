@@ -12,37 +12,37 @@ std::string makeline(const __krow__::Cell& c) {
     return c.c.empty() ? " " : c.c;
   }
   std::string line = to_ansi(c.style);
-  if ((get_flag(c.style) & StyleFlag::Bold) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Bold) != 0U) {
     line += ";1";
   }
-  if ((get_flag(c.style) & StyleFlag::Dim) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Dim) != 0U) {
     line += ";2";
   }
-  if ((get_flag(c.style) & StyleFlag::Italic) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Italic) != 0U) {
     line += ";3";
   }
-  if ((get_flag(c.style) & StyleFlag::Underline) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Underline) != 0U) {
     line += ";4";
   }
-  if ((get_flag(c.style) & StyleFlag::Blink) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Blink) != 0U) {
     line += ";5";
   }
-  if ((get_flag(c.style) & StyleFlag::RapidBlink) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::RapidBlink) != 0U) {
     line += ";6";
   }
-  if ((get_flag(c.style) & StyleFlag::Inverted) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Inverted) != 0U) {
     line += ";7";
   }
-  if ((get_flag(c.style) & StyleFlag::Hidden) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Hidden) != 0U) {
     line += ";8";
   }
-  if ((get_flag(c.style) & StyleFlag::Strikethrough) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Strikethrough) != 0U) {
     line += ";9";
   }
-  if ((get_flag(c.style) & StyleFlag::DoubleUnderline) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::DoubleUnderline) != 0U) {
     line += ";21";
   }
-  if ((get_flag(c.style) & StyleFlag::Overline) != 0u) {
+  if ((get_flag(c.style) & StyleFlag::Overline) != 0U) {
     line += ";53";
   }
 
@@ -58,7 +58,7 @@ void Render::flush() {
     int start = -1;
     line.clear();
     for (int x = 0; x < W; ++x) {
-      int i = y * W + x;
+      const int i = y * W + x;
 
       if (__krow__::screen.current[i].c != __krow__::screen.next[i].c ||
           __krow__::screen.current[i].style.fg_val !=

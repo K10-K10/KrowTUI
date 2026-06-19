@@ -26,7 +26,7 @@ TEST(STRING_VISUAL_WIDTH_TEST, MULTI) {
 
   int total_width = 0;
   for (const auto& vc : result3) {
-    total_width += vc.width;
+    total_width += vc.get_width();
   }
   EXPECT_EQ(total_width, 19);
 }

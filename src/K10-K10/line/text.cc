@@ -1,4 +1,8 @@
+#include <K10-K10/line/line.h>
 #include <K10-K10/line/text.h>
+#include <K10-K10/style/alignment.h>
+
+#include <cstddef>
 
 krow::Text::Text(const Line& new_) {
   contents_.resize(1);

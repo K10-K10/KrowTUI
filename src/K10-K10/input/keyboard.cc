@@ -3,11 +3,9 @@
 #include <ncurses.h>
 
 #include <chrono>
-#include <iostream>
-#include <string>
 
 namespace __krow__::__input__ {
-Key::Key() {
+Key::Key() noexcept {
   initscr();
   cbreak();
   noecho();
@@ -17,18 +15,18 @@ Key::Key() {
 };
 
 KeyCode Key::getKeyCode() {
-  KeyCode key_ = key_code;
+  const KeyCode key_ = key_code;
   key_code = KeyCode::NONE;
   return key_;
 }
 char Key::getCurrentChar() {
-  char char_ = current_char;
+  const char char_ = current_char;
   current_char = '\0';
   return char_;
 }
 
 bool Key::read() {
-  int ch = getch();
+  const int ch = getch();
 
   auto now = std::chrono::steady_clock::now();
   if (ch == ERR) {
@@ -86,7 +84,9 @@ bool Key::read() {
       break;
   }
 
-  if (is_visible) krow::utils::backSpace();
+  if (is_visible) {
+    krow::utils::backSpace();
+  }
   return true;
 }
 
