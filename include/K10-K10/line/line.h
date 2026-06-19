@@ -21,9 +21,10 @@ struct Line;
 struct Span {
  public:
   Span(std::string s) { text_ = s; }
-  Span& style(style::Style style_) {
-    style_val = style_;
-    return *this;
+  Span style(style::Style& style_) const {
+    Span result = *this;
+    result.style_val = style_;
+    return result;
   }
 
  private:

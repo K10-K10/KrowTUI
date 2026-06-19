@@ -2,6 +2,7 @@
 #define INCLUDE_OBJ_LIST_H_
 
 #include <K10-K10/layout/rect.h>
+#include <K10-K10/line/text.h>
 #include <K10-K10/obj/obj.h>
 #include <K10-K10/style/style.h>
 
@@ -15,14 +16,14 @@ class List : public Object {
   explicit List() = default;
   ~List() = default;
   List& position(const Rect& r);
-  List& items(std::vector<std::string> items);
-  const std::vector<std::string>& items() const;
-  List& add_item(const std::string& s);
+  List& items(std::vector<Text> items);
+  const std::vector<Text>& items() const;
+  List& add_item(const Text& s);
   List& clear() {
     items_.clear();
     return *this;
   }
-  const std::string selected_item() const;
+  const Text selected_item() const;
   void move_up();
   void move_down();
   int selected_index() const;
@@ -48,7 +49,7 @@ class List : public Object {
 
  private:
   Rect rect = {0, 0, 0, 0};
-  std::vector<std::string> items_ = {};
+  std::vector<Text> items_ = {};
   std::string selector_symbol_ = ">";
   int selected_ = 0;
   int draw_index_num_ = 0;

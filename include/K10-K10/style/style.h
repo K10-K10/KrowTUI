@@ -110,6 +110,12 @@ struct Style {
   }
   unsigned int get_flag() const { return flag_; }
 
+  bool operator==(const Style rs) {
+    if (fg_val != rs.fg_val || bg_val != rs.bg_val || flag_ != rs.flag_)
+      return false;
+    return true;
+  }
+
  private:
   std::string fg_val = "39";
   std::string bg_val = "49";
