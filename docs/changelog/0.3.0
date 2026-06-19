@@ -3,6 +3,12 @@
 - commithash: ``
 - date:
 
+## Abstract
+
+This release includes a lot of new features and improvements.
+First, library name is changed to `KrowTUI` from `Krow`. This change is made to better reflect the purpose of the library, which is to provide a TUI (Text User Interface) framework.
+Second, useful rendering objects such as `Span`, `Line`, and `Text` are added to make it easier to create complex TUI layouts.
+
 ## [Note]
 
 - Rename library for `KrowTUI` #52 #53
