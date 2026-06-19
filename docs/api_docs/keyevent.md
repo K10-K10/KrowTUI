@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Key
 
 The `Key` class represents a key on the keyboard. It contains information about the key code, modifiers, and the type of event (press or release). The `KeyEvent` class is used to handle key events in the TUI library.
@@ -87,7 +92,3 @@ void read();
 - __Returns__: None
 
 Reads the next key event from the input stream and updates the internal state of the `Key` object accordingly.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

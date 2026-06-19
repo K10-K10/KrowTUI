@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Getting Started
 
 This document will guide you through the process of setting up and using the TUI library in your C++ projects. Follow the steps below to get started.
@@ -86,7 +91,3 @@ app.stop();
 ```
 
 example code can be found in the [Examples](examples.md) section of the documentation.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

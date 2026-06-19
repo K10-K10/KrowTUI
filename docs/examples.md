@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Examples
 
 Here are some examples of how to use the TUI library in C++.
@@ -71,7 +76,3 @@ target_link_libraries(app PRIVATE K10-K10::krow)
 - `UP`: Move up in the list
 - `DOWN`: Move down in the list
 - `q`: Quit the application
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

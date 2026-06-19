@@ -1,3 +1,9 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
+
 # Counter Example
 
 This example demonstrates a simple counter application using Krow TUI. The application displays a counter value that can be incremented or decremented using the UP and DOWN arrow keys, respectively. Pressing 'q' will quit the application.

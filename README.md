@@ -97,6 +97,7 @@ int main() {
 - [API Reference](docs/api_reference.md)
 - [Examples](docs/examples.md)
 - [Points to Note](docs/points.md)
+- [Samples](docs/samples.md)
 
 ## License
 

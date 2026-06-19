@@ -1,3 +1,9 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
+
 # List
 
 `List` is an object that displays a scrollable or selectable list of string items in the terminal. It supports item selection, custom cursor symbols, and comprehensive style configurations for fields, highlights, and selectors.
@@ -242,7 +248,3 @@ for the text of the highlighted item)
 - __Return__: List& (Reference to the current object for method chaining)
 
 Sets the text color for the currently selected item in the list.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

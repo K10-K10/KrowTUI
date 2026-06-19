@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # API Reference
 
 This is the API reference for TUI library.
@@ -18,7 +23,3 @@ All functions are include in the `krow` namespace.
   - ~~Cursor~~
 - **Styles**
   - [Colour](api_docs/colour.md)
-
----
-
-**version**: *0.2.0* | **author**: *K10-K10* | **update**: 11/06/2026

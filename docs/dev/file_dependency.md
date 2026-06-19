@@ -95,7 +95,3 @@ flowchart LR
     classDef headerOnly fill:#f5f5f5,stroke:#999,stroke-width:2px,stroke-dasharray: 5 5;
     class borderh,recth headerOnly;
 ```
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

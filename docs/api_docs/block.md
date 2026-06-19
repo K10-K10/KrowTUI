@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Block
 
 `Block` is an object that can render a rectangular frame with a border. It can be used to create sections or containers in your app's interface.
@@ -132,7 +137,3 @@ The `EdgeType` enum defines the edges of the block where the border should be dr
 - `Left`: Draws the border only on the left edge of the block.
 - `Right`: Draws the border only on the right edge of the block.
 - `None`: No border is drawn.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026

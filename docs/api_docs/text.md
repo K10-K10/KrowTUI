@@ -1,3 +1,8 @@
+---
+version: 0.2.0
+date: 19/06/2026
+---
+
 # Text
 
 `Text` is an object that can render a string label. It can be used to display static text.
@@ -74,7 +79,3 @@ void draw() const;
 - __Return__: None
 
 Draws the text on the terminal at the specified position and with the specified styles.
-
----
-
-__version__: *0.2.0* | __author__: *K10-K10* | __update__: 11/06/2026
