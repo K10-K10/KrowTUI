@@ -1,6 +1,8 @@
 #include <K10-K10/debug/logger.h>
 #include <gtest/gtest.h>
 
+#include <vector>
+
 TEST(DEBUG_TEST, LOGGER) {
   __krow__::logger::clear_logs();
   __krow__::logger::add_log(__krow__::logger::log_type::success, "initialize");

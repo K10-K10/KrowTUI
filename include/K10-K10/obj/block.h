@@ -14,30 +14,30 @@ class Block : public Object {
   explicit Block() = default;
   ~Block() = default;
   void draw() override;
-  inline Block& position(const Rect& r) {
+  Block& position(const Rect& r) {
     rect = r;
     return *this;
   };
 
-  inline Block& title(const Text& title) {
+  Block& title(const Text& title) {
     title_ = title;
     return *this;
   };
 
-  inline Block& bottom_title(const Text& bottom_title) {
+  Block& bottom_title(const Text& bottom_title) {
     bottom_title_ = bottom_title;
     return *this;
   };
 
-  inline Block& border_type(const krow::style::Border& type) {
+  Block& border_type(const krow::style::Border& type) {
     border_type_ = &type;
     return *this;
   };
-  inline Block& borders(const krow::style::Borders type_) {
+  Block& borders(const krow::style::Borders type_) {
     edges_ = type_;
     return *this;
   };
-  inline Block& border_style(const style::Style& style) {
+  Block& border_style(const style::Style& style) {
     border_style_ = style;
     return *this;
   };

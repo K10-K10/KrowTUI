@@ -10,6 +10,7 @@
 namespace __krow__ {
 
 #ifdef ENABLE_LOGGER
+
 class logger {
  public:
   enum class log_type : std::uint8_t { success, failed, error, info };

@@ -36,7 +36,8 @@ struct Style {
   friend unsigned int __krow__::get_flag(const krow::style::Style& style);
 
  private:
-  std::string convert_to_ansi(const krow::style::Color& color, bool is_fg);
+  static std::string convert_to_ansi(const krow::style::Color& color,
+                                     bool is_fg);
 
  public:
   Style& fg(const krow::style::Color& color) {
@@ -110,10 +111,8 @@ struct Style {
   }
   unsigned int get_flag() const { return flag_; }
 
-  bool operator==(const Style rs) {
-    if (fg_val != rs.fg_val || bg_val != rs.bg_val || flag_ != rs.flag_)
-      return false;
-    return true;
+  bool operator==(const Style& rs) {
+    return fg_val == rs.fg_val && bg_val == rs.bg_val && flag_ == rs.flag_;
   }
 
  private:

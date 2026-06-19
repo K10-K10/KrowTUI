@@ -23,7 +23,7 @@ class List : public Object {
     items_.clear();
     return *this;
   }
-  const Text selected_item() const;
+  Text selected_item() const;
   void move_up();
   void move_down();
   int selected_index() const;
@@ -49,7 +49,7 @@ class List : public Object {
 
  private:
   Rect rect = {0, 0, 0, 0};
-  std::vector<Text> items_ = {};
+  std::vector<Text> items_;
   std::string selector_symbol_ = ">";
   int selected_ = 0;
   int draw_index_num_ = 0;

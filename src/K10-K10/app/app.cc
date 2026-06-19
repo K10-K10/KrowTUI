@@ -28,7 +28,7 @@ void enable_raw_mode() {
 void disable_raw_mode() { tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig); }
 int __krow__::App::sig_num = 0;
 
-App::App(Render& r) : render(r){};
+App::App(Render& r) noexcept : render(r){};
 
 void App::signal_handler(int sig) { sig_num = sig; }
 
@@ -44,7 +44,7 @@ void App::init(int fps) {
   this->fps = fps;
 }
 
-void App::loop(std::function<void()> frame) {
+void App::loop(const std::function<void()>& frame) {
   runnning = true;
   while (runnning) {
     if (sig_num == SIGWINCH) {
@@ -58,7 +58,7 @@ void App::loop(std::function<void()> frame) {
       std::exit(0);
     }
     frame();
-    render.flush();
+    __krow__::Render::flush();
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
   }
 }
@@ -68,7 +68,6 @@ void App::stop() {
   std::cout << "\x1b[?1049l" << std::flush;
   std::cout << "\x1b[?25h" << std::flush;
   disable_raw_mode();
-  return;
 }
 
 }  // namespace __krow__

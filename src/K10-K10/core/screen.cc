@@ -1,5 +1,7 @@
 #include <K10-K10/core/screen.h>
 
+#include <algorithm>
+#include <cstddef>
 #include <vector>
 
 namespace __krow__ {
@@ -10,8 +12,10 @@ int Screen::height() const { return height_; }
 void Screen::resize(int w, int h) {
   width_ = w;
   height_ = h;
-  current.assign(w * h, {" "});
-  next.assign(w * h, {" "});
+
+  const size_t size = static_cast<size_t>(width_) * height_;
+  current.assign(size, {" "});
+  next.assign(size, {" "});
 }
 
 void Screen::clear() { std::fill(next.begin(), next.end(), Cell{" "}); }

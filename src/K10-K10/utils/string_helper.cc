@@ -1,11 +1,16 @@
 #include <K10-K10/utils/string_helper.h>
 
+#include <cstddef>
+#include <string>
+#include <vector>
+
 namespace __krow__ {
 
 int get_visual_width(const std::string& str) {
   int width = 0;
   for (const auto& vc : split_by_visual_character(str)) {
-    width += vc.width;
+    const int w = vc.get_width();
+    width += w;
   }
   return width;
 }
@@ -15,23 +20,26 @@ std::vector<VisualChar> split_by_visual_character(const std::string& str) {
   size_t b_idx = 0;
 
   while (b_idx < str.size()) {
-    unsigned char ch = str[b_idx];
+    const unsigned char ch = str[b_idx];
     size_t len = 1;
 
-    if ((ch & 0x80) == 0x00)
+    if ((ch & 0x80) == 0x00) {
       len = 1;
-    else if ((ch & 0xE0) == 0xC0)
+    } else if ((ch & 0xE0) == 0xC0) {
       len = 2;
-    else if ((ch & 0xF0) == 0xE0)
+    } else if ((ch & 0xF0) == 0xE0) {
       len = 3;
-    else if ((ch & 0xF8) == 0xF0)
+    } else if ((ch & 0xF8) == 0xF0) {
       len = 4;
+    }
 
-    if (b_idx + len > str.size()) break;
+    if (b_idx + len > str.size()) {
+      break;
+    }
 
     VisualChar vc;
-    vc.c = str.substr(b_idx, len);
-    vc.width = (len > 1) ? 2 : 1;
+    vc.set_c(str.substr(b_idx, len));
+    vc.set_width((len > 1) ? 2 : 1);
 
     result.push_back(vc);
     b_idx += len;

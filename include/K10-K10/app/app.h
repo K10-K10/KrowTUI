@@ -10,9 +10,9 @@
 namespace __krow__ {
 class App {
  public:
-  explicit App(Render& r);
+  explicit App(Render& r) noexcept;
   void init(int fps = 60);
-  void loop(std::function<void()> frame);
+  void loop(const std::function<void()>& frame);
   void stop();
 
  protected:

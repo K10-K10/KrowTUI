@@ -1,4 +1,8 @@
+#include <K10-K10/line/line.h>
 #include <K10-K10/line/text.h>
+#include <K10-K10/style/alignment.h>
+
+#include <cstddef>
 
 krow::Text::Text(const Line& new_) {
   contents_.resize(1);
@@ -21,12 +25,15 @@ krow::Text::Text(const Line& new_) {
   }
 }
 
-void krow::Text::operator=(const Line& new_) {
+krow::Text& krow::Text::operator=(const Line& new_) {
   contents_.clear();
-  contents_.resize(1);
   current_ = 0;
+
+  contents_.resize(1);
+
   Line left, center, right;
-  for (int i = 0; i < new_.contents_.size(); ++i) {
+
+  for (size_t i = 0; i < new_.contents_.size(); ++i) {
     switch (new_.contents_[i].second) {
       case krow::style::alignment::LEFT:
         left = left + new_.contents_[i].first;
@@ -40,11 +47,20 @@ void krow::Text::operator=(const Line& new_) {
       default:
         break;
     }
+    if (contents_.size() <= current_) {
+      contents_.resize(current_ + 1);
+    }
+
+    contents_[current_].left.push(left);
+    contents_[current_].center.push(center);
+    contents_[current_].right.push(right);
+
     if (new_.break_) {
       ++current_;
+      contents_.resize(current_ + 1);
     }
+
+    return *this;
   }
-  this->contents_[current_].left.push(left);
-  this->contents_[current_].center.push(center);
-  this->contents_[current_].right.push(right);
-};
+  return *this;
+}
