@@ -1,6 +1,6 @@
 #include <K10-K10/line/text.h>
 
-terminal::Text::Text(const Line& new_) {
+krow::Text::Text(const Line& new_) {
   contents_.resize(1);
   current_ = 0;
 
@@ -21,20 +21,20 @@ terminal::Text::Text(const Line& new_) {
   }
 }
 
-void terminal::Text::operator=(const Line& new_) {
+void krow::Text::operator=(const Line& new_) {
   contents_.clear();
   contents_.resize(1);
   current_ = 0;
   Line left, center, right;
   for (int i = 0; i < new_.contents_.size(); ++i) {
     switch (new_.contents_[i].second) {
-      case terminal::style::alignment::LEFT:
+      case krow::style::alignment::LEFT:
         left = left + new_.contents_[i].first;
         break;
-      case terminal::style::alignment::CENTER:
+      case krow::style::alignment::CENTER:
         center = center + new_.contents_[i].first;
         break;
-      case terminal::style::alignment::RIGHT:
+      case krow::style::alignment::RIGHT:
         right = right + new_.contents_[i].first;
         break;
       default:

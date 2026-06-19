@@ -29,11 +29,11 @@ class Block : public Object {
     return *this;
   };
 
-  inline Block& border_type(const terminal::style::Border& type) {
+  inline Block& border_type(const krow::style::Border& type) {
     border_type_ = &type;
     return *this;
   };
-  inline Block& borders(const terminal::style::Borders type_) {
+  inline Block& borders(const krow::style::Borders type_) {
     edges_ = type_;
     return *this;
   };

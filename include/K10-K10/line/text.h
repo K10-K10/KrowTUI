@@ -7,7 +7,7 @@
 #include <queue>
 #include <vector>
 
-namespace terminal {
+namespace krow {
 class TextField;
 class Block;
 class List;
@@ -39,6 +39,6 @@ struct Text {
   std::vector<line> contents_;
   int current_ = 0;
 };
-}  // namespace terminal
+}  // namespace krow
 
 #endif

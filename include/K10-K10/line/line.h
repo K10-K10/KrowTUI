@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-namespace terminal {
+namespace krow {
 
 class TextField;
 class Block;
@@ -112,6 +112,6 @@ inline Span operator"" _s(const char* str, std::size_t len) {
   return Span(std::string(str, len));
 }
 
-}  // namespace terminal
+}  // namespace krow
 
 #endif

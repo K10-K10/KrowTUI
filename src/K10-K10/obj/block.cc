@@ -6,10 +6,6 @@
 #include <K10-K10/utils/string_helper.h>
 
 namespace krow {
-Block& Block::position(const Rect& r) {
-  rect = r;
-  return *this;
-}
 
 void Block::draw() {
   int l = rect.x;
@@ -44,16 +40,15 @@ void Block::draw() {
         Line line = q.front();
         int title_len = 0;
         for (const auto& c : line.contents_) {
-          title_len += __terminal__::get_visual_width(c.first.text_);
+          title_len += __krow__::get_visual_width(c.first.text_);
         }
-        int start_ =
-            __terminal__::calc_alignment(align, {l + 1, r - 1}, title_len);
+        int start_ = __krow__::calc_alignment(align, {l + 1, r - 1}, title_len);
         for (const auto& l : line.contents_) {
-          auto v_chars = __terminal__::split_by_visual_character(l.first.text_);
+          auto v_chars = __krow__::split_by_visual_character(l.first.text_);
 
           for (const auto& vc : v_chars) {
             if (start_ > r - 1) break;
-            __terminal__::drawObj.put(t, start_, {vc.c, l.first.style_val});
+            __krow__::drawObj.put(t, start_, {vc.c, l.first.style_val});
             start_ += vc.width;
           }
         }

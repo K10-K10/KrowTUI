@@ -4,12 +4,12 @@
 #include <cstdint>
 #include <utility>
 
-namespace terminal::style {
+namespace krow::style {
 enum alignment : uint8_t { LEFT, CENTER, RIGHT };
 }
 
-namespace __terminal__ {
-int calc_alignment(terminal::style::alignment ali, std::pair<int, int> place,
+namespace __krow__ {
+int calc_alignment(krow::style::alignment ali, std::pair<int, int> place,
                    int length);
 }
 

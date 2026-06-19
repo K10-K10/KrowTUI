@@ -2,20 +2,20 @@
 
 #include <utility>
 
-namespace __terminal__ {
-int calc_alignment(terminal::style::alignment ali, std::pair<int, int> place,
+namespace __krow__ {
+int calc_alignment(krow::style::alignment ali, std::pair<int, int> place,
                    int length) {
   int start_pos = place.first;
   int width = place.second;
 
   switch (ali) {
-    case terminal::style::alignment::LEFT:
+    case krow::style::alignment::LEFT:
       return start_pos;
 
-    case terminal::style::alignment::CENTER:
+    case krow::style::alignment::CENTER:
       return start_pos + (width - length) / 2;
 
-    case terminal::style::alignment::RIGHT:
+    case krow::style::alignment::RIGHT:
       return width + start_pos - length;
 
     default:
@@ -23,4 +23,4 @@ int calc_alignment(terminal::style::alignment ali, std::pair<int, int> place,
   }
 }
 
-}  // namespace __terminal__
+}  // namespace __krow__

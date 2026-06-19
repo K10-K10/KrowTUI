@@ -12,8 +12,8 @@ struct Style;
 
 namespace __krow__ {
 class Render;
-std::string to_ansi(const terminal::style::Style& style);
-unsigned int get_flag(const terminal::style::Style& style);
+std::string to_ansi(const krow::style::Style& style);
+unsigned int get_flag(const krow::style::Style& style);
 enum StyleFlag : std::uint16_t {
   None = 0,
   Bold = 1 << 0,
@@ -28,7 +28,7 @@ enum StyleFlag : std::uint16_t {
   DoubleUnderline = 1 << 9,
   Overline = 1 << 10
 };
-}  // namespace __terminal__
+}  // namespace __krow__
 
 namespace krow::style {
 struct Style {

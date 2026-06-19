@@ -38,31 +38,26 @@ TEST(ANSI_STYLE_TEST, RGB) {
 }
 
 TEST(ALIGNMENT_TEST, LEFT) {
-  EXPECT_EQ(
-      __terminal__::calc_alignment(terminal::style::alignment::LEFT, {0, 6}, 4),
-      0);
-  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::LEFT,
-                                         {10, 6}, 4),
+  EXPECT_EQ(__krow__::calc_alignment(krow::style::alignment::LEFT, {0, 6}, 4),
+            0);
+  EXPECT_EQ(__krow__::calc_alignment(krow::style::alignment::LEFT, {10, 6}, 4),
             10);
 }
 
 TEST(ALIGNMENT_TEST, CENTER) {
-  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::CENTER,
-                                         {0, 6}, 4),
+  EXPECT_EQ(__krow__::calc_alignment(krow::style::alignment::CENTER, {0, 6}, 4),
             1);
-  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::CENTER,
-                                         {10, 11}, 5),
-            13);
-  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::CENTER,
-                                         {10, 10}, 5),
-            12);
+  EXPECT_EQ(
+      __krow__::calc_alignment(krow::style::alignment::CENTER, {10, 11}, 5),
+      13);
+  EXPECT_EQ(
+      __krow__::calc_alignment(krow::style::alignment::CENTER, {10, 10}, 5),
+      12);
 }
 
 TEST(ALIGNMENT_TEST, RIGHT) {
-  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::RIGHT,
-                                         {0, 6}, 4),
+  EXPECT_EQ(__krow__::calc_alignment(krow::style::alignment::RIGHT, {0, 6}, 4),
             2);
-  EXPECT_EQ(__terminal__::calc_alignment(terminal::style::alignment::RIGHT,
-                                         {10, 6}, 4),
+  EXPECT_EQ(__krow__::calc_alignment(krow::style::alignment::RIGHT, {10, 6}, 4),
             12);
 }
