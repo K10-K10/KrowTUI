@@ -3,7 +3,6 @@
 #include <K10-K10/style/style.h>
 #include <K10-K10/utils/base.h>
 
-#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -13,25 +12,47 @@ std::string makeline(const __krow__::Cell& c) {
     return c.c.empty() ? " " : c.c;
   }
   std::string line = to_ansi(c.style);
-  if (get_flag(c.style) & StyleFlag::Bold) line += ";1";
-  if (get_flag(c.style) & StyleFlag::Dim) line += ";2";
-  if (get_flag(c.style) & StyleFlag::Italic) line += ";3";
-  if (get_flag(c.style) & StyleFlag::Underline) line += ";4";
-  if (get_flag(c.style) & StyleFlag::Blink) line += ";5";
-  if (get_flag(c.style) & StyleFlag::RapidBlink) line += ";6";
-  if (get_flag(c.style) & StyleFlag::Inverted) line += ";7";
-  if (get_flag(c.style) & StyleFlag::Hidden) line += ";8";
-  if (get_flag(c.style) & StyleFlag::Strikethrough) line += ";9";
-  if (get_flag(c.style) & StyleFlag::DoubleUnderline) line += ";21";
-  if (get_flag(c.style) & StyleFlag::Overline) line += ";53";
+  if ((get_flag(c.style) & StyleFlag::Bold) != 0u) {
+    line += ";1";
+  }
+  if ((get_flag(c.style) & StyleFlag::Dim) != 0u) {
+    line += ";2";
+  }
+  if ((get_flag(c.style) & StyleFlag::Italic) != 0u) {
+    line += ";3";
+  }
+  if ((get_flag(c.style) & StyleFlag::Underline) != 0u) {
+    line += ";4";
+  }
+  if ((get_flag(c.style) & StyleFlag::Blink) != 0u) {
+    line += ";5";
+  }
+  if ((get_flag(c.style) & StyleFlag::RapidBlink) != 0u) {
+    line += ";6";
+  }
+  if ((get_flag(c.style) & StyleFlag::Inverted) != 0u) {
+    line += ";7";
+  }
+  if ((get_flag(c.style) & StyleFlag::Hidden) != 0u) {
+    line += ";8";
+  }
+  if ((get_flag(c.style) & StyleFlag::Strikethrough) != 0u) {
+    line += ";9";
+  }
+  if ((get_flag(c.style) & StyleFlag::DoubleUnderline) != 0u) {
+    line += ";21";
+  }
+  if ((get_flag(c.style) & StyleFlag::Overline) != 0u) {
+    line += ";53";
+  }
 
   line += "m" + c.c + "\033[0m";
   return line;
 }
 
 void Render::flush() {
-  int W = __krow__::screen.width();
-  int H = __krow__::screen.height();
+  const int W = __krow__::screen.width();
+  const int H = __krow__::screen.height();
   std::string line;
   for (int y = 0; y < H; ++y) {
     int start = -1;

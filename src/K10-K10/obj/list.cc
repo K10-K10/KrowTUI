@@ -87,16 +87,16 @@ void List::draw() {
     if (selected) {
       auto sel_chars = __krow__::split_by_visual_character(selector_symbol_);
       for (const auto& vc : sel_chars) {
-        if (current_sel_w + vc.width > selector_width) break;
+        if (current_sel_w + vc.get_width() > selector_width) break;
 
         if (l + current_sel_w >= __krow__::screen.width()) break;
 
         __krow__::Cell sel_cell;
-        sel_cell.c = vc.c;
+        sel_cell.c = vc.get_c();
         sel_cell.style = selector_style_;
         __krow__::drawObj.put(cy, l + current_sel_w, sel_cell);
 
-        current_sel_w += vc.width;
+        current_sel_w += vc.get_width();
       }
     }
 
@@ -162,16 +162,16 @@ void List::draw() {
                   start_ >= __krow__::screen.width())
                 break;
               if (start_ < 0) {
-                start_ += vc.width;
+                start_ += vc.get_width();
                 continue;
               }
 
               __krow__::Cell text_cell;
-              text_cell.c = vc.c;
+              text_cell.c = vc.get_c();
               text_cell.style = l_element.first.style_val;
 
               __krow__::drawObj.put(cy, start_, text_cell);
-              start_ += vc.width;
+              start_ += vc.get_width();
             }
           }
         };

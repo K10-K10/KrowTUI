@@ -5,7 +5,8 @@ namespace __krow__ {
 int get_visual_width(const std::string& str) {
   int width = 0;
   for (const auto& vc : split_by_visual_character(str)) {
-    width += vc.width;
+    int w = vc.get_width();
+    width += w;
   }
   return width;
 }
@@ -30,8 +31,8 @@ std::vector<VisualChar> split_by_visual_character(const std::string& str) {
     if (b_idx + len > str.size()) break;
 
     VisualChar vc;
-    vc.c = str.substr(b_idx, len);
-    vc.width = (len > 1) ? 2 : 1;
+    vc.set_c(str.substr(b_idx, len));
+    vc.set_width((len > 1) ? 2 : 1);
 
     result.push_back(vc);
     b_idx += len;

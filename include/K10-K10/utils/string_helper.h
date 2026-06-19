@@ -7,9 +7,16 @@
 namespace __krow__ {
 
 struct VisualChar {
+ public:
+  bool operator==(const VisualChar&);
+  void set_c(std::string new_c) { c = new_c; }
+  void set_width(int new_w) { width = new_w; }
+  std::string get_c() const { return c; }
+  int get_width() const { return width; }
+
+ private:
   std::string c;
   int width;
-  bool operator==(const VisualChar&) const = default;
 };
 
 int get_visual_width(const std::string& str);

@@ -4,7 +4,6 @@
 namespace __krow__ {
 void DrawObj::put(int y, int x, const Cell& c) {
   __krow__::screen.put(x, y, c);
-  return;
 }
 
 DrawObj drawObj;

@@ -79,7 +79,7 @@ TextField& TextField::insert_char(const std::string& c) {
         for (const auto& span_element : q.front().contents_) {
           auto chars =
               __krow__::split_by_visual_character(span_element.first.text_);
-          for (const auto& vc : chars) glyphs.push_back(vc.c);
+          for (const auto& vc : chars) glyphs.push_back(vc.get_c());
         }
         q.pop();
       }
@@ -118,7 +118,7 @@ TextField& TextField::delete_char() {
         for (const auto& span_element : q.front().contents_) {
           auto chars =
               __krow__::split_by_visual_character(span_element.first.text_);
-          for (const auto& vc : chars) glyphs.push_back(vc.c);
+          for (const auto& vc : chars) glyphs.push_back(vc.get_c());
         }
         q.pop();
       }
@@ -199,8 +199,9 @@ void TextField::draw() {
 
       krow::style::Style final_style = is_cursor ? cursor_style_ : text_style_;
 
-      __krow__::drawObj.put(cy, l + current_screen_x, {vc.c, final_style});
-      current_screen_x += vc.width;
+      __krow__::drawObj.put(cy, l + current_screen_x,
+                            {vc.get_c(), final_style});
+      current_screen_x += vc.get_width();
     }
 
     if (data_y == cursor_y && cursor_x == static_cast<int>(all_vchars.size())) {

@@ -66,8 +66,8 @@ void Block::draw() {
 
           for (const auto& vc : v_chars) {
             if (start_ > r - 1) break;
-            __krow__::drawObj.put(t, start_, {vc.c, l.first.style_val});
-            start_ += vc.width;
+            __krow__::drawObj.put(t, start_, {vc.get_c(), l.first.style_val});
+            start_ += vc.get_width();
           }
         }
       };
