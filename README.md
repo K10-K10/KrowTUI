@@ -95,7 +95,7 @@ int main() {
 ## Documentations
 
 - [Getting Started](docs/getting_started.md)
-- [API Reference](docs/api_reference.md)
+- [API Reference](docs/references.md)
 - [Examples](docs/examples.md)
 - [Points to Note](docs/points.md)
 - [Samples](docs/samples.md)

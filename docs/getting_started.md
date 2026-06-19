@@ -19,12 +19,12 @@ You can use CMake's `FetchContent` module to include the TUI library in your pro
 include(FetchContent)
 
 FetchContent_Declare(
-    krow_tui
+    krowTUI
     GIT_REPOSITORY https://github.com/K10-K10/KrowTUI
     GIT_TAG main # We suport only latest version, so use main branch
 )
 
-FetchContent_MakeAvailable(krow_tui)
+FetchContent_MakeAvailable(krowTUI)
 
 add_executable(your_app main.cpp)
 target_link_libraries(your_app PRIVATE K10-K10::krow)
