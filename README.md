@@ -9,8 +9,8 @@ update: 19/06/2026
 
 [![build](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml)
 [![Lint](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml)
-![GitHub Release Date](httpkrowTUIio/github/release-date/K10-K10/krowTUIkrowTUIases](<https://img.shields.io/github/release/K10-K10/krowTUI.svg>)](<https://github.com/K10-K10/krowTUIHub> License](<https://img.shields.io/github/license/K10-K10/krowTUI>)](<https://github.com/K10-K10/krowTUI/bkrowTUIUI> is a C++ library for creating  user interfaces (TUI) using the ncurses library.
-It provides a simple and intuitive API for creating varkrowTUI components such as text, blocks, lists, and more.
+[![GitHub Release Date](https://img.shields.io/github/release-date/K10-K10/krowTUI)](<https://github.com/K10-K10/krowTUI/releases>)
+[![GitHub License](https://img.shields.io/github/license/K10-K10/krowTUI)](<https://github.com/K10-K10/krowTUI/blob/main/LICENSE>)
 
 ## Quick start
 
