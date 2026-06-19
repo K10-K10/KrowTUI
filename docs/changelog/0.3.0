@@ -27,6 +27,7 @@ Second, useful rendering objects such as `Span`, `Line`, and `Text` are added to
 - Refactor suggestion from cppcheck. #33
 - Add include guard to header files. #39
 - Add time interval to keyboard input. #51
+- Run clang-tidy and refactoring. #54
 
 ## [Docs]
 
