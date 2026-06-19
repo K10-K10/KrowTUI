@@ -5,6 +5,7 @@
 
 ## [Note]
 
+- Rename library for `KrowTUI` #52 #53
 - Added new GitHub Actions workflow for lint check. #34 #35
 - Added Google Test framework for unit testing. #41
 
