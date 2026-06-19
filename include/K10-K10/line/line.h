@@ -4,6 +4,7 @@
 #include <K10-K10/style/alignment.h>
 #include <K10-K10/style/style.h>
 
+#include <cstdint>
 #include <string>
 #include <utility>
 #include <vector>
@@ -20,7 +21,7 @@ struct Line;
 
 struct Span {
  public:
-  Span(std::string s) { text_ = s; }
+  Span(std::string s) { text_ = std::move(s); }
   Span style(style::Style& style_) const {
     Span result = *this;
     result.style_val = style_;
@@ -59,12 +60,12 @@ struct Line {
     return result;
   }
 
-  inline Line& break_ln() {
+  Line& break_ln() {
     break_ = true;
     return *this;
   };
 
-  inline Line& alignment_left() {
+  Line& alignment_left() {
     al_ = style::alignment::LEFT;
     for (auto& item : contents_) {
       item.second = style::alignment::LEFT;
@@ -72,7 +73,7 @@ struct Line {
     return *this;
   }
 
-  inline Line& alignment_center() {
+  Line& alignment_center() {
     al_ = style::alignment::CENTER;
     for (auto& item : contents_) {
       item.second = style::alignment::CENTER;
@@ -80,7 +81,7 @@ struct Line {
     return *this;
   }
 
-  inline Line& alignment_right() {
+  Line& alignment_right() {
     al_ = style::alignment::RIGHT;
     for (auto& item : contents_) {
       item.second = style::alignment::RIGHT;

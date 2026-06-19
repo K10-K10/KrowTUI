@@ -2,14 +2,16 @@
 #define INCLUDE_DEBUG_LOGGER_H_
 
 #include <cstdint>
-#include <fstream>
-#include <mutex>
 #include <string>
 #include <vector>
 
 namespace __krow__ {
 
 #ifdef ENABLE_LOGGER
+
+#include <fstream>
+#include <mutex>
+
 class logger {
  public:
   enum class log_type : std::uint8_t { success, failed, error, info };

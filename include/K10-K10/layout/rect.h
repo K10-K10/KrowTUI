@@ -1,7 +1,7 @@
 #ifndef INCLUDE_LAYOUT_RECT_H_
 #define INCLUDE_LAYOUT_RECT_H_
 
-#define FULL -1
+#define FULL (-1)
 
 namespace krow {
 struct Rect {
