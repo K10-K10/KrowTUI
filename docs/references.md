@@ -21,6 +21,4 @@ All functions are include in the `krow` namespace.
 - [Events](references/events.md)
   - [KeyEvent](references/events/keyevent.md)
   - ~~Cursor~~
-- **Styles**
-  - [Colour](references/style/colour.md)
-  - [Style](references/style/style.md)
+- [Style](references/style/style.md)
