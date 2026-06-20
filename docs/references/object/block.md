@@ -11,13 +11,15 @@ date: 19/06/2026
 
 - [`position(rect)`](#1-positionrect): Sets the position and size of the block.
 - [`draw()`](#2-draw): Draws the block on the terminal at the specified position and with the specified border style.
+- [`title(text)`](#3-titletext): Sets the title of the block, which will be displayed at the top center of the block.
+- [`bottom_title(text)`](#4-bottom_titletext): Sets the bottom title of the block, which will be displayed at the bottom center of the block.
 
 ### Style Methods
 
-- [`border_type(border)`](#3-borderborder): Sets the border style of the block.
-- [`borders(type)`](#4-bordersborder): Specifies the drawing direction of the block's border.
-- [`border_color(color)`](#5-bordercolorcolor): Sets the color of the block's border.
-- [`field_color(color)`](#6-fieldcol  orcolor): Sets the background color of the block.
+- [`border_type(border)`](#1-border_typeborder): Sets the border style of the block.
+- [`borders(type)`](#2-borderstype): Specifies the drawing direction of the block's border.
+- [`border_color(color)`](#3-border_colorcolor): Sets the color of the block's border.
+- [`field_color(color)`](#4-field_colorcolor): Sets the background color of the block.
 
 ## Example
 
@@ -40,6 +42,7 @@ int main() {
     krow::app.stop();
     return 0;
 }
+
 ```
 
 ## Method Details
@@ -48,10 +51,11 @@ int main() {
 
 ```cpp
 Block& position(const Rect& r);
+
 ```
 
-- __Arguments__: `rect: krow::Rect` (a `Rect` object that defines the position and size of the block)
-- __Return__: None
+- **Arguments**: `rect: krow::Rect` (a `Rect` object that defines the position and size of the block)
+- **Return**: `Block&` (Reference to the block for method chaining)
 
 Sets the position and size of the block.
 
@@ -59,56 +63,89 @@ Sets the position and size of the block.
 
 ```cpp
 void draw();
+
 ```
 
-- __Arguments__: None
-- __Return__: None
+- **Arguments**: None
+- **Return**: None
 
 Draws the block on the terminal at the specified position and with the specified border style.
 
-### 3. `border_type(border)`
+### 3. `title(text)`
+
+```cpp
+Block& title(const Text& text);
+
+```
+
+- **Arguments**: `text: krow::Text` (a `Text` structure that defines the content and style of the title)
+- **Return**: `Block&` (Reference to the block for method chaining)
+
+Sets the title of the block, which will be displayed at the top center of the block.
+
+### 4. `bottom_title(text)`
+
+```cpp
+Block& bottom_title(const Text& text);
+
+```
+
+- **Arguments**: `text: krow::Text` (a `Text` structure that defines the content and style of the bottom title)
+- **Return**: `Block&` (Reference to the block for method chaining)
+
+Sets the bottom title of the block, which will be displayed at the bottom center of the block.
+
+> [!WARNING]
+> The `bottom_title` method is currently not working.
+---
+
+### 1. `border_type(border)`
 
 ```cpp
 Block& border_type(krow::BorderType border);
+
 ```
 
-- __Arguments__: `border: krow::BorderType` (Specifies the border style)
-- __Return__: None
+- **Arguments**: `border: krow::BorderType` (Specifies the border style)
+- **Return**: `Block&` (Reference to the block for method chaining)
 
-Sets the border style of the block. The [`BorderType`](#bordertype) can be one of the following:
+Sets the border style of the block. The [`BorderType`](https://www.google.com/search?q=%23bordertype) can be one of the following:
 
-### 4. `borders(type)`
+### 2. `borders(type)`
 
 ```cpp
 Block& borders(krow::EdgeType type);
+
 ```
 
-- __Arguments__: `type: krow::EdgeType` (Specifies the drawing direction)
-- __Return__: None
+- **Arguments**: `type: krow::EdgeType` (Specifies the drawing direction)
+- **Return**: `Block&` (Reference to the block for method chaining)
 
-Specifies the drawing direction of the block's border. The [`EdgeType`](#edgetype) can be one of the following:
+Specifies the drawing direction of the block's border. The [`EdgeType`](https://www.google.com/search?q=%23edgetype) can be one of the following:
 
-### 5. `border_color(color)`
+### 3. `border_color(color)`
 
 ```cpp
 Block& border_color(krow::Color color);
 Block& border_color(int color);
+
 ```
 
-- __Arguments__: `color: krow::Color` / `int` (Specifies the color of the border)
-- __Return__: None
+- **Arguments**: `color: krow::Color` / `int` (Specifies the color of the border)
+- **Return**: `Block&` (Reference to the block for method chaining)
 
 Sets the color of the block's border.
 
-### 6. `field_color(color)`
+### 4. `field_color(color)`
 
 ```cpp
 Block& field_color(krow::Color color);
 Block& field_color(int color);
+
 ```
 
-- __Arguments__: `color: krow::Color` / `int` (Specifies the color of the background)
-- __Return__: None
+- **Arguments**: `color: krow::Color` / `int` (Specifies the color of the background)
+- **Return**: `Block&` (Reference to the block for method chaining)
 
 Sets the background color of the block.
 
