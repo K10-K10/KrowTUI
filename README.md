@@ -1,5 +1,5 @@
 ---
-version: 1.1.0 
+version: 0.3.0
 update: 19/06/2026
 ---
 
@@ -99,6 +99,7 @@ int main() {
 - [Examples](docs/examples.md)
 - [Points to Note](docs/points.md)
 - [Samples](docs/samples.md)
+- [Changelog](docs/changelog.md)
 
 ## License
 
