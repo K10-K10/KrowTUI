@@ -16,8 +16,8 @@ date: 19/06/2026
 
 ### Style Methods
 
-- [`border_type(border)`](#1-border_typeborder): Sets the border style of the block.
-- [`borders(type)`](#2-borderstype): Specifies the drawing direction of the block's border.
+- [`border_type(border)`](#1-border_typeborder): Sets the border style presets of the block.
+- [`borders(mask)`](#2-bordersmask): Specifies which edges of the block's border should be drawn using a bitmask.
 - [`border_color(color)`](#3-border_colorcolor): Sets the color of the block's border.
 - [`field_color(color)`](#4-field_colorcolor): Sets the background color of the block.
 
@@ -29,11 +29,13 @@ date: 19/06/2026
 int main() {
     krow::app.init();
     krow::Block block;
+    
+    // Configure block layout and border styles
     block.position({1, 1, 20, 10})
-         .border_type(BorderType::SINGLE)
-         .borders(Borders::ALL)
-         .border_color(krow::utils::TextColor::Red)
-         .field_color(krow::utils::FillColor::Blue);
+         .border_type(krow::style::SINGLE)
+         .borders(krow::style::Borders::ALL)
+         .border_color(krow::style::Color(krow::style::BasicColor::Red))
+         .field_color(krow::style::Color(krow::style::BasicColor::Blue));
 
     krow::app.loop([&]() {
         block.draw();
@@ -54,7 +56,7 @@ Block& position(const Rect& r);
 
 ```
 
-- **Arguments**: `rect: krow::Rect` (a `Rect` object that defines the position and size of the block)
+- **Arguments**: `r: const krow::Rect&` (A `Rect` object that defines the position and size of the block)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
 Sets the position and size of the block.
@@ -78,7 +80,7 @@ Block& title(const Text& text);
 
 ```
 
-- **Arguments**: `text: krow::Text` (a `Text` structure that defines the content and style of the title)
+- **Arguments**: `text: const krow::Text&` (A `Text` structure that defines the content and style of the title)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
 Sets the title of the block, which will be displayed at the top center of the block.
@@ -90,87 +92,85 @@ Block& bottom_title(const Text& text);
 
 ```
 
-- **Arguments**: `text: krow::Text` (a `Text` structure that defines the content and style of the bottom title)
+- **Arguments**: `text: const krow::Text&` (A `Text` structure that defines the content and style of the bottom title)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
 Sets the bottom title of the block, which will be displayed at the bottom center of the block.
 
-> [!WARNING]
-> The `bottom_title` method is currently not working.
 ---
 
 ### 1. `border_type(border)`
 
 ```cpp
-Block& border_type(krow::BorderType border);
+Block& border_type(const krow::style::Border& border);
 
 ```
 
-- **Arguments**: `border: krow::BorderType` (Specifies the border style)
+- **Arguments**: `border: const krow::style::Border&` (Specifies the character set configuration for the border layout)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
-Sets the border style of the block. The [`BorderType`](https://www.google.com/search?q=%23bordertype) can be one of the following:
+Sets the character style configuration of the block's layout frame. See [Border Presets](https://www.google.com/search?q=%23border-presets) for available configurations.
 
-### 2. `borders(type)`
+### 2. `borders(mask)`
 
 ```cpp
-Block& borders(krow::EdgeType type);
+Block& borders(krow::style::Borders mask);
 
 ```
 
-- **Arguments**: `type: krow::EdgeType` (Specifies the drawing direction)
+- **Arguments**: `mask: krow::style::Borders` (A bitmask that specifies the drawing edges)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
-Specifies the drawing direction of the block's border. The [`EdgeType`](https://www.google.com/search?q=%23edgetype) can be one of the following:
+Specifies which edges of the block's border should be rendered. Supports bitwise operators (`|` and `&`). See [Borders Bitmask Flags](https://www.google.com/search?q=%23borders-bitmask-flags) for details.
 
 ### 3. `border_color(color)`
 
 ```cpp
-Block& border_color(krow::Color color);
+Block& border_color(const krow::style::Color& color);
 Block& border_color(int color);
 
 ```
 
-- **Arguments**: `color: krow::Color` / `int` (Specifies the color of the border)
+- **Arguments**: `color: const krow::style::Color&` / `int` (Specifies the color of the border lines)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
-Sets the color of the block's border.
+Sets the visual color layout utilized to draw the frame lines.
 
 ### 4. `field_color(color)`
 
 ```cpp
-Block& field_color(krow::Color color);
+Block& field_color(const krow::style::Color& color);
 Block& field_color(int color);
 
 ```
 
-- **Arguments**: `color: krow::Color` / `int` (Specifies the color of the background)
+- **Arguments**: `color: const krow::style::Color&` / `int` (Specifies the background color fill)
 - **Return**: `Block&` (Reference to the block for method chaining)
 
-Sets the background color of the block.
+Sets the background color layer bound to the internal grid region of the block.
 
 ---
 
-## BorderType
+## Border Presets
 
-The `BorderType` enum defines the styles of borders that can be applied to a `Block` object. The available border types are:
+The library provides predefined `krow::style::Border` instances representing distinct line styling definitions:
 
-### element
+| Constant Name | Box Appearance Type Description | Style Representation (`tl`, `tr`, `bl`, `br`, `h`, `v`) |
+| --- | --- | --- |
+| `krow::style::SINGLE` | Standard single-line box layouts. | `┌`, `┐`, `└`, `┘`, `─`, `│` |
+| `krow::style::ROUNDED` | Single-line box layouts utilizing rounded corners. | `╭`, `╮`, `╰`, `╯`, `─`, `│` |
+| `krow::style::BOLD` | Thick/Heavy line container style layouts. | `┏`, `┓`, `┗`, `┛`, `━`, `┃` |
+| `krow::style::DOUBLE` | Standard double-line character container layouts. | `╔`, `╗`, `╚`, `╝`, `═`, `║` |
 
-- `Single`: A single line border.
-- `Double`: A double line border.
-- `Rounded`: A rounded corner border.
-- `Thick`: A thick line border.
+## Borders Bitmask Flags
 
-## EdgeType
+The `Borders` enum represents a bitmask used to filter which edges should be active during the render cycle:
 
-The `EdgeType` enum defines the edges of the block where the border should be drawn. The available edge types are:
-
-### element
-
-- `All`: Draws the border on all edges of the block.
-- `Top`: Draws the border only on the top edge of the block.
-- `Bottom`: Draws the border only on the bottom edge of the block.
-- `Left`: Draws the border only on the left edge of the block.
-- `Right`: Draws the border only on the right edge of the block.
-- `None`: No border is drawn.
+| Flag Constant | Bitmask Shift | Description Value |
+| --- | --- | --- |
+| `Borders::NONE` | `0` | No layout edges are drawn. |
+| `Borders::TOP` | `1 << 0` | Draws only the top horizontal frame row. |
+| `Borders::BOTTOM` | `1 << 1` | Draws only the bottom horizontal frame row. |
+| `Borders::LEFT` | `1 << 2` | Draws only the left vertical frame column. |
+| `Borders::RIGHT` | `1 << 3` | Draws only the right vertical frame column. |
+| `Borders::ALL` | `TOP | BOTTOM | LEFT | RIGHT` | Draws all bounding frame edges (Default behavior). |
