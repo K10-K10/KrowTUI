@@ -1,6 +1,6 @@
 ---
-version: 0.2.0
-date: 19/06/2026
+version: 0.3.0
+date: 20/06/2026
 ---
 
 # Samples
