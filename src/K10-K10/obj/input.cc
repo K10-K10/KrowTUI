@@ -32,7 +32,7 @@ TextField& TextField::contents(const std::vector<Text>& text) {
         int len = 0;
         while (!q.empty()) {
           for (const auto& c : q.front().contents_) {
-            len += __krow__::get_visual_width(c.first.text_);
+            len += ::__krow__::get_visual_width(c.first.text_);
           }
           q.pop();
         }
@@ -60,7 +60,7 @@ TextField& TextField::move_cursor(int x, int y) {
       int cnt = 0;
       while (!q.empty()) {
         for (const auto& c : q.front().contents_) {
-          auto chars = __krow__::split_by_visual_character(c.first.text_);
+          auto chars = ::__krow__::split_by_visual_character(c.first.text_);
           cnt += chars.size();
         }
         q.pop();
@@ -90,7 +90,7 @@ TextField& TextField::insert_char(const std::string& c) {
       while (!q.empty()) {
         for (const auto& span_element : q.front().contents_) {
           auto chars =
-              __krow__::split_by_visual_character(span_element.first.text_);
+              ::__krow__::split_by_visual_character(span_element.first.text_);
           for (const auto& vc : chars) {
             glyphs.push_back(vc.get_c());
           }
@@ -135,7 +135,7 @@ TextField& TextField::delete_char() {
       while (!q.empty()) {
         for (const auto& span_element : q.front().contents_) {
           auto chars =
-              __krow__::split_by_visual_character(span_element.first.text_);
+              ::__krow__::split_by_visual_character(span_element.first.text_);
           for (const auto& vc : chars) {
             glyphs.push_back(vc.get_c());
           }
@@ -167,9 +167,9 @@ TextField& TextField::delete_char() {
 
 void TextField::draw() {
   const int l = rect.x;
-  const int w = (rect.w == FULL) ? __krow__::screen.width() : rect.w;
+  const int w = (rect.w == FULL) ? ::__krow__::screen.width() : rect.w;
   const int t = rect.y;
-  const int h = (rect.h == FULL) ? __krow__::screen.height() : rect.h;
+  const int h = (rect.h == FULL) ? ::__krow__::screen.height() : rect.h;
   if (w < 1 || h < 1) {
     return;
   }
@@ -182,20 +182,20 @@ void TextField::draw() {
     const int cy = t + screen_y;
 
     for (int sx = 0; sx < w; ++sx) {
-      __krow__::screen.put(cy, l + sx, {" ", text_style_});
+      ::__krow__::screen.put(cy, l + sx, {" ", text_style_});
     }
 
     if (data_y >= contents_.size()) {
       continue;
     }
 
-    std::vector<__krow__::VisualChar> all_vchars;
+    std::vector<::__krow__::VisualChar> all_vchars;
     for (const auto& row : contents_[data_y].contents_) {
       auto process_queue = [&](std::queue<Line> q) {
         while (!q.empty()) {
           for (const auto& span_item : q.front().contents_) {
             auto v_chars =
-                __krow__::split_by_visual_character(span_item.first.text_);
+                ::__krow__::split_by_visual_character(span_item.first.text_);
             for (auto& vc : v_chars) {
               all_vchars.push_back(vc);
             }
@@ -227,14 +227,15 @@ void TextField::draw() {
       const krow::style::Style final_style =
           is_cursor ? cursor_style_ : text_style_;
 
-      __krow__::screen.put(cy, l + current_screen_x, {vc.get_c(), final_style});
+      ::__krow__::screen.put(cy, l + current_screen_x,
+                             {vc.get_c(), final_style});
       current_screen_x += vc.get_width();
     }
 
     if (data_y == cursor_y && cursor_x == static_cast<int>(all_vchars.size())) {
       const int screen_x = cursor_x - offset_x;
       if (screen_x >= 0 && screen_x < w) {
-        __krow__::screen.put(cy, l + screen_x, {" ", cursor_style_});
+        ::__krow__::screen.put(cy, l + screen_x, {" ", cursor_style_});
       }
     }
   }

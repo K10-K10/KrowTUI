@@ -1,6 +1,7 @@
 #ifndef INCLUDE_LINE_LINE_H_
 #define INCLUDE_LINE_LINE_H_
 
+#include <K10-K10/core/screen.h>
 #include <K10-K10/style/alignment.h>
 #include <K10-K10/style/style.h>
 
@@ -118,6 +119,12 @@ inline Line operator+(const Span& lhs, const Span& rhs) {
 inline Span operator"" _s(const char* str, std::size_t len) {
   return Span(std::string(str, len));
 }
+
+// namespace __krow__ {
+
+// void draw_line() {}
+
+// }  // namespace __krow__
 
 }  // namespace krow
 

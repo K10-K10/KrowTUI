@@ -20,7 +20,10 @@ class List : public Object {
     return *this;
   }
 
-  List& items(std::vector<Text> items);
+  List& items(const std::vector<Text>& items) {
+    items_ = items;
+    return *this;
+  }
   const std::vector<Text>& items() const { return items_; }
 
   List& add_item(const Text& s);

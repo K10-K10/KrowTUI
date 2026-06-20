@@ -53,29 +53,29 @@ int List::selected_index() const { return selected_; }
 
 void List::draw() {
   int l = rect.x;
-  const int w = (rect.w == FULL) ? __krow__::screen.width() : rect.w;
+  const int w = (rect.w == FULL) ? ::__krow__::screen.width() : rect.w;
   const int t = rect.y;
-  int h = (rect.h == FULL) ? __krow__::screen.height() : rect.h;
+  int h = (rect.h == FULL) ? ::__krow__::screen.height() : rect.h;
 
   if (w < 2 || h < 2) {
     return;
   }
-  if (l >= __krow__::screen.width() || t >= __krow__::screen.height()) {
+  if (l >= ::__krow__::screen.width() || t >= ::__krow__::screen.height()) {
     return;
   }
 
-  if (t + h > __krow__::screen.height()) {
-    h = __krow__::screen.height() - t;
+  if (t + h > ::__krow__::screen.height()) {
+    h = ::__krow__::screen.height() - t;
   }
 
   const int max_items = items_.size();
-  int selector_width = __krow__::get_visual_width(selector_symbol_);
+  int selector_width = ::__krow__::get_visual_width(selector_symbol_);
   int max_text_width = w - selector_width;
 
   for (int i = 0; i < h; ++i) {
     const int idx = draw_index_num_ + i;
     int cy = t + i;
-    if (cy >= __krow__::screen.height()) {
+    if (cy >= ::__krow__::screen.height()) {
       break;
     }
 
@@ -83,46 +83,46 @@ void List::draw() {
     const bool selected = (has_item && idx == selected_);
     int current_sel_w = 0;
     if (selected) {
-      auto sel_chars = __krow__::split_by_visual_character(selector_symbol_);
+      auto sel_chars = ::__krow__::split_by_visual_character(selector_symbol_);
       for (const auto& vc : sel_chars) {
         if (current_sel_w + vc.get_width() > selector_width) {
           break;
         }
 
-        if (l + current_sel_w >= __krow__::screen.width()) {
+        if (l + current_sel_w >= ::__krow__::screen.width()) {
           break;
         }
 
-        __krow__::Cell sel_cell;
+        ::__krow__::Cell sel_cell;
         sel_cell.c = vc.get_c();
         sel_cell.style = selector_style_;
-        __krow__::screen.put(cy, l + current_sel_w, sel_cell);
+        ::__krow__::screen.put(cy, l + current_sel_w, sel_cell);
 
         current_sel_w += vc.get_width();
       }
     }
 
     while (current_sel_w < selector_width) {
-      if (l + current_sel_w >= __krow__::screen.width()) {
+      if (l + current_sel_w >= ::__krow__::screen.width()) {
         break;
       }
-      __krow__::Cell blank_sel_cell;
+      ::__krow__::Cell blank_sel_cell;
       blank_sel_cell.c = " ";
       blank_sel_cell.style = contents_style_;
-      __krow__::screen.put(cy, l + current_sel_w, blank_sel_cell);
+      ::__krow__::screen.put(cy, l + current_sel_w, blank_sel_cell);
       current_sel_w++;
     }
 
     const krow::style::Style current_bg_style =
         selected ? highlight_style_ : contents_style_;
     for (int tx = 0; tx < max_text_width; ++tx) {
-      if (l + selector_width + tx >= __krow__::screen.width()) {
+      if (l + selector_width + tx >= ::__krow__::screen.width()) {
         break;
       }
-      __krow__::Cell bg_cell;
+      ::__krow__::Cell bg_cell;
       bg_cell.c = " ";
       bg_cell.style = current_bg_style;
-      __krow__::screen.put(cy, l + selector_width + tx, bg_cell);
+      ::__krow__::screen.put(cy, l + selector_width + tx, bg_cell);
     }
     if (has_item) {
       Text& item_text = items_[idx];
@@ -148,26 +148,26 @@ void List::draw() {
 
           int text_len = 0;
           for (const auto& c : merged_line.contents_) {
-            text_len += __krow__::get_visual_width(c.first.text_);
+            text_len += ::__krow__::get_visual_width(c.first.text_);
           }
 
           const int text_left_bound = l + selector_width;
           int text_right_bound = text_left_bound + max_text_width - 1;
 
-          if (text_right_bound >= __krow__::screen.width()) {
-            text_right_bound = __krow__::screen.width() - 1;
+          if (text_right_bound >= ::__krow__::screen.width()) {
+            text_right_bound = ::__krow__::screen.width() - 1;
           }
 
-          int start_ = __krow__::calc_alignment(
+          int start_ = ::__krow__::calc_alignment(
               align, {text_left_bound, text_right_bound}, text_len);
 
           for (const auto& l_element : merged_line.contents_) {
             auto v_chars =
-                __krow__::split_by_visual_character(l_element.first.text_);
+                ::__krow__::split_by_visual_character(l_element.first.text_);
 
             for (const auto& vc : v_chars) {
               if (start_ > text_right_bound ||
-                  start_ >= __krow__::screen.width()) {
+                  start_ >= ::__krow__::screen.width()) {
                 break;
               }
               if (start_ < 0) {
@@ -175,11 +175,11 @@ void List::draw() {
                 continue;
               }
 
-              __krow__::Cell text_cell;
+              ::__krow__::Cell text_cell;
               text_cell.c = vc.get_c();
               text_cell.style = l_element.first.style_val;
 
-              __krow__::screen.put(cy, start_, text_cell);
+              ::__krow__::screen.put(cy, start_, text_cell);
               start_ += vc.get_width();
             }
           }
