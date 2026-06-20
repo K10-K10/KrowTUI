@@ -27,10 +27,10 @@ class Screen {
   explicit Screen() = default;
   int width() const;
   int height() const;
+  void put(int x, int y, const Cell& c);
 
  private:
   void clear();
-  void put(int x, int y, const Cell& c);
   void resize(int w, int h);
 
   std::vector<Cell> current, next;

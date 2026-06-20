@@ -1,4 +1,3 @@
-#include <K10-K10/core/drawObj.h>
 #include <K10-K10/core/screen.h>
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/line/line.h>
@@ -36,31 +35,31 @@ void Block::draw() {
 
   for (int x = l; x <= r; ++x) {
     if (has_top) {
-      __krow__::DrawObj::put(t, x, {s.h, border_style_});
+      __krow__::screen.put(t, x, {s.h, border_style_});
     }
     if (has_bottom) {
-      __krow__::DrawObj::put(b, x, {s.h, border_style_});
+      __krow__::screen.put(b, x, {s.h, border_style_});
     }
   }
   for (int y = t; y <= b; ++y) {
     if (has_left) {
-      __krow__::DrawObj::put(y, l, {s.v, border_style_});
+      __krow__::screen.put(y, l, {s.v, border_style_});
     }
     if (has_right) {
-      __krow__::DrawObj::put(y, r, {s.v, border_style_});
+      __krow__::screen.put(y, r, {s.v, border_style_});
     }
   }
   if (has_top && has_left) {
-    __krow__::DrawObj::put(t, l, {s.tl, border_style_});
+    __krow__::screen.put(t, l, {s.tl, border_style_});
   }
   if (has_top && has_right) {
-    __krow__::DrawObj::put(t, r, {s.tr, border_style_});
+    __krow__::screen.put(t, r, {s.tr, border_style_});
   }
   if (has_bottom && has_left) {
-    __krow__::DrawObj::put(b, l, {s.bl, border_style_});
+    __krow__::screen.put(b, l, {s.bl, border_style_});
   }
   if (has_bottom && has_right) {
-    __krow__::DrawObj::put(b, r, {s.br, border_style_});
+    __krow__::screen.put(b, r, {s.br, border_style_});
   }
 
   if (!title_.empty()) {
@@ -93,7 +92,7 @@ void Block::draw() {
             if (start_ > r - 1) {
               break;
             }
-            __krow__::DrawObj::put(t, start_, {vc.get_c(), l.first.style_val});
+            __krow__::screen.put(t, start_, {vc.get_c(), l.first.style_val});
             start_ += vc.get_width();
           }
         }

@@ -1,4 +1,3 @@
-#include <K10-K10/core/drawObj.h>
 #include <K10-K10/core/screen.h>
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/line/line.h>
@@ -15,19 +14,6 @@
 #include <vector>
 
 namespace krow {
-List& List::position(const Rect& r) {
-  rect = r;
-  return *this;
-}
-
-List& List::items(std::vector<Text> items) {
-  items_ = std::move(items);
-  selected_ = 0;
-  return *this;
-}
-
-const std::vector<Text>& List::items() const { return items_; }
-
 List& List::add_item(const Text& s) {
   items_.push_back(s);
   return *this;
@@ -110,7 +96,7 @@ void List::draw() {
         __krow__::Cell sel_cell;
         sel_cell.c = vc.get_c();
         sel_cell.style = selector_style_;
-        __krow__::DrawObj::put(cy, l + current_sel_w, sel_cell);
+        __krow__::screen.put(cy, l + current_sel_w, sel_cell);
 
         current_sel_w += vc.get_width();
       }
@@ -123,7 +109,7 @@ void List::draw() {
       __krow__::Cell blank_sel_cell;
       blank_sel_cell.c = " ";
       blank_sel_cell.style = contents_style_;
-      __krow__::DrawObj::put(cy, l + current_sel_w, blank_sel_cell);
+      __krow__::screen.put(cy, l + current_sel_w, blank_sel_cell);
       current_sel_w++;
     }
 
@@ -136,7 +122,7 @@ void List::draw() {
       __krow__::Cell bg_cell;
       bg_cell.c = " ";
       bg_cell.style = current_bg_style;
-      __krow__::DrawObj::put(cy, l + selector_width + tx, bg_cell);
+      __krow__::screen.put(cy, l + selector_width + tx, bg_cell);
     }
     if (has_item) {
       Text& item_text = items_[idx];
@@ -193,7 +179,7 @@ void List::draw() {
               text_cell.c = vc.get_c();
               text_cell.style = l_element.first.style_val;
 
-              __krow__::DrawObj::put(cy, start_, text_cell);
+              __krow__::screen.put(cy, start_, text_cell);
               start_ += vc.get_width();
             }
           }

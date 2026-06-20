@@ -1,4 +1,3 @@
-#include <K10-K10/core/drawObj.h>
 #include <K10-K10/core/screen.h>
 #include <K10-K10/layout/rect.h>
 #include <K10-K10/line/line.h>
@@ -183,7 +182,7 @@ void TextField::draw() {
     const int cy = t + screen_y;
 
     for (int sx = 0; sx < w; ++sx) {
-      __krow__::DrawObj::put(cy, l + sx, {" ", text_style_});
+      __krow__::screen.put(cy, l + sx, {" ", text_style_});
     }
 
     if (data_y >= contents_.size()) {
@@ -228,15 +227,14 @@ void TextField::draw() {
       const krow::style::Style final_style =
           is_cursor ? cursor_style_ : text_style_;
 
-      __krow__::DrawObj::put(cy, l + current_screen_x,
-                             {vc.get_c(), final_style});
+      __krow__::screen.put(cy, l + current_screen_x, {vc.get_c(), final_style});
       current_screen_x += vc.get_width();
     }
 
     if (data_y == cursor_y && cursor_x == static_cast<int>(all_vchars.size())) {
       const int screen_x = cursor_x - offset_x;
       if (screen_x >= 0 && screen_x < w) {
-        __krow__::DrawObj::put(cy, l + screen_x, {" ", cursor_style_});
+        __krow__::screen.put(cy, l + screen_x, {" ", cursor_style_});
       }
     }
   }
