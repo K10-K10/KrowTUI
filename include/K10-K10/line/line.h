@@ -41,6 +41,8 @@ struct Span {
   style::Style style_val = style::Default();
 };
 
+Text operator+(const Text& lhs, const Span& rhs);
+Text operator+(const Text& lhs, const Line& rhs);
 struct Line {
  public:
   Line() = default;
@@ -100,6 +102,8 @@ struct Line {
   friend class Block;
   friend class List;
   friend Text;
+  friend Text operator+(const Text& lhs, const Span& rhs);
+  friend Text operator+(const Text& lhs, const Line& rhs);
 
   static Line merged_queue(std::queue<Line>& q);
   void draw_line(const Rect& r, style::alignment al);

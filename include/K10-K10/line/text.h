@@ -10,6 +10,12 @@ namespace krow {
 class TextField;
 class Block;
 class List;
+
+struct Text;
+
+Text operator+(const Text& lhs, const Span& rhs);
+Text operator+(const Text& lhs, const Line& rhs);
+
 struct Text {
  private:
   struct line {
@@ -34,12 +40,15 @@ struct Text {
   }
 
  private:
+  friend Text operator+(const Text& lhs, const Line& rhs);
+  friend Text operator+(const Text& lhs, const Line& rhs);
   friend class TextField;
   friend class Block;
   friend class List;
   std::vector<line> contents_;
   int current_ = 0;
 };
+
 }  // namespace krow
 
 #endif
