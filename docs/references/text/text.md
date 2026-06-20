@@ -40,12 +40,15 @@ krow::Line line = "Hello, "_s + "World!"_s;
 
 You also can call `break_ln()` method to break a line into multiple lines.
 
+> [!WARNING]
+> `break_ln()` does not work currently.
+
 So if you write:
 
 ```cpp
 krow::Line line = "This is first line."_s;
 krow::Line line2 = "This is second line."_s;
-krow::Text text = line.break_ln() + line2;
+krow::Text text = line + line2;
 ```
 
 it will be rendered as:
@@ -55,7 +58,7 @@ This is first line.
 This is second line.
 ```
 
-You may already notice that `Line` and `Span` can be concatenated with `operator+`, and `Line` can be broken into multiple lines with `break_ln()`. These operators and methods are provided for convenience, and they will create new `Line` and `Span` objects as needed.
+You may already notice that `Line` and `Span` can be concatenated with `operator+`, which will create a new `Line` or `Text` object with the concatenated `Span`s or `Line`s.
 
 ## Text
 
@@ -66,7 +69,7 @@ e.g.
 ```cpp
 krow::Line line1 = "This is first line."_s + "This is second line."_s;
 krow::Line line2 = "This is third line."_s;
-krow::Text text = line1.break_ln() + line2;
+krow::Text text = line1 + line2;
 ```
 
 ### Alignment
@@ -76,7 +79,7 @@ You can set the alignment of the text by calling `align_center()`, `align_left()
 Default alignment is left-aligned. You can also set the alignment of a `Line` or `Span` object, and the alignment will be inherited by the `Text` object.
 
 ```cpp
-krow::Text text = "This is first line."_s.break_ln().align_center() + "This is second line."_s;
+krow::Text text = "This is first line."_s.align_center() + "This is second line."_s;
 ```
 
 This will center-align the text.
@@ -88,7 +91,7 @@ This will center-align the text.
 
 int main() {
     krow::app.init();
-    krow::Text text = "Hello world!"_s.break_ln().align_center() + "This is a TUI library."_s.align_left().break_ln() + "Enjoy it!"_s.align_right();
+    krow::Text text = "Hello world!"_s.align_center() + "This is a TUI library."_s.align_left() + "Enjoy it!"_s.align_right();
     TextField textfield;
     textfield.position({1, 1, 30, 10})
         .field_color(krow::utils::FillColor::Blue)
