@@ -99,6 +99,7 @@ int main() {
 - [Examples](docs/examples.md)
 - [Points to Note](docs/points.md)
 - [Samples](docs/samples.md)
+- [Changelog](docs/changelog.md)
 
 ## License
 
