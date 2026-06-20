@@ -73,6 +73,8 @@ krow::Text text = line1.break_ln() + line2;
 
 You can set the alignment of the text by calling `align_center()`, `align_left()`, or `align_right()` methods on a `Text` object.
 
+Default alignment is left-aligned. You can also set the alignment of a `Line` or `Span` object, and the alignment will be inherited by the `Text` object.
+
 ```cpp
 krow::Text text = "This is first line."_s.break_ln().align_center() + "This is second line."_s;
 ```
