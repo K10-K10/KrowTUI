@@ -9,7 +9,6 @@
 
 #include <cstddef>
 #include <queue>
-#include <string>
 
 void krow::Block::draw() {
   int l = rect.x;
@@ -82,19 +81,10 @@ void krow::Block::draw() {
           title_len += ::__krow__::get_visual_width(c.first.text_);
         }
 
-        int start_ =
+        const int start_ =
             ::__krow__::calc_alignment(align, {l + 1, r - 1}, title_len);
-        for (const auto& l : merged_line.contents_) {
-          auto v_chars = ::__krow__::split_by_visual_character(l.first.text_);
 
-          for (const auto& vc : v_chars) {
-            if (start_ > r - 1) {
-              break;
-            }
-            ::__krow__::screen.put(t, start_, {vc.get_c(), l.first.style_val});
-            start_ += vc.get_width();
-          }
-        }
+        merged_line.draw_line({start_, t, (r - 1) - start_ + 1, 1}, align);
       };
 
       draw_alignment(row.left, style::alignment::LEFT);

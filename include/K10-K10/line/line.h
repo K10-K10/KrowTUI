@@ -1,15 +1,15 @@
 #ifndef INCLUDE_LINE_LINE_H_
 #define INCLUDE_LINE_LINE_H_
 
-#include <K10-K10/core/screen.h>
+#include <K10-K10/layout/rect.h>
 #include <K10-K10/style/alignment.h>
 #include <K10-K10/style/style.h>
 
 #include <cstddef>
+#include <queue>
 #include <string>
 #include <utility>
 #include <vector>
-
 namespace krow {
 
 class TextField;
@@ -45,18 +45,23 @@ struct Line {
  public:
   Line() = default;
 
-  Line(const Span& span) { contents_.push_back({span, al_}); }
+  Line(const Span& span) {
+    contents_.push_back({span, al_});
+    length = span.text_.size();
+  }
 
-  Line operator+(const Span& as) const {
+  Line operator+(const Span& as) {
     Line result = *this;
     result.contents_.push_back({as, al_});
+    length += as.text_.size();
     return result;
   }
 
-  Line operator+(const Line& rhs) const {
+  Line operator+(const Line& rhs) {
     Line result = *this;
     for (size_t i = 0; i < rhs.contents_.size(); ++i) {
       result.contents_.push_back(rhs.contents_[i]);
+      length += rhs.contents_[i].first.text_.size();
     }
     return result;
   }
@@ -96,6 +101,8 @@ struct Line {
   friend class List;
   friend Text;
 
+  static Line merged_queue(std::queue<Line>& q);
+  void draw_line(const Rect& r, style::alignment al);
   bool get_break() const { return break_; }
   std::vector<std::pair<Span, style::alignment>> get_contents() {
     return contents_;
@@ -105,6 +112,7 @@ struct Line {
  private:
   style::alignment al_ = style::alignment::LEFT;
   bool break_ = false;
+  int length = 0;
   std::vector<std::pair<Span, style::alignment>> contents_;
   friend Line operator+(const Span& lhs, const Span& rhs);
 };
@@ -113,18 +121,14 @@ inline Line operator+(const Span& lhs, const Span& rhs) {
   Line line;
   line.contents_.push_back({lhs, style::alignment::LEFT});
   line.contents_.push_back({rhs, style::alignment::LEFT});
+  line.length += lhs.text_.size();
+  line.length += rhs.text_.size();
   return line;
 }
 
 inline Span operator"" _s(const char* str, std::size_t len) {
   return Span(std::string(str, len));
 }
-
-// namespace __krow__ {
-
-// void draw_line() {}
-
-// }  // namespace __krow__
 
 }  // namespace krow
 
