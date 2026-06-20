@@ -3,7 +3,6 @@
 #include <K10-K10/style/alignment.h>
 
 #include <cstddef>
-#include <vector>
 
 krow::Text::Text(const Line& new_) {
   contents_.resize(1);
@@ -29,83 +28,39 @@ krow::Text::Text(const Line& new_) {
 krow::Text& krow::Text::operator=(const Line& new_) {
   contents_.clear();
   current_ = 0;
+
   contents_.resize(1);
 
-  Line left_accum, center_accum, right_accum;
+  Line left, center, right;
 
   for (size_t i = 0; i < new_.contents_.size(); ++i) {
-    const auto& item = new_.contents_[i];
-
-    switch (item.second) {
+    switch (new_.contents_[i].second) {
       case krow::style::alignment::LEFT:
-        left_accum.contents_.push_back(item);
+        left = left + new_.contents_[i].first;
         break;
       case krow::style::alignment::CENTER:
-        center_accum.contents_.push_back(item);
+        center = center + new_.contents_[i].first;
         break;
       case krow::style::alignment::RIGHT:
-        right_accum.contents_.push_back(item);
+        right = right + new_.contents_[i].first;
         break;
       default:
         break;
     }
-    if (i == new_.contents_.size() - 1 || new_.break_) {
-      if (!left_accum.contents_.empty())
-        contents_[current_].left.push(left_accum);
-      if (!center_accum.contents_.empty())
-        contents_[current_].center.push(center_accum);
-      if (!right_accum.contents_.empty())
-        contents_[current_].right.push(right_accum);
-
-      left_accum.contents_.clear();
-      center_accum.contents_.clear();
-      right_accum.contents_.clear();
-
-      if (new_.break_ && i < new_.contents_.size() - 1) {
-        ++current_;
-        contents_.resize(current_ + 1);
-      }
+    if (contents_.size() <= current_) {
+      contents_.resize(current_ + 1);
     }
-  }
 
+    contents_[current_].left.push(left);
+    contents_[current_].center.push(center);
+    contents_[current_].right.push(right);
+
+    if (new_.break_) {
+      ++current_;
+      contents_.resize(current_ + 1);
+    }
+
+    return *this;
+  }
   return *this;
-}
-
-krow::Text krow::operator+(const krow::Text& lhs, const krow::Line& rhs) {
-  krow::Text text = lhs;
-
-  if (text.contents_.empty()) {
-    text.contents_.resize(1);
-    text.current_ = 0;
-  }
-
-  krow::Text::line& current_line = text.contents_[text.current_];
-
-  Line left_accum, center_accum, right_accum;
-  for (const auto& item : rhs.contents_) {
-    switch (item.second) {
-      case krow::style::alignment::LEFT:
-        left_accum.contents_.push_back(item);
-        break;
-      case krow::style::alignment::CENTER:
-        center_accum.contents_.push_back(item);
-        break;
-      case krow::style::alignment::RIGHT:
-        right_accum.contents_.push_back(item);
-        break;
-      default:
-        break;
-    }
-  }
-
-  if (!left_accum.contents_.empty()) current_line.left.push(left_accum);
-  if (!center_accum.contents_.empty()) current_line.center.push(center_accum);
-  if (!right_accum.contents_.empty()) current_line.right.push(right_accum);
-
-  if (rhs.break_) {
-    text.contents_.resize(text.contents_.size() + 1);
-    text.current_ = text.contents_.size() - 1;
-  }
-
-  return text;
 }

@@ -189,88 +189,53 @@ void TextField::draw() {
       continue;
     }
 
+    std::vector<::__krow__::VisualChar> all_vchars;
     for (const auto& row : contents_[data_y].contents_) {
-      auto process_queue = [](std::queue<Line> q,
-                              std::vector<::__krow__::VisualChar>& vchars) {
-        std::queue<Line> temp_q = q;
-        while (!temp_q.empty()) {
-          for (const auto& span_item : temp_q.front().contents_) {
+      auto process_queue = [&](std::queue<Line> q) {
+        while (!q.empty()) {
+          for (const auto& span_item : q.front().contents_) {
             auto v_chars =
                 ::__krow__::split_by_visual_character(span_item.first.text_);
             for (auto& vc : v_chars) {
-              vchars.push_back(vc);
+              all_vchars.push_back(vc);
             }
           }
-          temp_q.pop();
+          q.pop();
         }
       };
+      process_queue(row.left);
+      process_queue(row.center);
+      process_queue(row.right);
+    }
 
-      std::vector<::__krow__::VisualChar> left_chars, center_chars, right_chars;
-      process_queue(row.left, left_chars);
-      process_queue(row.center, center_chars);
-      process_queue(row.right, right_chars);
+    const int current_visual_x = 0;
+    int current_screen_x = 0;
+    for (size_t glyph_idx = 0; glyph_idx < all_vchars.size(); ++glyph_idx) {
+      const auto& vc = all_vchars[glyph_idx];
 
-      auto calc_total_width =
-          [](const std::vector<::__krow__::VisualChar>& vchars) {
-            int tw = 0;
-            for (const auto& vc : vchars) tw += vc.get_width();
-            return tw;
-          };
+      if (static_cast<int>(glyph_idx) < offset_x) {
+        continue;
+      }
 
-      int left_w = calc_total_width(left_chars);
-      int center_w = calc_total_width(center_chars);
-      int right_w = calc_total_width(right_chars);
+      if (current_screen_x >= w) {
+        break;
+      }
 
-      int start_left = 0;
-      int start_center = (w - center_w) / 2;
-      int start_right = w - right_w;
+      const bool is_cursor =
+          (static_cast<int>(glyph_idx) == cursor_x && data_y == cursor_y);
 
-      int global_glyph_idx = 0;
+      const krow::style::Style final_style =
+          is_cursor ? cursor_style_ : text_style_;
 
-      auto draw_section = [&](const std::vector<::__krow__::VisualChar>& chars,
-                              int section_start_x) {
-        int current_screen_x = section_start_x;
+      ::__krow__::screen.put(cy, l + current_screen_x,
+                             {vc.get_c(), final_style});
+      current_screen_x += vc.get_width();
+    }
 
-        for (size_t i = 0; i < chars.size(); ++i) {
-          const auto& vc = chars[i];
-
-          if (current_screen_x < 0) {
-            current_screen_x += vc.get_width();
-            global_glyph_idx++;
-            continue;
-          }
-          if (current_screen_x >= w) {
-            global_glyph_idx++;
-            break;
-          }
-
-          const bool is_cursor =
-              (global_glyph_idx == cursor_x && data_y == cursor_y);
-          const krow::style::Style final_style =
-              is_cursor ? cursor_style_ : text_style_;
-
-          ::__krow__::screen.put(cy, l + current_screen_x - offset_x,
-                                 {vc.get_c(), final_style});
-
-          current_screen_x += vc.get_width();
-          global_glyph_idx++;
-        }
-      };
-
-      draw_section(left_chars, start_left);
-      draw_section(center_chars, start_center);
-      draw_section(right_chars, start_right);
-
-      int total_glyphs =
-          left_chars.size() + center_chars.size() + right_chars.size();
-      if (data_y == cursor_y && cursor_x == total_glyphs) {
-        int cursor_screen_x = left_w - offset_x;
-        if (center_w > 0) cursor_screen_x = start_center + center_w - offset_x;
-        if (right_w > 0) cursor_screen_x = start_right + right_w - offset_x;
-
-        if (cursor_screen_x >= 0 && cursor_screen_x < w) {
-          ::__krow__::screen.put(cy, l + cursor_screen_x, {" ", cursor_style_});
-        }
+    if (data_y == cursor_y && cursor_x == static_cast<int>(all_vchars.size())) {
+      const int screen_x = cursor_x - offset_x;
+      if (screen_x >= 0 && screen_x < w) {
+        ::__krow__::screen.put(cy, l + screen_x, {" ", cursor_style_});
       }
     }
   }
