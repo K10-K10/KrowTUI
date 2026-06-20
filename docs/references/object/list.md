@@ -3,35 +3,31 @@ version: 0.2.0
 date: 19/06/2026
 ---
 
-
 # List
 
-`List` is an object that displays a scrollable or selectable list of string items in the terminal. It supports item selection, custom cursor symbols, and comprehensive style configurations for fields, highlights, and selectors.
+`List` is an object that displays a scrollable or selectable list of items in the terminal. It supports item selection, custom cursor symbols, and comprehensive style configurations via `style::Style` structures.
 
 ## Methods
 
 - [`position(rect)`](#1-positionrect): Sets the position and size of the list.
 - [`items(items)`](#2-itemsitems): Sets the entire list of items at once.
 - [`items()`](#3-items): Returns a reference to the current list of items.
-- [`add_item(string)`](#4-add_itemstring): Appends a single item to the end of the list.
-- [`selected_item()`](#5-selected_item): Returns the text of the currently selected item.
-- [`move_up()`](#6-move_up): Moves the selection cursor up by one item.
-- [`move_down()`](#7-move_down): Moves the selection cursor down by one item.
-- [`selected_index()`](#8-selected_index): Returns the 0-based index of the currently selected item.
-- [`draw()`](#9-draw): Draws the list on the terminal with the configured items and styles.
+- [`add_item(text)`](#4-add_itemtext): Appends a single item to the end of the list.
+- [`clear()`](#5-clear): Clears all items from the list.
+- [`selected_item()`](#6-selected_item): Returns the `Text` object of the currently selected item.
+- [`move_up()`](#7-move_up): Moves the selection cursor up by one item.
+- [`move_down()`](#8-move_down): Moves the selection cursor down by one item.
+- [`selected_index()`](#9-selected_index): Returns the 0-based index of the currently selected item.
+- [`draw()`](#10-draw): Draws the list on the terminal with the configured items and styles.
 
-## Styles (Method Chaining)
+### Styles & Visuals (Method Chaining)
 
 The `List` object provides chainable methods to customize its visual appearance:
 
-- [`selector(symbol)`](#10-selectorsymbol): Sets the selection indicator prefix (Default: `">"`).
-- [`field_color(bg)`](#11-field_colorbg): Sets the background color of the list field.
-- [`text_color(fg)`](#12-text_colorfg): Sets the text color of unselected items.
-- [`selector_color(fg)`](#13-selector_colorfg): Sets the color of the selector symbol.
-- [`highlight_bg(bg)`](#14-highlight_bgbg): Sets the background color for the currently selected item.
-- [`highlight_fg(fg)`](#15-highlight_fgfg): Sets the text color for the currently selected item.
-
-*Note: Color methods accept either `int` values or enum values from `utils::FillColor` / `utils::TextColor`.*
+- [`selector_symbol(symbol)`](#11-selector_symbolsymbol): Sets the selection indicator prefix (Default: `">"`).
+- [`contents_style(style)`](#12-contents_stylestyle): Sets the general style (text and background) for unselected items.
+- [`selector_style(style)`](#13-selector_stylestyle): Sets the style for the active selector symbol.
+- [`highlight_style(style)`](#14-highlight_stylestyle): Sets the style for the currently selected item.
 
 ## Example
 
@@ -44,13 +40,20 @@ int main() {
   krow::List list;
   krow::Rect rect{2, 2, 20, 5}; // x, y, width, height
   
+  // Custom styles
+  krow::style::Style standard_style;
+  standard_style.fg(krow::utils::TextColor::White);
+  
+  krow::style::Style select_style;
+  select_style.bg(krow::utils::FillColor::Blue).fg(krow::utils::TextColor::White);
+
   // Method chaining setup
   list.position(rect)
-      .items({"Option 1", "Option 2", "Option 3"})
-      .add_item("Option 4")
-      .selector("->")
-      .text_color(krow::utils::TextColor::White)
-      .highlight_bg(krow::utils::FillColor::Blue);
+      .items({krow::Text("Option 1"), krow::Text("Option 2")})
+      .add_item(krow::Text("Option 3"))
+      .selector_symbol("->")
+      .contents_style(standard_style)
+      .highlight_style(select_style);
 
   krow::app.loop([&]() {
     list.draw();
@@ -64,7 +67,11 @@ int main() {
       list.move_down();
     }
   });
+  
+  krow::app.stop();
+  return 0;
 }
+
 ```
 
 ## Methods Details
@@ -73,178 +80,170 @@ int main() {
 
 ```c++
 List& position(const Rect& r);
+
 ```
 
-- __Arguments__: `r: const krow::Rect&` (A Rect object defining the list's bounding box)
-
-- __Return__: `List&` (Reference to the current object for method chaining)
+- **Arguments**: `r: const krow::Rect&` (A `Rect` object defining the list's bounding box)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
 Sets the position and size of the list.
 
 ### 2. items(items)
 
 ```c++
-List& items(std::vector<std::string> items);
+List& items(std::vector<Text> items);
+
 ```
 
-- __Arguments__: `items: std::vector<std::string>` (A vector of strings to populate the list)
+- **Arguments**: `items: std::vector<krow::Text>` (A vector of `Text` structures to populate the list)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
-- __Return__: List& (Reference to the current object for method chaining)
-
-Replaces the current list items with the provided vector of strings.
+Replaces the current list items with the provided vector of `Text` objects.
 
 ### 3. items()
 
 ```c++
-const std::vector<std::string>& items() const;
+const std::vector<Text>& items() const;
+
 ```
 
-- __Arguments__: None
-
-- __Return__: `const std::vector<std::string>&` (A constant reference to the internal items vector)
+- **Arguments**: None
+- **Return**: `const std::vector<krow::Text>&` (A constant reference to the internal items vector)
 
 Returns the entire collection of items currently stored in the list.
 
-### 4. add_item(string)
+### 4. add_item(text)
 
 ```c++
-List& add_item(const std::string& s);
+List& add_item(const Text& s);
+
 ```
 
-- __Arguments__: s: const std::string& (The text of the item to add)
+- **Arguments**: `s: const krow::Text&` (The `Text` structure of the item to add)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
-- __Return__: List& (Reference to the current object for method chaining)
+Appends a new `Text` item to the end of the list.
 
-Appends a new string item to the end of the list.
-
-### 5. selected_item()
+### 5. clear()
 
 ```c++
-const std::string selected_item() const;
+List& clear();
+
 ```
 
-- __Arguments__: None
+- **Arguments**: None
+- **Return**: `List&` (Reference to the current object for method chaining)
 
-- __Return__: const std::string (The text content of the selected item)
+Removes all elements from the internal list data structure.
 
-Returns the string content of the item that is currently highlighted/selected.
+### 6. selected_item()
 
-### 6. move_up()
+```c++
+Text selected_item() const;
+
+```
+
+- **Arguments**: None
+- **Return**: `krow::Text` (The `Text` structure of the selected item)
+
+Returns the `Text` content and styling of the item that is currently highlighted/selected.
+
+### 7. move_up()
 
 ```c++
 void move_up();
+
 ```
 
-- __Arguments__: None
-- __Return__: None
+- **Arguments**: None
+- **Return**: None
 
-Decrements the internal selection index to move the cursor up. This includes boundary checks to prevent underflow.
+Decrements the internal selection index to move the cursor up. Includes boundary checks to prevent underflow.
 
-### 7. move_down()
+### 8. move_down()
 
 ```c++
 void move_down();
+
 ```
 
-- __Arguments__: None
-- __Return__: None
+- **Arguments**: None
+- **Return**: None
 
-Increments the internal selection index to move the cursor down. This includes boundary checks based on the total number of items.
+Increments the internal selection index to move the cursor down. Includes boundary checks based on the total number of items.
 
-### 8. selected_index()
+### 9. selected_index()
 
 ```c++
 int selected_index() const;
+
 ```
 
-- __Arguments__: None
-
-- __Return__: int (The 0-based index of the active item)
+- **Arguments**: None
+- **Return**: `int` (The 0-based index of the active item)
 
 Returns the numeric index of the currently selected item.
 
-### 9. draw()
+### 10. draw()
 
 ```c++
 void draw() override;
+
 ```
 
-- __Arguments__: None
-- __Return__: None
+- **Arguments**: None
+- **Return**: None
 
-Overrides the Object::draw() method. Renders the entire list component, including the background, unselected text, the active selector symbol, and the highlighted item within the specified Rect boundary.
+Overrides the `Object::draw()` method. Renders the entire list component, including the background, unselected items, the active selector symbol, and the highlighted item within the specified `Rect` boundary.
 
-### Style Methods
+---
 
-### 10. selector(symbol)
+## Style Methods Details
+
+### 11. selector_symbol(symbol)
 
 ```c++
-List& selector(const std::string& symbol);
+List& selector_symbol(const std::string& symbol);
+
 ```
 
-- __Arguments__: `symbol: const std::string&` (The string to use as the selection indicator)
-- __Return__: List& (Reference to the current object for method chaining)
+- **Arguments**: `symbol: const std::string&` (The string to use as the selection indicator)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
 Sets the selection indicator prefix that appears before the currently selected item. The default symbol is `">"`.
 
-### 11. field_color(bg)
+### 12. contents_style(style)
 
 ```c++
-List& field_color(krow::Color bg);
-List& field_color(int bg);
+List& contents_style(const style::Style& s);
+
 ```
 
-- __Arguments__: `bg: krow::Color` / `int` (The color to use for the list's background field)
-- __Return__: List& (Reference to the current object for method chaining)
+- **Arguments**: `s: const krow::style::Style&` (The style configuration for standard list items)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
-Sets the background color of the list field.
+Sets the default foreground and background style for unselected items in the list.
 
-### 12. text_color(fg)
+### 13. selector_style(style)
 
 ```c++
-List& text_color(krow::Color fg);
-List& text_color(int fg);
+List& selector_style(const style::Style& s);
+
 ```
 
-- __Arguments__: `fg: krow::Color` / `int` (The color to use for unselected item text)
-- __Return__: List& (Reference to the current object for method chaining)
+- **Arguments**: `s: const krow::style::Style&` (The style configuration for the selector symbol)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
-Sets the text color for unselected items in the list.
+Sets the visual style applied to the active selector symbol.
 
-### 13. selector_color(fg)
+### 14. highlight_style(style)
 
 ```c++
-List& selector_color(krow::Color fg);
-List& selector_color(int fg);
+List& highlight_style(const style::Style& s);
+
 ```
 
-- __Arguments__: `fg: krow::Color` / `int` (The color to use for the selector symbol)
-- __Return__: List& (Reference to the current object for method chaining)
+- **Arguments**: `s: const krow::style::Style&` (The style configuration for the active item)
+- **Return**: `List&` (Reference to the current object for method chaining)
 
-Sets the color of the selector symbol that indicates the currently selected item.
-
-### 14. highlight_bg(bg)
-
-```c++
-List& highlight_bg(krow::Color bg);
-List& highlight_bg(int bg);
-```
-
-- __Arguments__: `bg: krow::Color` / `int` (The color to use
-for the background of the highlighted item)
-- __Return__: List& (Reference to the current object for method chaining)
-
-Sets the background color for the currently selected item in the list.
-
-### 15. highlight_fg(fg)
-
-```c++
-List& highlight_fg(krow::Color fg);
-List& highlight_fg(int fg);
-```
-
-- __Arguments__: `fg: krow::Color` / `int` (The color to use
-for the text of the highlighted item)
-- __Return__: List& (Reference to the current object for method chaining)
-
-Sets the text color for the currently selected item in the list.
+Sets the text and background style used exclusively for the currently highlighted item.
