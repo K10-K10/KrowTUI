@@ -11,13 +11,13 @@ add_library(krow
     src/K10-K10/style/color.cc
     src/K10-K10/style/style.cc
     src/K10-K10/app/app.cc
+    src/K10-K10/core/drawObj.cc
     src/K10-K10/core/render.cc
     src/K10-K10/core/screen.cc
     src/K10-K10/obj/block.cc
     src/K10-K10/obj/list.cc
     src/K10-K10/obj/input.cc
     src/K10-K10/line/text.cc
-    src/K10-K10/line/line.cc
     src/K10-K10/style/alignment.cc
 )
 

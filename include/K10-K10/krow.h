@@ -16,8 +16,8 @@
 #include <K10-K10/style/style.h>
 
 namespace krow {
-inline ::__krow__::Render render;
-inline ::__krow__::App app(render);
+inline __krow__::Render render;
+inline __krow__::App app(render);
 }  // namespace krow
 
 #endif

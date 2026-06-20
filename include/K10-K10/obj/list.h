@@ -15,17 +15,9 @@ class List : public Object {
  public:
   explicit List() = default;
   ~List() = default;
-  List& position(const Rect& r) {
-    rect = r;
-    return *this;
-  }
-
-  List& items(const std::vector<Text>& items) {
-    items_ = items;
-    return *this;
-  }
-  const std::vector<Text>& items() const { return items_; }
-
+  List& position(const Rect& r);
+  List& items(std::vector<Text> items);
+  const std::vector<Text>& items() const;
   List& add_item(const Text& s);
   List& clear() {
     items_.clear();

@@ -20,11 +20,7 @@ void Screen::resize(int w, int h) {
 
 void Screen::clear() { std::fill(next.begin(), next.end(), Cell{" "}); }
 
-void Screen::put(int x, int y, const Cell& c) {
-  if (x >= 0 && x < height_ && y >= 0 && y < width_) {
-    next[x * width_ + y] = c;
-  }
-}
+void Screen::put(int x, int y, const Cell& c) { next[y * width_ + x] = c; }
 
 __krow__::Screen screen;
 
