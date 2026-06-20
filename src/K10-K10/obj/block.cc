@@ -93,6 +93,36 @@ void krow::Block::draw() {
     }
 
     if (!bottom_title_.empty()) {
+      for (size_t i = 0; i < bottom_title_.contents_.size(); ++i) {
+        const auto& row = bottom_title_.contents_[i];
+        auto draw_alignment = [&](std::queue<Line> q, style::alignment align) {
+          if (q.empty()) {
+            return;
+          }
+          Line merged_line;
+          while (!q.empty()) {
+            const Line front_line = q.front();
+            q.pop();
+            for (const auto& item : front_line.contents_) {
+              merged_line.contents_.push_back(item);
+            }
+          }
+
+          int title_len = 0;
+          for (const auto& c : merged_line.contents_) {
+            title_len += ::__krow__::get_visual_width(c.first.text_);
+          }
+
+          const int start_ =
+              ::__krow__::calc_alignment(align, {l + 1, r - 1}, title_len);
+
+          merged_line.draw_line({start_, b, (r - 1) - start_ + 1, 1}, align);
+        };
+
+        draw_alignment(row.left, style::alignment::LEFT);
+        draw_alignment(row.center, style::alignment::CENTER);
+        draw_alignment(row.right, style::alignment::RIGHT);
+      }
     }
   }
 }
