@@ -32,4 +32,3 @@ body:
       placeholder: e.g., Code coverage remains above 90% and all tests pass.
     validations:
       required: false
-
