@@ -37,25 +37,29 @@ The `KeyCode` enum defines the key codes for various keys on the keyboard. Some 
 ```cpp
 #include <K10-K10/krow.h>
 
+using namespace krow;
 int main() {
-  krow::app.init();
+  app.init();
 
-  krow::Text text();
-  text.setText("Press ESC or q to exit.").setPosition(1, 1);
-  app.loop([&]{
+  TextField text;
+  text.contents({Line("Prease  ESC or q to exit."_s)}).position({0, 0, 30, 30});
+  app.loop([&] {
+    text.draw();
     input::key.read();
-    if (input::key.getKeyCode() == input::KeyCode::ESCAPE) {
+    auto key = input::key.getKeyCode();
+    if (key == input::KeyCode::ESC) {
       app.stop();
     }
-    if (input::key.getKeyCode() == input::KeyCode::CHAR) {
+    if (key == input::KeyCode::CHAR) {
       char c = input::key.getCurrentChar();
-      // Handle character input
       if (c == 'q') {
         app.stop();
       }
     }
-  })
+  });
+  return 0;
 }
+
 ```
 
 ## Methods Details
@@ -70,6 +74,7 @@ KeyCode getKeyCode();
 - __Returns__: The key code of the key event.
 
 Returns the key code of the key event, which can be used to determine which key was pressed or released.
+When you call this method, keyCode will be set to None. So you must set for variable to store the value of keyCode before calling this method.
 
 ### GetCurrentChar()
 
@@ -81,6 +86,7 @@ char getCurrentChar();
 - __Returns__: The character associated with the key event.
 
 Returns the character associated with the key event, which is useful for handling character input.
+When you call this method, the current char is set to None(`\0`). So you must set for variable to store the value of keyCode before calling this method.
 
 ### read()
 
