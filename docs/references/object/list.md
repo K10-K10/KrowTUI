@@ -1,6 +1,7 @@
 ---
 version: 0.3.0
 date: 20/06/2026
+namespace: krow
 ---
 
 # List
