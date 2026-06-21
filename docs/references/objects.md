@@ -21,7 +21,6 @@ Draws the object on the terminal at the specified for frame.
 
 ## Objects types
 
-- [Text](text.md): A text object that can render a static string label.
-- [Block](block.md): A block object that can render a rectangular area with a border
-- [List](list.md): A list object that can render a list of items with various styles.
-- [TextField](textfield.md): A text field object that can render dynamic content.
+- [Block](object/block.md): A block object that can render a rectangular area with a border
+- [List](object/list.md): A list object that can render a list of items with various styles.
+- [TextField](object/textfield.md): A text field object that can render dynamic content.

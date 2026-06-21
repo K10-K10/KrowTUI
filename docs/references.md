@@ -17,7 +17,7 @@ All functions are include in the `krow` namespace.
   - [List](references/object/list.md)
   - [TextField](references/object/textfield.md)
 - [Layout](references/layout.md)
-  - [Rect](references/rect.md)
+  - [Rect](references/layout/rect.md)
 - [Events](references/events.md)
   - [KeyEvent](references/events/keyevent.md)
   - ~~Cursor~~

@@ -1,6 +1,7 @@
 ---
 version: 0.3.0
-date: 20/06/2026
+date: 21/06/2026
+namespace: krow
 ---
 
 # Block
@@ -27,24 +28,18 @@ date: 20/06/2026
 #include <K10-K10/krow.h>
 
 int main() {
-    krow::app.init();
-    krow::Block block;
-    
-    // Configure block layout and border styles
-    block.position({1, 1, 20, 10})
-         .border_type(krow::style::SINGLE)
-         .borders(krow::style::Borders::ALL)
-         .border_color(krow::style::Color(krow::style::BasicColor::Red))
-         .field_color(krow::style::Color(krow::style::BasicColor::Blue));
+  krow::app.init();
+  krow::Block block;
 
-    krow::app.loop([&]() {
-        block.draw();
-    });
+  block.position({1, 1, 20, 10})
+      .border_style(krow::style::Default()
+                        .fg(krow::style::BasicColor::Red)
+                        .bg(krow::style::BasicColor::Blue));
+  krow::app.loop([&]() { block.draw(); });
 
-    krow::app.stop();
-    return 0;
+  krow::app.stop();
+  return 0;
 }
-
 ```
 
 ## Method Details
@@ -173,4 +168,4 @@ The `Borders` enum represents a bitmask used to filter which edges should be act
 | `Borders::BOTTOM` | `1 << 1` | Draws only the bottom horizontal frame row. |
 | `Borders::LEFT` | `1 << 2` | Draws only the left vertical frame column. |
 | `Borders::RIGHT` | `1 << 3` | Draws only the right vertical frame column. |
-| `Borders::ALL` | `TOP | BOTTOM | LEFT | RIGHT` | Draws all bounding frame edges (Default behavior). |
+| `Borders::ALL` | `TOP \| BOTTOM \| LEFT \| RIGHT` | Draws all bounding frame edges (Default behavior). |
