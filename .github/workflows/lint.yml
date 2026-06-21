@@ -45,7 +45,7 @@ jobs:
       - name: Run cppcheck (Show warnings)
         run: |
           cppcheck --cppcheck-build-dir=.cppcheck-cache -I include --enable=all --inconclusive src/ --suppress=missingIncludeSystem --suppress=unusedFunction
-          
+
       - name: Run cppcheck (Fail on errors)
         run: |
           cppcheck --cppcheck-build-dir=.cppcheck-cache -I include --error-exitcode=1 src/ --suppress=missingIncludeSystem
