@@ -5,7 +5,7 @@ update: 19/06/2026
 
 # Krow TUI
 
-![Logo](docs/logo.png)
+![Krow Logo](docs/logo.svg)
 
 [![build](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/build.yml)
 [![Lint](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml/badge.svg)](https://github.com/K10-K10/krowTUI/actions/workflows/lint.yml)
