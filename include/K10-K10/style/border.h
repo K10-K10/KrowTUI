@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_STYLE_BORDER_H_
 #define INCLUDE_STYLE_BORDER_H_
 

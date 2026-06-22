@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_UTILS_BASE_H_
 #define INCLUDE_UTILS_BASE_H_
 

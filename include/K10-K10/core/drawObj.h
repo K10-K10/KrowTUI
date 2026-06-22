@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_CORE_DRAWOBJ_H_
 #define INCLUDE_CORE_DRAWOBJ_H_
 
