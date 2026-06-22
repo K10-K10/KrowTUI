@@ -28,7 +28,7 @@ void lTo(int);
 void moveTo(int y, int x);
 
 // krow size
-std::pair<int, int> getkrowSize();
+std::pair<int, int> getTerminalSize();
 
 // Get current cursor position (row, col)
 std::pair<int, int> getCursorPosition();

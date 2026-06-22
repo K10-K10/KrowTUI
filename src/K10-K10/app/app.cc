@@ -39,7 +39,7 @@ void App::init(int fps) {
   std::cout << "\x1b[?1049h" << std::flush;
   std::cout << "\x1b[?25l" << std::flush;
   enable_raw_mode();
-  std::tie(width, height) = krow::utils::getkrowSize();
+  std::tie(width, height) = krow::utils::getTerminalSize();
   __krow__::screen.resize(width, height);
   this->fps = fps;
 }
@@ -48,7 +48,7 @@ void App::loop(const std::function<void()>& frame) {
   runnning = true;
   while (runnning) {
     if (sig_num == SIGWINCH) {
-      std::tie(width, height) = krow::utils::getkrowSize();
+      std::tie(width, height) = krow::utils::getTerminalSize();
       krow::utils::clear();
       __krow__::screen.resize(width, height);
       sig_num = 0;

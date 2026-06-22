@@ -94,7 +94,7 @@ void moveTo(int y, int x) {
   std::cout << "\e[" << (y + 1) << ";" << (x + 1) << "H" << std::flush;
 }
 
-std::pair<int, int> getkrowSize() {
+std::pair<int, int> getTerminalSize() {
   struct winsize w;
   if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &w) != -1) {
     return {w.ws_col, w.ws_row};  // width, height
