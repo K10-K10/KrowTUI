@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_KROW_H_
 #define INCLUDE_KROW_H_
 

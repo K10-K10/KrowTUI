@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_INPUT_CURSOR_H_
 #define INCLUDE_INPUT_CURSOR_H_
 

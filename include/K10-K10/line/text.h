@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_LINE_TEXT_H_
 #define INCLUDE_LINE_TEXT_H_
 

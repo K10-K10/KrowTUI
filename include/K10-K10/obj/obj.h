@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_OBJ_OBJ_H_
 #define INCLUDE_OBJ_OBJ_H_
 

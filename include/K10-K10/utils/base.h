@@ -1,3 +1,8 @@
+/*
+Copyright (c) 2026 K10-K10
+SPDX-License-Identifier: MIT
+*/
+
 #ifndef INCLUDE_UTILS_BASE_H_
 #define INCLUDE_UTILS_BASE_H_
 
@@ -28,7 +33,7 @@ void lTo(int);
 void moveTo(int y, int x);
 
 // krow size
-std::pair<int, int> getkrowSize();
+std::pair<int, int> getTerminalSize();
 
 // Get current cursor position (row, col)
 std::pair<int, int> getCursorPosition();
