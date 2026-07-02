@@ -30,7 +30,7 @@ include(FetchContent)
 FetchContent_Declare(
     krowTUI
     GIT_REPOSITORY https://github.com/K10-K10/krowTUI
-    GIT_TAG main # We suport only latest version, so use main branch
+    GIT_TAG latest # We suport only latest version
 )
 
 FetchContent_MakeAvailable(krowTUI)

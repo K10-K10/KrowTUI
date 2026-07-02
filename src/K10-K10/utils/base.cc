@@ -3,6 +3,7 @@
 #include <termios.h>
 #include <unistd.h>
 
+#include <cassert>
 #include <cstdlib>
 #include <iostream>
 #include <utility>
@@ -91,6 +92,8 @@ void lTo(int num) {
 }
 
 void moveTo(int y, int x) {
+  assert(y >= 0);
+  assert(x >= 0);
   std::cout << "\e[" << (y + 1) << ";" << (x + 1) << "H" << std::flush;
 }
 

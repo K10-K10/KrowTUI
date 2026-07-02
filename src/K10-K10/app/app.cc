@@ -42,10 +42,10 @@ void App::init(int fps) {
   std::tie(width, height) = krow::utils::getTerminalSize();
   __krow__::screen.resize(width, height);
   this->fps = fps;
+  runnning = true;
 }
 
 void App::loop(const std::function<void()>& frame) {
-  runnning = true;
   while (runnning) {
     if (sig_num == SIGWINCH) {
       std::tie(width, height) = krow::utils::getTerminalSize();
@@ -54,17 +54,43 @@ void App::loop(const std::function<void()>& frame) {
       sig_num = 0;
     }
     if (sig_num == SIGINT) {
-      stop();
+      leave();
       std::exit(0);
     }
     frame();
-    __krow__::Render::flush();
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    if (!pose_) {
+      __krow__::Render::flush();
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000 / fps));
   }
 }
 
-void App::stop() {
+void App::leave() {
   runnning = false;
+  std::cout << "\x1b[?1049l" << std::flush;
+  std::cout << "\x1b[?25h" << std::flush;
+  disable_raw_mode();
+  std::cout << std::flush;
+  if (!logs_.empty()) {
+    for (std::string s : logs_) {
+      // FIXME: Why is it necessary to output carrige return explicitly?
+      std::cout << s << "\r\n" << std::flush;
+    }
+  }
+}
+
+void App::attach() {
+  pose_ = false;
+  std::cout << "\x1b[?1049h" << std::flush;
+  std::cout << "\x1b[?25l" << std::flush;
+  enable_raw_mode();
+  std::tie(width, height) = krow::utils::getTerminalSize();
+  __krow__::screen.resize(width, height);
+}
+
+void App::detach() {
+  pose_ = true;
+  __krow__::screen.resize(0, 0);
   std::cout << "\x1b[?1049l" << std::flush;
   std::cout << "\x1b[?25h" << std::flush;
   disable_raw_mode();
