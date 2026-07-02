@@ -87,7 +87,7 @@ app.loop{[&]() {
 When you're done, make sure to clean up resources:
 
 ```cpp
-app.stop();
+app.leave();
 ```
 
 example code can be found in the [Examples](examples.md) section of the documentation.
