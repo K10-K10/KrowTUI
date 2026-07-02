@@ -11,6 +11,8 @@ SPDX-License-Identifier: MIT
 
 #include <csignal>
 #include <functional>
+#include <string>
+#include <vector>
 
 namespace __krow__ {
 class App {
@@ -18,7 +20,10 @@ class App {
   explicit App(Render& r) noexcept;
   void init(int fps = 60);
   void loop(const std::function<void()>& frame);
-  void stop();
+  void leave();
+  void detach();
+  void attach();
+  void dump(std::string contents) { logs_.push_back(contents); };
 
  protected:
   void set_running(bool flag);
@@ -35,6 +40,7 @@ class App {
   int width = 0, height = 0;
   int fps = 60;
   static void signal_handler(int sig);
+  std::vector<std::string> logs_;
 };
 }  // namespace __krow__
 #endif
