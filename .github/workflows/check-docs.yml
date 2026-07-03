@@ -37,7 +37,7 @@ jobs:
           gh api graphql -f query='
             mutation($projectId: ID!, $title: String!) {
               addProjectV2DraftIssue(input: {projectId: $projectId, title: $title}) {
-                projectV2Item {
+                projectItem {
                   id
                 }
               }
