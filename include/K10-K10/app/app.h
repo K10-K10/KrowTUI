@@ -23,7 +23,7 @@ class App {
   void leave();
   void detach();
   void attach();
-  void dump(std::string contents) { logs_.push_back(contents); };
+  void dump(std::string const& contents) { logs_.push_back(contents); };
 
  protected:
   void set_running(bool flag);
