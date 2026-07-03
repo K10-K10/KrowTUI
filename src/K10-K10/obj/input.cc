@@ -175,8 +175,8 @@ void TextField::draw() {
     return;
   }
 
-  const int offset_x = std::max(0, cursor_x - w + 1);
-  const int offset_y = std::max(0, cursor_y - h + 1);
+  const int offset_x = ::std::max(0, ::std::min(visible_x, rect.w));
+  const int offset_y = ::std::max(0, ::std::min(visible_y, rect.h));
 
   for (int screen_y = 0; screen_y < h; ++screen_y) {
     const int data_y = offset_y + screen_y;
@@ -187,6 +187,12 @@ void TextField::draw() {
     }
 
     if (data_y >= contents_.size()) {
+      if (data_y == cursor_y && cursor_x == 0) {
+        const int screen_x = cursor_x - offset_x;
+        if (screen_x >= 0 && screen_x < w) {
+          __krow__::DrawObj::put(cy, l + screen_x, {" ", cursor_style_});
+        }
+      }
       continue;
     }
 
@@ -209,37 +215,36 @@ void TextField::draw() {
       process_queue(row.right);
     }
 
-    const int current_visual_x = 0;
-    int current_screen_x = 0;
+    int current_visual_x = 0;
     for (size_t glyph_idx = 0; glyph_idx < all_vchars.size(); ++glyph_idx) {
       const auto& vc = all_vchars[glyph_idx];
+      const int char_width = vc.get_width();
+      if (current_visual_x >= offset_x &&
+          (current_visual_x - offset_x + char_width) <= w) {
+        const int screen_x = current_visual_x - offset_x;
 
-      if (static_cast<int>(glyph_idx) < offset_x) {
-        continue;
+        const bool is_cursor =
+            (static_cast<int>(glyph_idx) == cursor_x && data_y == cursor_y);
+        const krow::style::Style final_style =
+            is_cursor ? cursor_style_ : text_style_;
+
+        __krow__::DrawObj::put(cy, l + screen_x, {vc.get_c(), final_style});
       }
 
-      if (current_screen_x >= w) {
-        break;
-      }
-
-      const bool is_cursor =
-          (static_cast<int>(glyph_idx) == cursor_x && data_y == cursor_y);
-
-      const krow::style::Style final_style =
-          is_cursor ? cursor_style_ : text_style_;
-
-      __krow__::DrawObj::put(cy, l + current_screen_x,
-                             {vc.get_c(), final_style});
-      current_screen_x += vc.get_width();
+      current_visual_x += char_width;
     }
 
     if (data_y == cursor_y && cursor_x == static_cast<int>(all_vchars.size())) {
-      const int screen_x = cursor_x - offset_x;
+      const int screen_x = current_visual_x - offset_x;
       if (screen_x >= 0 && screen_x < w) {
         __krow__::DrawObj::put(cy, l + screen_x, {" ", cursor_style_});
       }
     }
   }
 }
-
+TextField& TextField::scroll(int x, int y) {
+  visible_x += x;
+  visible_y += y;
+  return *this;
+}
 }  // namespace krow

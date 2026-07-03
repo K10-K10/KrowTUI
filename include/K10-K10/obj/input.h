@@ -42,6 +42,8 @@ class TextField : private Object {
     return *this;
   }
 
+  TextField& scroll(int x, int y);
+
   void draw() override;
 
   Text& operator[](size_t index);
@@ -53,7 +55,7 @@ class TextField : private Object {
   std::vector<Text> contents_;
   int max_length_ = 0;
   int cursor_x = 0, cursor_y = 0;
-
+  int visible_x = 0, visible_y = 0;
   bool cursor_inverted_ = false;
 };
 }  // namespace krow
