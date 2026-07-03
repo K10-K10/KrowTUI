@@ -8,7 +8,7 @@ namespace krow::style {
 
 std::string Style::convert_to_ansi(const krow::style::Color& color,
                                    const bool is_fg) {
-  int base = is_fg ? 30 : 40;
+  const int base = is_fg ? 30 : 40;
   const int ext = is_fg ? 38 : 48;
 
   const krow::style::Color::Type t = color.get_type();

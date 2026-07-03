@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <functional>
 #include <iostream>
+#include <string>
 #include <thread>
 #include <tuple>
 
@@ -72,7 +73,7 @@ void App::leave() {
   disable_raw_mode();
   std::cout << std::flush;
   if (!logs_.empty()) {
-    for (std::string s : logs_) {
+    for (const std::string& s : logs_) {
       // FIXME: Why is it necessary to output carrige return explicitly?
       std::cout << s << "\r\n" << std::flush;
     }
