@@ -1,0 +1,44 @@
+name: Check Documents update
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get changed files in docs
+        id: changed-files-docs
+        uses: tj-actions/changed-files@v45
+        with:
+          files: docs/**
+
+      - name: Add Draft to Project if docs are not changed
+        if: |
+          steps.changed-files-docs.outputs.any_changed == 'false' &&
+          !contains(github.event.pull_request.head.ref, 'ref') &&
+          !contains(github.event.pull_request.head.ref, 'refactor') &&
+          !contains(github.event.pull_request.title, 'ref') &&
+          !contains(github.event.pull_request.title, 'refactor')
+        env:
+          GH_TOKEN: ${{ secrets.WriteProject }}
+          PROJECT_ID: "PVT_kwHOCWEI5M4BaK7E"
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          DRAFT_TITLE="[Add Documentation] PR #${PR_NUMBER}: ${PR_TITLE}"
+
+          gh api graphql -f query='
+            mutation($projectId: ID!, $title: String!) {
+              addProjectV2DraftIssue(input: {projectId: $projectId, title: $title}) {
+                projectV2Item {
+                  id
+                }
+              }
+            }' -f projectId="$PROJECT_ID" -f title="$DRAFT_TITLE"
