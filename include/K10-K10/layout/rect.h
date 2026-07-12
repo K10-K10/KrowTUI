@@ -10,7 +10,7 @@ SPDX-License-Identifier: MIT
 
 namespace krow {
 struct Rect {
-  int x, y, w, h;
+  int y, x, h, w;
 
   int right() const { return x + w; }
   int bottom() const { return y + h; }
